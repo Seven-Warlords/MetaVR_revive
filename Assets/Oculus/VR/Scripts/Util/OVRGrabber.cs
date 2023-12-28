@@ -77,7 +77,7 @@ public class OVRGrabber : MonoBehaviour
     protected Quaternion m_anchorOffsetRotation;
     protected Vector3 m_anchorOffsetPosition;
     protected float m_prevFlex;
-    protected OVRGrabbable m_grabbedObj = null;
+    public OVRGrabbable m_grabbedObj = null;
     protected Vector3 m_grabbedObjectPosOff;
     protected Quaternion m_grabbedObjectRotOff;
     protected Dictionary<OVRGrabbable, int> m_grabCandidates = new Dictionary<OVRGrabbable, int>();
@@ -374,7 +374,7 @@ public class OVRGrabber : MonoBehaviour
             Vector3 angularVelocity =
                 trackingSpace.orientation * OVRInput.GetLocalControllerAngularVelocity(m_controller);
 
-            GrabbableRelease(linearVelocity, angularVelocity);
+            GrabbableRelease(linearVelocity*3, angularVelocity);
         }
 
         // Re-enable grab volumes to allow overlap events

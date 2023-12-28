@@ -295,7 +295,7 @@ public class OVRPlayerController : MonoBehaviour
             CameraUpdated();
         }
 
-        UpdateMovement();
+         UpdateMovement();
 
         Vector3 moveDirection = Vector3.zero;
 
@@ -340,7 +340,7 @@ public class OVRPlayerController : MonoBehaviour
             MoveThrottle += (actualXZ - predictedXZ) / (SimulationRate * Time.deltaTime);
     }
 
-
+ 
     public virtual void UpdateMovement()
     {
         //todo: enable for Unity Input System
@@ -513,7 +513,7 @@ public class OVRPlayerController : MonoBehaviour
 #endif
     }
 
-
+  
     /// <summary>
     /// Invoked by OVRCameraRig's UpdatedAnchors callback. Allows the Hmd rotation to update the facing direction of the player.
     /// </summary>
