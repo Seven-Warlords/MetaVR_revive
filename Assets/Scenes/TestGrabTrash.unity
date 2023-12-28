@@ -385,14 +385,14 @@ GameObject:
   - component: {fileID: 286021149}
   - component: {fileID: 286021148}
   - component: {fileID: 286021147}
-  - component: {fileID: 286021146}
   - component: {fileID: 286021145}
+  - component: {fileID: 286021146}
   - component: {fileID: 286021144}
   - component: {fileID: 286021143}
   - component: {fileID: 286021142}
   m_Layer: 0
   m_Name: Pet (1)
-  m_TagString: Floor
+  m_TagString: Trash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -412,8 +412,8 @@ MonoBehaviour:
   catchPlayer: {fileID: 554311807}
   trashTag: 0
   shootTrigger: 0
-  speed: 6
-  high: 5
+  speed: 1
+  high: 1
   distance: 0
   direction: {x: 0, y: 0, z: 0}
   Pet: {fileID: 3298551121073639317, guid: 6454cdddb63a1dc4a95df3e9c64295ee, type: 3}
@@ -459,7 +459,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &286021145
 BoxCollider:
@@ -583,7 +583,7 @@ GameObject:
   - component: {fileID: 291624572}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -707,14 +707,14 @@ GameObject:
   - component: {fileID: 366346455}
   - component: {fileID: 366346454}
   - component: {fileID: 366346453}
-  - component: {fileID: 366346452}
   - component: {fileID: 366346451}
+  - component: {fileID: 366346452}
   - component: {fileID: 366346450}
   - component: {fileID: 366346449}
   - component: {fileID: 366346448}
   m_Layer: 0
   m_Name: Pet (2)
-  m_TagString: Floor
+  m_TagString: Trash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -734,8 +734,8 @@ MonoBehaviour:
   catchPlayer: {fileID: 554311807}
   trashTag: 0
   shootTrigger: 0
-  speed: 6
-  high: 5
+  speed: 1
+  high: 2
   distance: 0
   direction: {x: 0, y: 0, z: 0}
   Pet: {fileID: 3298551121073639317, guid: 6454cdddb63a1dc4a95df3e9c64295ee, type: 3}
@@ -781,7 +781,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &366346451
 BoxCollider:
@@ -974,14 +974,14 @@ GameObject:
   - component: {fileID: 1019751814}
   - component: {fileID: 1019751813}
   - component: {fileID: 1019751812}
-  - component: {fileID: 1019751811}
   - component: {fileID: 1019751810}
+  - component: {fileID: 1019751811}
   - component: {fileID: 1019751809}
   - component: {fileID: 1019751808}
   - component: {fileID: 1019751807}
   m_Layer: 0
   m_Name: Pet (3)
-  m_TagString: Floor
+  m_TagString: Trash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1001,8 +1001,8 @@ MonoBehaviour:
   catchPlayer: {fileID: 554311807}
   trashTag: 0
   shootTrigger: 0
-  speed: 6
-  high: 5
+  speed: 1
+  high: 2
   distance: 0
   direction: {x: 0, y: 0, z: 0}
   Pet: {fileID: 3298551121073639317, guid: 6454cdddb63a1dc4a95df3e9c64295ee, type: 3}
@@ -1048,7 +1048,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &1019751810
 BoxCollider:
@@ -1151,7 +1151,7 @@ Transform:
   m_GameObject: {fileID: 1019751806}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.84, y: 0.25, z: 1.7}
+  m_LocalPosition: {x: 3.065, y: 0.25, z: 1.834}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1329,14 +1329,14 @@ GameObject:
   - component: {fileID: 1344192579}
   - component: {fileID: 1344192578}
   - component: {fileID: 1344192577}
-  - component: {fileID: 1344192576}
   - component: {fileID: 1344192575}
+  - component: {fileID: 1344192576}
   - component: {fileID: 1344192574}
   - component: {fileID: 1344192573}
   - component: {fileID: 1344192572}
   m_Layer: 0
   m_Name: Pet
-  m_TagString: Floor
+  m_TagString: Trash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1356,8 +1356,8 @@ MonoBehaviour:
   catchPlayer: {fileID: 554311807}
   trashTag: 0
   shootTrigger: 0
-  speed: 6
-  high: 5
+  speed: 1
+  high: 2
   distance: 0
   direction: {x: 0, y: 0, z: 0}
   Pet: {fileID: 3298551121073639317, guid: 6454cdddb63a1dc4a95df3e9c64295ee, type: 3}
@@ -1403,7 +1403,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &1344192575
 BoxCollider:
