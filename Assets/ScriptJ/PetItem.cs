@@ -3,34 +3,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PetItem : MonoBehaviour
+public class PetItem : Trash
 {
     public GameObject Pet;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-    
+        base.Start();
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
-        
+        base.Update();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public override void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.collider.name);
+        base.OnCollisionEnter(collision);
         if (collision.collider.tag == "Knife")
         {
             Instantiate(Pet, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }
-    private void OnTriggerEnter(Collider other)
+    public override void OnTriggerEnter(Collider other)
     {
-       
+        base.OnTriggerEnter(other);
         if (other.tag == "Knife")
         {
             Instantiate(Pet, transform.position, transform.rotation);

@@ -44,13 +44,12 @@ public class TrashBacket : MonoBehaviour
             Trash trash;
             if (catchObj[i].TryGetComponent<Trash>(out trash))
             {
-                    Debug.Log("test2");
                 if (trash.trashTag != (Trash.TrashTag)trashType)
                 {
-                    Debug.Log("test1");
                     trash.transform.position = gameObject.transform.position + Vector3.up * 3f;
                     catchObj[i].SetActive(true);
                     trash.distance = Vector3.Distance(transform.position, trash.catchPlayer.transform.position);
+                    catchObj[i].transform.rotation = Quaternion.identity;
                     trash.direction = trash.catchPlayer.transform.position - transform.position;
                     trash.shootTrigger = true;
                     catchObj[i] = null;

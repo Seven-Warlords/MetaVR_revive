@@ -8,12 +8,13 @@ public class Trash : MonoBehaviour
     {
         Paper,
         Can,
-
+        Pet,
     }
     public Player catchPlayer;
     public TrashTag trashTag;
     Rigidbody rigd;
     Transform trans;
+    Collider collider;
 
     public bool shootTrigger = false;
     public float speed = 6f;
@@ -24,21 +25,22 @@ public class Trash : MonoBehaviour
     private float timeX = 0;
 
     // Start is called before the first frame update
-    public void Start()
+    public virtual void Start()
     {
         rigd = GetComponent<Rigidbody>();
         trans = GetComponent<Transform>();
+        collider = GetComponent<Collider>();
     }
 
     // Update is called once per frame
-    public void Update()
+    public virtual void Update()
     {
     }
     public virtual void FixedUpdate()
     {
-        Debug.DrawRay(gameObject.transform.position, direction * 10);
         if (shootTrigger)
         {
+            collider.enabled = false;
             timeX += Time.fixedDeltaTime;
             trans.Translate(speed * Time.fixedDeltaTime * new Vector3(direction.x,0,direction.z).normalized);
             if (upForce)
@@ -55,14 +57,20 @@ public class Trash : MonoBehaviour
         }
     }
 
-    public void OnTriggerEnter(Collider other)
+    public virtual void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Floor"))
         {
+            collider.enabled = true;
             upForce = false;
+            rigd.useGravity = true;
+            shootTrigger = false;
+        }
+        if (other.gameObject.CompareTag("Hand"))
+        {
         }
     }
-    public void OnCollisionEnter(Collision collision)
+    public virtual void OnCollisionEnter(Collision collision)
     {
         if (shootTrigger)
         {
