@@ -58,7 +58,7 @@ public class QuizButton : MonoBehaviour
     public void Click()
     {
         QuizManager.Instance.VoteAnswer(type);
-        GetComponent<Button>().interactable = false;
+        //GetComponent<Button>().interactable = false;
         istouched = true;
     }
 

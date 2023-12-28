@@ -521,7 +521,7 @@ GameObject:
   - component: {fileID: 286021142}
   m_Layer: 0
   m_Name: Pet (1)
-  m_TagString: Floor
+  m_TagString: Trash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -559,7 +559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_allowOffhandGrab: 1
-  m_snapPosition: 0
+  m_snapPosition: 1
   m_snapOrientation: 0
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
@@ -843,7 +843,7 @@ GameObject:
   - component: {fileID: 366346448}
   m_Layer: 0
   m_Name: Pet (2)
-  m_TagString: Floor
+  m_TagString: Trash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1110,7 +1110,7 @@ GameObject:
   - component: {fileID: 1019751807}
   m_Layer: 0
   m_Name: Pet (3)
-  m_TagString: Floor
+  m_TagString: Trash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1468,7 +1468,7 @@ GameObject:
   - component: {fileID: 1344192572}
   m_Layer: 0
   m_Name: Pet
-  m_TagString: Floor
+  m_TagString: Trash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
