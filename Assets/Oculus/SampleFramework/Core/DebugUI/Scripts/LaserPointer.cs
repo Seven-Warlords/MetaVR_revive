@@ -100,7 +100,6 @@ public class LaserPointer : OVRCursor
             {
                 cursorVisual.transform.position = _endPoint;
                 cursorVisual.SetActive(true);
-                lineRenderer.enabled = true;
             }
         }
         else
@@ -108,7 +107,6 @@ public class LaserPointer : OVRCursor
             UpdateLaserBeam(_startPoint, _startPoint + maxLength * _forward);
             lineRenderer.SetPosition(1, _startPoint + maxLength * _forward);
             if (cursorVisual) cursorVisual.SetActive(false);
-            lineRenderer.enabled = false;
         }
     }
 
