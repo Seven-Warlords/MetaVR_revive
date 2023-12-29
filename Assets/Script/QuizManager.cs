@@ -154,9 +154,10 @@ public class QuizManager : MonoBehaviour
         qtime = quiztime;
         state = State.ready;
         state = State.quiz;
+        trash = question.trash;
         answer1.DataPlay();
         answer2.DataPlay();
-        TrashSpawn();
+        StartCoroutine(TrashSpawn());
         question_text.text = question.question;
         //left_Text.text = question.left_Text;
         //right_Text.text = question.right_Text;
@@ -242,10 +243,15 @@ public class QuizManager : MonoBehaviour
         state = State.ready;
     }
 
-    void TrashSpawn()
+    IEnumerator TrashSpawn()
     {
-        trashobject = Instantiate(trash);
-        trashobject.transform.position = trashposition.position;
+        for(int i = 1; i <= playercount; i ++)
+        {
+            trashobject = Instantiate(trash);
+            trashobject.transform.position = trashposition.position;
+            yield return new WaitForSeconds(0.2f);
+        }
+        
     }
 
     void TrashDelect()

@@ -69,7 +69,10 @@ public class TrashBacket : MonoBehaviour
             {
                 shootTrash.velocity = Vector3.zero;
             }
-            gameObject.GetComponent<QuizButton>().Click();
+            if (QuizManager.Instance.state == QuizManager.State.quiz)
+            {
+                gameObject.GetComponent<QuizButton>().Click();
+            }
             collision.gameObject.SetActive(false);
             Push<GameObject>(collision.gameObject, catchObj);
             
