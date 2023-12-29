@@ -63,13 +63,16 @@ public class TrashBacket : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Trash"))
         {
+            
             Rigidbody shootTrash;
             if (collision.gameObject.TryGetComponent<Rigidbody>(out shootTrash))
             {
                 shootTrash.velocity = Vector3.zero;
             }
+            gameObject.GetComponent<QuizButton>().Click();
             collision.gameObject.SetActive(false);
             Push<GameObject>(collision.gameObject, catchObj);
+            
         }
     }
     int  Push<T>(T t, T[] arrT)
