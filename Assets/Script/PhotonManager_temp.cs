@@ -64,7 +64,7 @@ public class PhotonManager_temp : MonoBehaviourPunCallbacks {
         foreach (var player in PhotonNetwork.CurrentRoom.Players) {
             Debug.Log($"{player.Value.NickName},{player.Value.ActorNumber}");
         }
-        PhotonNetwork.Instantiate("Player", startpoint.position, startpoint.rotation, 0);
+       // PhotonNetwork.Instantiate("PPP", startpoint.position, startpoint.rotation, 0);
     }
 
 }
