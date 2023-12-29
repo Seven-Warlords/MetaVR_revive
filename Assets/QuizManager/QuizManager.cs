@@ -27,6 +27,8 @@ public class QuizManager : MonoBehaviour
     public GameObject trash;
     private GameObject trashobject;
     public Answercolor answercolor;
+    public StringDelay answer1;
+    public StringDelay answer2;
 
     public float munje;
     public float jungdab;
@@ -152,6 +154,8 @@ public class QuizManager : MonoBehaviour
         qtime = quiztime;
         state = State.ready;
         state = State.quiz;
+        answer1.DataPlay();
+        answer2.DataPlay();
         TrashSpawn();
         question_text.text = question.question;
         //left_Text.text = question.left_Text;
