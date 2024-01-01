@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32a875f3f61016143b57611ba49b61eb, type: 3}
   m_Name: Question 1
   m_EditorClassIdentifier: 
-  trash: {fileID: 6845979371207523019, guid: 983e827db72b2c74cb09bb34160624ec, type: 3}
+  trash: T_1
   correct: 1
-  question: 1 + 1?
-  correcttext: yes 1+1 = 2!
-  all_Failtext: no... 1+1 = 2....
+  question: "1 \uB354\uD558\uAE30 1\uC740?"
+  correcttext: "2 \uB9DE\uC544\uC694"
+  all_Failtext: "\uC544\uB2C8 3\uC544\uB2C8\uB77C 2\uB77C\uACE0"
   half_Failtext: 
-  left_Text: Fuck that is 2
-  right_Text: You Suck is 3
+  left_Text: "\uB2F9\uC5F0\uD788 2\uC8E0!"
+  right_Text: "\uBB50\uB798 3\uC774\uC9C0 \uB4F1\uC2E0\uC544"

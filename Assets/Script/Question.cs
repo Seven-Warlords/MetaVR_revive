@@ -6,7 +6,7 @@ using UnityEngine;
 public class Question : ScriptableObject
 {
     [Header("#Question Type")]
-    public GameObject trash;
+    public string trash;
     public int correct = 1;
     public string question;
     public string correcttext;

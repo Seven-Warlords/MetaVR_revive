@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Photon.Pun;
 
-public class QuizManager : MonoBehaviour
+public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
 {
+
+    
     public enum State
     {
         ready, quiz, result
@@ -24,7 +27,7 @@ public class QuizManager : MonoBehaviour
     public float quiztime;
     public int answer;
     public Transform trashposition;
-    public GameObject trash;
+    public string trash;
     private GameObject trashobject;
     public Answercolor answercolor;
     public StringDelay answer1;
@@ -56,6 +59,11 @@ public class QuizManager : MonoBehaviour
         isgame = true;
     }
 
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        // 여기에 구현 코드 추가
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -76,23 +84,6 @@ public class QuizManager : MonoBehaviour
                         Quiz();
                     }
                     break;
-                /*case State.quiz:
-                    qtime -= Time.deltaTime;
-                    if (qtime >= (quiztime - 2))
-                    {
-                        time.text = "Question!";
-                    }
-                    else if (qtime > 0)
-                    {
-                        time.text = qtime.ToString("F2");
-                    }
-
-                    if (qtime <= 0)
-                    {
-                        NOResult();
-                    }
-
-                    break;*/
                 case State.quiz:
                     time.text = "Question!";
 
@@ -148,6 +139,7 @@ public class QuizManager : MonoBehaviour
         
     }
 
+    [PunRPC]
     void Quiz()
     {
         question = questions[currentquestion - 1];
@@ -172,6 +164,7 @@ public class QuizManager : MonoBehaviour
             Result();
         }
     }
+
 
     public void VoteAnswer(int myanswer)
     {
@@ -247,8 +240,11 @@ public class QuizManager : MonoBehaviour
     {
         for(int i = 1; i <= playercount; i ++)
         {
-            trashobject = Instantiate(trash);
-            trashobject.transform.position = trashposition.position;
+            //trashobject = Instantiate(trash);
+            //trashobject.transform.position = trashposition.position;
+            //yield return new WaitForSeconds(0.2f);
+
+            trashobject = PhotonNetwork.Instantiate(trash, trashposition.position, trashposition.rotation);
             yield return new WaitForSeconds(0.2f);
         }
         
