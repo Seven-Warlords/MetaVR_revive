@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     public GameObject head;
     public GameObject handL;
     public GameObject handR;
+    public int myNumber;
     // Start is called before the first frame update
     void Start()
     {

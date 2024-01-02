@@ -246,6 +246,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
             if(PhotonNetwork.IsMasterClient)
             {
                 trashobject = PhotonNetwork.Instantiate(trash, trashposition.position, trashposition.rotation);
+                //GetComponent<PhotonView>().RPC("PositionSync", RpcTarget.All, null);
                 yield return new WaitForSeconds(0.2f);
             }
         }
