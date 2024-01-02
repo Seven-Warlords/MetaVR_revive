@@ -15,6 +15,14 @@ public class Player : MonoBehaviour
         GameManager.instance.player.gameObject.transform.position = GameManager.instance.spawnpoints[a - 1].position;
         GameManager.instance.player.gameObject.transform.rotation = GameManager.instance.spawnpoints[a - 1].rotation;
         GameManager.instance.player.JoinGame();
+
+        
+        GameManager.instance.playerVR.transform.position = GameManager.instance.spawnpoints[a - 1].localPosition;
+        GameManager.instance.playerVR.transform.rotation = GameManager.instance.spawnpoints[a - 1].localRotation;
+        PlayerChase chase= GameManager.instance.playerVR.GetComponent<PlayerChase>();
+        head = chase.head;
+        handL = chase.handL;
+        handR = chase.handR;
     }
     // Update is called once per frame
     public void JoinGame()

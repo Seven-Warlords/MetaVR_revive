@@ -19,13 +19,13 @@ public class Head : MonoBehaviour
         if(myPV.IsMine) {
             switch (humantype){
                 case 1:
-                    head = PlayerChase.Incetance.head;
+                    head = GameManager.instance.player.head;
                     break;
                 case 2:
-                    head = PlayerChase.Incetance.hand1;
+                    head = GameManager.instance.player.handL;
                     break;
                 case 3:
-                    head = PlayerChase.Incetance.hand2;
+                    head = GameManager.instance.player.handR;
                     break;
             }
         }
