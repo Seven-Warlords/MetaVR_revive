@@ -58,10 +58,7 @@ public class Trash : MonoBehaviour
         }
     }
 
-    public void Destory()
-    {
-        GetComponent<PhotonView>().RPC("NetworkDestory", RpcTarget.All, null);
-    }
+
 
     public virtual void OnTriggerEnter(Collider other)
     {
@@ -88,10 +85,5 @@ public class Trash : MonoBehaviour
         }
     }
 
-    [PunRPC]
-
-    void NetworkDestory()
-    {
-        gameObject.SetActive(false);
-    }
+    
 }

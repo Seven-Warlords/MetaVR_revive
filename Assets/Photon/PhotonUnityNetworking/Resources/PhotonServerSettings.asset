@@ -47,6 +47,7 @@ MonoBehaviour:
   - RespawnSpaceship
   - Click
   - NetworkClick
+  - NetworkDestory
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
