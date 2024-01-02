@@ -14,6 +14,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         ready, quiz, result
     }
     public static QuizManager Instance;
+    private PhotonView myPV;
     public State state;
     public Question question;
     public Question[] questions;
@@ -54,6 +55,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     }
     void Start()
     {
+        myPV = GetComponent<PhotonView>();
         State state = State.ready;
         ctime = timetoquestion;
         isgame = true;
@@ -246,7 +248,13 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
             if(PhotonNetwork.IsMasterClient)
             {
                 trashobject = PhotonNetwork.Instantiate(trash, trashposition.position, trashposition.rotation);
-                //GetComponent<PhotonView>().RPC("PositionSync", RpcTarget.All, null);
+                if(i == GameManager.instance.player.myNumber)
+                {
+                    if (!PhotonNetwork.IsMasterClient)
+                    {
+                        trashobject.GetComponent<PhotonView>().RequestOwnership();
+                    }
+                }
                 yield return new WaitForSeconds(0.2f);
             }
         }
