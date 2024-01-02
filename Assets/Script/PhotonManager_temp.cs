@@ -62,7 +62,7 @@ public class PhotonManager_temp : MonoBehaviourPunCallbacks {
     Debug.Log($"PhotonNetwork.InRoom = {PhotonNetwork.InRoom}");
     Debug.Log($"Player Count = {PhotonNetwork.CurrentRoom.PlayerCount}");
 #endif
-        GameManager.instance.netWorkGameManager.currentplayerNum = GameManager.instance.netWorkGameManager.currentplayerNum + 1;
+        GameManager.instance.netWorkGameManager.PlayerJoin();
         PhotonNetwork.NickName = "Player : " + (GameManager.instance.netWorkGameManager.currentplayerNum).ToString();
         GameManager.instance.player.myNumber = GameManager.instance.netWorkGameManager.currentplayerNum;
         foreach (var player in PhotonNetwork.CurrentRoom.Players) {
