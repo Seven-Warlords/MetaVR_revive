@@ -150,9 +150,13 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         answer1.DataPlay();
         answer2.DataPlay();
         //StartCoroutine(TrashSpawn());
-        if(GetComponent<PhotonView>().Owner.IsMasterClient)
+        if(GetComponent<PhotonView>().IsMine)
         {
-            StartCoroutine(TrashSpawn());
+
+            if(PhotonNetwork.IsMasterClient)
+            {
+                StartCoroutine(TrashSpawn());
+            }
         }
         //TrashSpawn();
         question_text.text = question.question;
