@@ -19,7 +19,7 @@ MonoBehaviour:
     AppIdVoice: faf2a76d-5065-4c40-8851-82735cea468c
     AppVersion: 
     UseNameServer: 1
-    FixedRegion: kr
+    FixedRegion: 
     Server: 
     Port: 0
     ProxyServer: 
@@ -33,18 +33,19 @@ MonoBehaviour:
   EnableSupportLogger: 0
   RunInBackground: 1
   StartInOfflineMode: 0
-  RpcList:=
+  RpcList:
   - CantHearYou
   - ChangeColour
   - ClickRpc
   - DestroyRpc
-  - HeresWhy
   - DestroySpaceship
   - Fire
-  - FireBullet
-  - KillMessage
-  - RespawnSpaceship
+  - HeresWhy
+  - mynumbertemp
   - MyRPCFunction
+  - Quiz
+  - RespawnSpaceship
+  - Click
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
