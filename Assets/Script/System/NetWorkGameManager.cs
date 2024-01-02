@@ -16,10 +16,12 @@ public class NetWorkGameManager : MonoBehaviourPun, IPunObservable
         if(stream.IsWriting)
         {
             stream.SendNext(playercount) ;
+            stream.SendNext(currentplayerNum);
         }
-        else if(stream.IsReading)
+        else
         {
-            playercount = (int)stream.ReceiveNext();
+            this.playercount = (int)stream.ReceiveNext();
+            this.currentplayerNum = (int)stream.ReceiveNext();
         }
     }
     void Start()

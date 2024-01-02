@@ -48,6 +48,7 @@ MonoBehaviour:
   - Click
   - NetworkClick
   - NetworkDestory
+  - NPlayerJoin
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
