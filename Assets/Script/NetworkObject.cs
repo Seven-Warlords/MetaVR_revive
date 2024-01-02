@@ -5,11 +5,10 @@ using Photon.Pun;
 
 public class NetworkObject : MonoBehaviourPun
 {
-    public Transform tr;
-    public PhotonView pv;
+    
     void Update()
     {
-      
+
     }
     public void Destory()
     {
@@ -18,9 +17,6 @@ public class NetworkObject : MonoBehaviourPun
 
     [PunRPC]
 
-
-
-
     void NetworkDestory()
     {
         gameObject.SetActive(false);
@@ -28,6 +24,6 @@ public class NetworkObject : MonoBehaviourPun
 
     void PositionSync()
     {
-        pv.RequestOwnership();
+        
     }
 }
