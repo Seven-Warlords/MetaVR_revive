@@ -15,7 +15,7 @@ public class PhotonManager_temp : MonoBehaviourPunCallbacks {
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.ConnectUsingSettings();
 
-        startpoint = SpawnLocation.GetComponent<Transform>();
+        //startpoint = SpawnLocation.GetComponent<Transform>();
 #if On
         Debug.Log(PhotonNetwork.SendRate);
 #endif
