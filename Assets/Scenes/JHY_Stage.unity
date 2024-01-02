@@ -4925,8 +4925,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad6121121a718614ba4ae37fcfb1f99b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentplayerNum: 5
-  playercount: 5
+  currentplayerNum: 0
+  playercount: 0
   players: 01000000020000000300000004000000
 --- !u!114 &1803705076
 MonoBehaviour:
@@ -5211,7 +5211,11 @@ MonoBehaviour:
   quizManager: {fileID: 0}
   playerChase: {fileID: 0}
   netWorkGameManager: {fileID: 1803705075}
-  spawnpoints: []
+  spawnpoints:
+  - {fileID: 390929560}
+  - {fileID: 360744121}
+  - {fileID: 1651156584}
+  - {fileID: 1365864202}
 --- !u!4 &1944406960
 Transform:
   m_ObjectHideFlags: 0
