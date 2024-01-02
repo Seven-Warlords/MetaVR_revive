@@ -63,6 +63,10 @@ public class QuizButton : MonoBehaviour
         istouched = true;
     }*/
 
+    public void Click()
+    {
+        GetComponent<PhotonView>().RPC("NetworkClick", RpcTarget.Others, null);
+    }
     void Respawn()
     {
         istouched = false;
@@ -70,7 +74,7 @@ public class QuizButton : MonoBehaviour
 
     [PunRPC]
 
-    public void Click()
+    public void NetworkClick()
     {
         QuizManager.Instance.VoteAnswer(type);
         //GetComponent<Button>().interactable = false;
