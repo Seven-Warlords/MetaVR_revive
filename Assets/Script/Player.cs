@@ -12,8 +12,8 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void JoinGame()
     {
-        
+        myNumber = GameManager.instance.netWorkGameManager.currentplayerNum;
     }
 }

@@ -65,7 +65,7 @@ public class PhotonManager_temp : MonoBehaviourPunCallbacks {
         GameManager.instance.netWorkGameManager.PlayerJoin();
         int a = GameManager.instance.netWorkGameManager.currentplayerNum;
         PhotonNetwork.NickName = "Player : " + a.ToString();
-        GameManager.instance.player.myNumber = a;
+        GameManager.instance.player.JoinGame();
         foreach (var player in PhotonNetwork.CurrentRoom.Players) {
             Debug.Log($"{player.Value.NickName}");
         }
