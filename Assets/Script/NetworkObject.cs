@@ -24,6 +24,6 @@ public class NetworkObject : MonoBehaviourPun
 
     void PositionSync()
     {
-        
+        GetComponent<PhotonView>().RequestOwnership();
     }
 }
