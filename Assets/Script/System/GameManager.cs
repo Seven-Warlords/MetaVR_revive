@@ -10,8 +10,21 @@ public class GameManager : OrderBehaviour
     [Header("#Player")]
     public Player player;
     [Header("#Manager")]
-    public AudioManager audioManaer;
+    public AudioManager audioManager;
+    [Header("#QuizManager")]
+    public QuizManager quizManager;
+    [Header("#VrPlayerChase")]
+    public PlayerChase playerChase;
+    [Header("#NetworkGameManager")]
+    public NetWorkGameManager netWorkGameManager;
 
+    private void Awake()
+    {
+        if (!instance)
+        {
+            instance = this;
+        }
+    }
     public void Save(string key, float value)
     {
         PlayerPrefs.SetFloat(key, value);

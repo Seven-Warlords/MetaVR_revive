@@ -8,9 +8,10 @@ public class PhotonManager_temp : MonoBehaviourPunCallbacks {
 
     public GameObject SpawnLocation;
     private Transform startpoint;
+    private int playerNumber;
 
     private void Awake() {
-        PhotonNetwork.NickName = "Ban_si";
+        PhotonNetwork.NickName = "Player";
         PhotonNetwork.GameVersion = "1.0";
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.ConnectUsingSettings();
@@ -43,7 +44,7 @@ public class PhotonManager_temp : MonoBehaviourPunCallbacks {
         Debug.Log($"JoinRoom Faild {returnCode}:{message}");
 #endif
         RoomOptions ro = new RoomOptions();
-        ro.MaxPlayers = 20;
+        ro.MaxPlayers = 4;
         ro.IsOpen = true;
         ro.IsVisible = true;
         PhotonNetwork.CreateRoom("My Room", ro);
@@ -61,11 +62,13 @@ public class PhotonManager_temp : MonoBehaviourPunCallbacks {
     Debug.Log($"PhotonNetwork.InRoom = {PhotonNetwork.InRoom}");
     Debug.Log($"Player Count = {PhotonNetwork.CurrentRoom.PlayerCount}");
 #endif
+        GameManager.instance.netWorkGameManager.currentplayerNum = GameManager.instance.netWorkGameManager.currentplayerNum + 1;
+        PhotonNetwork.NickName = "Player : " + (GameManager.instance.netWorkGameManager.currentplayerNum).ToString();
+        GameManager.instance.player.myNumber = GameManager.instance.netWorkGameManager.currentplayerNum;
         foreach (var player in PhotonNetwork.CurrentRoom.Players) {
-            Debug.Log($"{player.Value.NickName},{player.Value.ActorNumber}");
+            Debug.Log($"{player.Value.NickName}");
         }
        // PhotonNetwork.Instantiate("PPP", startpoint.position, startpoint.rotation, 0);
     }
-
 }
 
