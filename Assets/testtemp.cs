@@ -13,6 +13,7 @@ public class testtemp : MonoBehaviourPunCallbacks {
     // Update is called once per frame
     void Update() {
         if (Input.GetKeyDown(KeyCode.Space)) {
+            Debug.Log("스페이스바누르기 ");
             GetComponent<PhotonView>().RPC("testrun", RpcTarget.All, null);
             PhotonNetwork.Disconnect();
 
