@@ -14,6 +14,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         ready, quiz, result
     }
     public static QuizManager Instance;
+    private PhotonView myPV;
     public State state;
     public Question question;
     public Question[] questions;
@@ -54,6 +55,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     }
     void Start()
     {
+        myPV = GetComponent<PhotonView>();
         State state = State.ready;
         ctime = timetoquestion;
         isgame = true;
@@ -149,8 +151,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         trash = question.trash;
         answer1.DataPlay();
         answer2.DataPlay();
-        //StartCoroutine(TrashSpawn());
-        TrashSpawn();
+        StartCoroutine(TrashSpawn());
         question_text.text = question.question;
         //left_Text.text = question.left_Text;
         //right_Text.text = question.right_Text;
@@ -237,27 +238,36 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         state = State.ready;
     }
 
-    /*IEnumerator TrashSpawn()
+    IEnumerator TrashSpawn()
     {
         for(int i = 1; i <= playercount; i ++)
         {
             //trashobject = Instantiate(trash);
             //trashobject.transform.position = trashposition.position;
             //yield return new WaitForSeconds(0.2f);
-
-            trashobject = PhotonNetwork.Instantiate(trash, trashposition.position, trashposition.rotation);
-            yield return new WaitForSeconds(0.2f);
+            if(PhotonNetwork.IsMasterClient)
+            {
+                trashobject = PhotonNetwork.Instantiate(trash, trashposition.position, trashposition.rotation);
+                if(i == GameManager.instance.player.myNumber)
+                {
+                    if (!PhotonNetwork.IsMasterClient)
+                    {
+                        trashobject.GetComponent<PhotonView>().RequestOwnership();
+                    }
+                }
+                yield return new WaitForSeconds(0.2f);
+            }
         }
         
-    }*/
+    }
 
-    void TrashSpawn()
+    /*void TrashSpawn()
     {
         if(GetComponent<PhotonView>().IsMine)
         {
             trashobject = PhotonNetwork.Instantiate(trash, trashposition.position, trashposition.rotation);
         }
-    }
+    }*/
 
     void TrashDelect()
     {
