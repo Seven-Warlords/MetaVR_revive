@@ -243,12 +243,23 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
             //trashobject = Instantiate(trash);
             //trashobject.transform.position = trashposition.position;
             //yield return new WaitForSeconds(0.2f);
-
-            trashobject = PhotonNetwork.Instantiate(trash, trashposition.position, trashposition.rotation);
-            yield return new WaitForSeconds(0.2f);
+            if(PhotonNetwork.IsMasterClient)
+            {
+                trashobject = PhotonNetwork.Instantiate(trash, trashposition.position, trashposition.rotation);
+                //GetComponent<PhotonView>().RPC("PositionSync", RpcTarget.All, null);
+                yield return new WaitForSeconds(0.2f);
+            }
         }
         
     }
+
+    /*void TrashSpawn()
+    {
+        if(GetComponent<PhotonView>().IsMine)
+        {
+            trashobject = PhotonNetwork.Instantiate(trash, trashposition.position, trashposition.rotation);
+        }
+    }*/
 
     void TrashDelect()
     {

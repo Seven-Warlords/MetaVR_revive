@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Trash : MonoBehaviour
 {
@@ -57,6 +58,8 @@ public class Trash : MonoBehaviour
         }
     }
 
+
+
     public virtual void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Floor"))
@@ -81,4 +84,6 @@ public class Trash : MonoBehaviour
             }
         }
     }
+
+    
 }

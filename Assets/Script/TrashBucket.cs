@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class TrashBacket : MonoBehaviour
 {
@@ -73,7 +74,8 @@ public class TrashBacket : MonoBehaviour
             {
                 gameObject.GetComponent<QuizButton>().Click();
             }
-            collision.gameObject.SetActive(false);
+            collision.gameObject.GetComponent<NetworkObject>().Destory();
+            //collision.gameObject.SetActive(false);
             Push<GameObject>(collision.gameObject, catchObj);
             
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Photon.Pun;
 
 public class QuizButton : MonoBehaviour
 {
@@ -55,15 +56,28 @@ public class QuizButton : MonoBehaviour
             //istouched = true;
         }*/
     }
-    public void Click()
+    /*public void Click()
     {
         QuizManager.Instance.VoteAnswer(type);
         //GetComponent<Button>().interactable = false;
         istouched = true;
-    }
+    }*/
 
+    public void Click()
+    {
+        GetComponent<PhotonView>().RPC("NetworkClick", RpcTarget.All, null);
+    }
     void Respawn()
     {
         istouched = false;
+    }
+
+    [PunRPC]
+
+    public void NetworkClick()
+    {
+        QuizManager.Instance.VoteAnswer(type);
+        //GetComponent<Button>().interactable = false;
+        istouched = true;
     }
 }
