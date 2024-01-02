@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6596713206139784439}
   - component: {fileID: 7748608799727467286}
   - component: {fileID: 4199618347916900872}
+  - component: {fileID: 2118292334228853116}
   m_Layer: 0
   m_Name: Apple Core Red
   m_TagString: Untagged
@@ -134,3 +135,20 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -3025920112829731756, guid: 6ee79a39487f7bb4abefb33640b1f96a, type: 3}
+--- !u!114 &2118292334228853116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3444467235399089667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d61468f8b77ae4b92c344bc9a600fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_allowOffhandGrab: 1
+  m_snapPosition: 0
+  m_snapOrientation: 0
+  m_snapOffset: {fileID: 0}
+  m_grabPoints: []
