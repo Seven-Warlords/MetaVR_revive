@@ -69,8 +69,8 @@ public class PhotonManager_temp : MonoBehaviourPunCallbacks {
         foreach (var player in PhotonNetwork.CurrentRoom.Players) {
             Debug.Log($"{player.Value.NickName}");
         }
-        GameManager.instance.player.gameObject.transform.position = GameManager.instance.spawnpoints[a].position;
-        GameManager.instance.player.gameObject.transform.rotation = GameManager.instance.spawnpoints[a].rotation;
+        GameManager.instance.player.gameObject.transform.position = GameManager.instance.spawnpoints[a-1].position;
+        GameManager.instance.player.gameObject.transform.rotation = GameManager.instance.spawnpoints[a-1].rotation;
         // PhotonNetwork.Instantiate("PPP", startpoint.position, startpoint.rotation, 0);
     }
 }
