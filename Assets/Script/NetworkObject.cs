@@ -8,7 +8,9 @@ public class NetworkObject : MonoBehaviourPun
     
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.A)) {
+            GetComponent<PhotonView>().RequestOwnership();
+        }
     }
     public void Destory()
     {
@@ -24,6 +26,6 @@ public class NetworkObject : MonoBehaviourPun
 
     void PositionSync()
     {
-        GetComponent<PhotonView>().RequestOwnership();
+       
     }
 }
