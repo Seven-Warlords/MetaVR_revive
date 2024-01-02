@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Trash : MonoBehaviour
 {
@@ -57,6 +58,11 @@ public class Trash : MonoBehaviour
         }
     }
 
+    public void Destory()
+    {
+        GetComponent<PhotonView>().RPC("NetworkDestory", RpcTarget.All, null);
+    }
+
     public virtual void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Floor"))
@@ -80,5 +86,12 @@ public class Trash : MonoBehaviour
                 shootTrigger = false;
             }
         }
+    }
+
+    [PunRPC]
+
+    void NetworkDestory()
+    {
+        gameObject.SetActive(false);
     }
 }
