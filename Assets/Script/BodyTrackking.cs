@@ -3,29 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon;
 using Photon.Pun;
-public class Head : MonoBehaviour
+public class BodyTrackking : MonoBehaviour
 {
 
-    public GameObject head;
+    public GameObject mybody;
     private Transform myTR;
     private PhotonView myPV;
+    private MeshRenderer myMR;
     public int humantype = 1;
     // Start is called before the first frame update
     void Start()
     {
+        if(GetComponent<MeshRenderer>() == null)
+        {
+            myMR = GetComponent<MeshRenderer>();
+        }
+        else
+        {
+            myMR = GetComponentInChildren<MeshRenderer>();
+        }
         myTR = GetComponent<Transform>();
         myPV = GetComponent<PhotonView>();
 
         if(myPV.IsMine) {
             switch (humantype){
                 case 1:
-                    head = PlayerChase.Incetance.head;
+                    mybody = GameManager.instance.playerChase.head;
                     break;
                 case 2:
-                    head = PlayerChase.Incetance.hand1;
+                    mybody = GameManager.instance.playerChase.hand1;
                     break;
                 case 3:
-                    head = PlayerChase.Incetance.hand2;
+                    mybody = GameManager.instance.playerChase.hand2;
                     break;
             }
         }
@@ -36,8 +45,9 @@ public class Head : MonoBehaviour
     void Update()
     {
         if(myPV.IsMine) {
-            myTR.transform.position = head.transform.position;
-            myTR.transform.rotation = head.transform.rotation;
+            myMR.enabled = false;
+            myTR.transform.position = mybody.transform.position;
+            myTR.transform.rotation = mybody.transform.rotation;
         }
         
     }

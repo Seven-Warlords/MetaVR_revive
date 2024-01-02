@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trash: T_3
   correct: 1
+  trashcan1code: 5
+  trashcan2code: 6
   question: A next what?
   correcttext: yes B!
   all_Failtext: no... not C... it's B..
