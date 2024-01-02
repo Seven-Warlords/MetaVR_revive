@@ -635,7 +635,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hand: {fileID: 1204422006}
   knife: {fileID: 1729584406}
-  hosu: {fileID: 0}
+  hosu: {fileID: 1523595912}
   T: 0
 --- !u!1 &1523595912
 GameObject:
@@ -725,7 +725,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c308d59ea4c8e9b40a439c30d47d6089, type: 2}
+  - {fileID: 2100000, guid: 409bf720e9924426b9f253cf037a8f4e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -920,7 +920,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1961783562
 AudioListener:
   m_ObjectHideFlags: 0
