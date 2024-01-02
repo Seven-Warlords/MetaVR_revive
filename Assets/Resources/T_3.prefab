@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: -5384262476127678863}
   - component: {fileID: -5081446798912332749}
   - component: {fileID: -5035799064047765651}
-  - component: {fileID: -5117693971983370132}
   m_Layer: 0
   m_Name: T_3
   m_TagString: Trash
@@ -157,6 +156,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: -5081446798912332749}
+  - {fileID: 0}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -186,17 +186,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a797435ca4928484ba83b6b1391bfc2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-5117693971983370132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3826046967035610454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cec4e50b584b43438f8c7003d472872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
