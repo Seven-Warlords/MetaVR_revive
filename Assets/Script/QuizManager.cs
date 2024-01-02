@@ -149,16 +149,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         trash = question.trash;
         answer1.DataPlay();
         answer2.DataPlay();
-        //StartCoroutine(TrashSpawn());
-        if(GetComponent<PhotonView>().IsMine)
-        {
-
-            if(PhotonNetwork.IsMasterClient)
-            {
-                StartCoroutine(TrashSpawn());
-            }
-        }
-        //TrashSpawn();
+        StartCoroutine(TrashSpawn());
         question_text.text = question.question;
         //left_Text.text = question.left_Text;
         //right_Text.text = question.right_Text;
@@ -252,9 +243,11 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
             //trashobject = Instantiate(trash);
             //trashobject.transform.position = trashposition.position;
             //yield return new WaitForSeconds(0.2f);
-
-            trashobject = PhotonNetwork.Instantiate(trash, trashposition.position, trashposition.rotation);
-            yield return new WaitForSeconds(0.2f);
+            if(PhotonNetwork.IsMasterClient)
+            {
+                trashobject = PhotonNetwork.Instantiate(trash, trashposition.position, trashposition.rotation);
+                yield return new WaitForSeconds(0.2f);
+            }
         }
         
     }
