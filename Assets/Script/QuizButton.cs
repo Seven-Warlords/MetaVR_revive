@@ -65,7 +65,7 @@ public class QuizButton : MonoBehaviour
 
     public void Click()
     {
-        GetComponent<PhotonView>().RPC("NetworkClick", RpcTarget.Others, null);
+        GetComponent<PhotonView>().RPC("NetworkClick", RpcTarget.All, null);
     }
     void Respawn()
     {
