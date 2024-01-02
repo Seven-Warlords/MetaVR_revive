@@ -1,4 +1,0 @@
-repository "MetaRevive@bansh2e@cloud"
-  path "/"
-    br "/main"
-    co "/main"

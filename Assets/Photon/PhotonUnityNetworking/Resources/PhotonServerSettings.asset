@@ -33,14 +33,7 @@ MonoBehaviour:
   EnableSupportLogger: 0
   RunInBackground: 1
   StartInOfflineMode: 0
-  RpcList:
-<<<<<<< HEAD
-  - ClickRpc
-  - DestroyRpc
-  - DestroySpaceship
-  - Fire
-  - RespawnSpaceship
-=======
+  RpcList:=
   - CantHearYou
   - ChangeColour
   - ClickRpc
@@ -52,7 +45,6 @@ MonoBehaviour:
   - KillMessage
   - RespawnSpaceship
   - MyRPCFunction
->>>>>>> banshee
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
