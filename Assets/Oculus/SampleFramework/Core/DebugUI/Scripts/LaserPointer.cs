@@ -105,16 +105,35 @@ public class LaserPointer : OVRCursor
         }
         else
         {
-            UpdateLaserBeam(_startPoint, _startPoint + maxLength * _forward);
-            lineRenderer.SetPosition(1, _startPoint + maxLength * _forward);
-            if (cursorVisual)
+            // If the cursor doesn't hit a target, dynamically calculate the laser beam length
+            RaycastHit hit;
+            if (Physics.Raycast(_startPoint, _forward, out hit, maxLength))
             {
-                cursorVisual.SetActive(false);
-                lineRenderer.enabled = false;
-            }            
-            if (ARAVRInput.Get(ARAVRInput.Button.Two, ARAVRInput.Controller.RTouch))
+                // If the ray hits something within maxLength, update the laser beam to reach the hit point
+                lineRenderer.SetPosition(1, hit.point);
+                UpdateLaserBeam(_startPoint, hit.point);
+
+                if (cursorVisual)
+                {
+                    cursorVisual.transform.position = hit.point;
+                    cursorVisual.SetActive(true);
+                    lineRenderer.enabled = true;
+                }
+            }
+            else
             {
-                lineRenderer.enabled=true; 
+                Vector3 endPoint = _startPoint + maxLength * _forward;
+                lineRenderer.SetPosition(1, endPoint);
+                UpdateLaserBeam(_startPoint, endPoint);
+                if (cursorVisual)
+                {
+                    cursorVisual.SetActive(false);
+                    lineRenderer.enabled = false;
+                }
+                if (ARAVRInput.Get(ARAVRInput.Button.Two, ARAVRInput.Controller.RTouch))
+                {
+                    lineRenderer.enabled = true;
+                }
             }
         }
     }
