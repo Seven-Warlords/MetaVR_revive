@@ -246,9 +246,13 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         {
             Debug.Log("Á¤´ä");
             question_text.text = question.correcttext;
-            jungdab++;
+            
             time.text = "Correct!";
-            currentquestion++;
+            if(PhotonNetwork.IsMasterClient)
+            {
+                jungdab++;
+                currentquestion++;
+            }
 
         }
         else if(answer != question.correct)
@@ -257,8 +261,12 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
             question_text.text = question.all_Failtext;
             if (time)
             time.text = "Fail!";
-            ohdab++;
-            currentquestion++;
+            
+            if (PhotonNetwork.IsMasterClient)
+            {
+                ohdab++;
+                currentquestion++;
+            }
         }
 
         
