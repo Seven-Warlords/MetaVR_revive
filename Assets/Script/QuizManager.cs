@@ -88,7 +88,8 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
             switch (state)
             {
                 case State.ready:
-                    if(PhotonNetwork.IsMasterClient)
+                    question = questions[currentquestion - 1];
+                    if (PhotonNetwork.IsMasterClient)
                     {
                         ctime -= Time.deltaTime;
                     }
@@ -104,12 +105,13 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
                         {
                             Quiz();
                         }
+                        
                     }
                     break;
                 case State.quiz:
                     time.text = "Question!";
-
-                    if((is1 + is2) >= playercount)
+                    
+                    if ((is1 + is2) >= playercount)
                     {
                         if(is1 > is2)
                         {
@@ -170,7 +172,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         {
             
         }
-        question = questions[currentquestion - 1];
+        
         qtime = quiztime;
         state = State.ready;
         state = State.quiz;
