@@ -311,18 +311,6 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        /*public State state;
-    public Question question;
-    public Question[] questions;
-    public float timetoquestion;
-    public float quiztime;
-    public float munje;
-    public int jungdab;
-    public int ohdab;
-    public int is1;
-    public int is2;
-    public int playercount;
-    public int currentquestion = 1;*/
         if (stream.IsWriting && PhotonNetwork.IsMasterClient)
         {
             stream.SendNext(state);
