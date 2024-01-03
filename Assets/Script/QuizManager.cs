@@ -326,7 +326,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         if (stream.IsWriting && PhotonNetwork.IsMasterClient)
         {
             stream.SendNext(state);
-            stream.SendNext(question);
+            //stream.SendNext(question);
             stream.SendNext(ctime);
             stream.SendNext(qtime);
             stream.SendNext(munje);
@@ -340,7 +340,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         else
         {
             this.state = (QuizManager.State)stream.ReceiveNext();
-            this.question = (Question)stream.ReceiveNext();
+            //this.question = (Question)stream.ReceiveNext();
             this.ctime = (float)stream.ReceiveNext();
             this.qtime = (float)stream.ReceiveNext();
             this.munje = (float)stream.ReceiveNext();
