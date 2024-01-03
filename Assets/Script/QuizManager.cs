@@ -97,7 +97,10 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
 
                     if (ctime <= 0)
                     {
-                        Quiz();
+                        if(PhotonNetwork.IsMasterClient)
+                        {
+                            Quiz();
+                        }
                     }
                     break;
                 case State.quiz:
@@ -217,8 +220,8 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         if (PhotonNetwork.IsMasterClient)
         {
             ctime = timetoquestion - 2;
+            state = State.result;
         }
-        state = State.result;
         answercolor.ImageClear();
         TrashDelect();
         Destroy(trashcan1);
