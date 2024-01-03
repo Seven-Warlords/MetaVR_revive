@@ -203,7 +203,8 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         answer = myanswer;
         if (state == State.quiz)
         {
-            Result();
+            StartCoroutine(Result());
+            //Result();
         }
     }
 
