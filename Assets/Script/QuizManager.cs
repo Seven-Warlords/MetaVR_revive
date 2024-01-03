@@ -325,12 +325,14 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
 
     IEnumerator TrashSpawn()
     {
+        yield return new WaitForSeconds(0.2f);
+        trashobject = PhotonNetwork.Instantiate(trash, GameManager.instance.player.trashspawnpoint.position, GameManager.instance.player.trashspawnpoint.rotation);
         for(int i = 1; i <= playercount; i ++)
         {
             //trashobject = Instantiate(trash);
             //trashobject.transform.position = trashposition.position;
             //yield return new WaitForSeconds(0.2f);
-            if(PhotonNetwork.IsMasterClient)
+            /*if(PhotonNetwork.IsMasterClient)
             {
                 trashobject = PhotonNetwork.Instantiate(trash, trashposition.position, trashposition.rotation);
                 if(i == GameManager.instance.player.myNumber)
@@ -341,7 +343,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
                     }
                 }
                 yield return new WaitForSeconds(0.2f);
-            }
+            }*/
         }
         
     }
