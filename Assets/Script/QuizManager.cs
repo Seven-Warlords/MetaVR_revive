@@ -86,6 +86,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         if(isgame)
         {
+            playercount = GameManager.instance.netWorkGameManager.playercount;
             switch (state)
             {
                 case State.ready:
@@ -204,8 +205,8 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         answer2.DataPlay();
 
         //쓰레기통 생성 코드. 간단하게 짤 수 있으면 부탁함.
-        trashcan1 = Instantiate(trashcans[trashcan1code - 1]);
-        trashcan2 = Instantiate(trashcans[trashcan2code - 1]);
+        trashcan1 = Instantiate(trashcans[trashcan1code]);
+        trashcan2 = Instantiate(trashcans[trashcan2code]);
         trashcan1.transform.position = trashcan1place.position;
         trashcan1.transform.rotation = trashcan1place.rotation;
         trashcan2.transform.position = trashcan2place.position;

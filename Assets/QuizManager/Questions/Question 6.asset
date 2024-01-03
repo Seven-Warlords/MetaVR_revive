@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trash: 1005
   correct: 2
-  trashcan1code: 4001
-  trashcan2code: 4004
+  trashcan1code: 1
+  trashcan2code: 4
   question: "\uC774 \uC4F0\uB808\uAE30\uB294 \uC5B4\uB514\uC5D0 \uBC84\uB824\uC57C
     \uD560\uAE4C?"
   correcttext: "\uC815\uB2F5\uC774\uC57C! \uC720\uB9AC\uB294 \uBCF4\uD1B5 \uC774\uB807\uAC8C
