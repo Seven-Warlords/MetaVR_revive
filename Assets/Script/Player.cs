@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public GameObject handL;
     public GameObject handR;
     public int myNumber;
+    public Transform trashspawnpoint;
     // Start is called before the first frame update
     private void OnEnable()
     {

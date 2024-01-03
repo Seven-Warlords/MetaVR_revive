@@ -18,6 +18,7 @@ public class GameManager : OrderBehaviour
     public PlayerChase playerChase;
     [Header("#NetworkGameManager")]
     public NetWorkGameManager netWorkGameManager;
+    [Header("#InGame")]
     public Transform[] spawnpoints;
 
     private void Awake()
