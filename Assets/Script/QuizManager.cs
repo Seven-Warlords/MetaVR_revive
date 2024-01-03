@@ -103,9 +103,9 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
                     {
                         if(PhotonNetwork.IsMasterClient)
                         {
-                            Quiz();
+                            
                         }
-                        
+                        Quiz();
                     }
                     break;
                 case State.quiz:
