@@ -317,7 +317,14 @@ public class OVRGrabber : MonoBehaviour
             // NOTE: force teleport on grab, to avoid high-speed travel to dest which hits a lot of other objects at high
             // speed and sends them flying. The grabbed object may still teleport inside of other objects, but fixing that
             // is beyond the scope of this demo.
-            MoveGrabbedObject(m_lastPos, m_lastRot, true);
+            try
+            {
+                MoveGrabbedObject(m_lastPos, m_lastRot, true);
+            }
+            catch
+            {
+                Debug.Log("Catch ERROR");
+            }
 
             // NOTE: This is to get around having to setup collision layers, but in your own project you might
             // choose to remove this line in favor of your own collision layer setup.
@@ -348,8 +355,15 @@ public class OVRGrabber : MonoBehaviour
         }
         else
         {
-            grabbedRigidbody.MovePosition(grabbablePosition);
-            grabbedRigidbody.MoveRotation(grabbableRotation);
+            try
+            {
+                grabbedRigidbody.MovePosition(grabbablePosition);
+                grabbedRigidbody.MoveRotation(grabbableRotation);
+            }
+            catch
+            {
+                Debug.Log("CATCHERROR2");
+            }
         }
     }
 

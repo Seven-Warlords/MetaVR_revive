@@ -57,6 +57,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     public Transform trashcan1place;
     public Transform trashcan2place;
     public GameObject[] trashcans;
+    private bool resulted;
 
     // Start is called before the first frame update
 
@@ -171,6 +172,24 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         
     }
 
+    void LateUpdate()
+    {
+        switch (state)
+        {
+            case State.ready:
+                resulted = false;
+                break;
+            case State.quiz:
+                
+                break;
+            case State.result:
+                
+
+                break;
+        }
+    }
+
+
     [PunRPC]
     void Quiz()
     {
@@ -203,7 +222,8 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         answer = myanswer;
         if (state == State.quiz)
         {
-            Result();
+            StartCoroutine(Result());
+            //Result();
         }
     }
 
@@ -223,8 +243,9 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
             answercolor.ImageIn(myanswer);
         }
     }
-    void Result()
+    IEnumerator Result()
     {
+        yield return new WaitForSeconds(1f);
         if (PhotonNetwork.IsMasterClient)
         {
             ctime = timetoquestion - 2;
@@ -244,9 +265,18 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         {
             Debug.Log("Á¤´ä");
             question_text.text = question.correcttext;
-            jungdab++;
+            
             time.text = "Correct!";
-            currentquestion++;
+            if(PhotonNetwork.IsMasterClient)
+            {
+                if(!resulted)
+                {
+                    resulted = true;
+                    jungdab++;
+                    currentquestion++;
+                }
+                
+            }
 
         }
         else if(answer != question.correct)
@@ -255,8 +285,17 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
             question_text.text = question.all_Failtext;
             if (time)
             time.text = "Fail!";
-            ohdab++;
-            currentquestion++;
+            
+            if (PhotonNetwork.IsMasterClient)
+            {
+                if (!resulted)
+                {
+                    resulted = true;
+                    ohdab++;
+                    currentquestion++;
+                }
+                
+            }
         }
 
         
@@ -279,19 +318,21 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     }
     void Nextquiz()
     {
-
+        resulted = false;
         ctime = timetoquestion;
         state = State.ready;
     }
 
     IEnumerator TrashSpawn()
     {
+        yield return new WaitForSeconds(0.2f);
+        trashobject = PhotonNetwork.Instantiate(trash, GameManager.instance.player.trashspawnpoint.position, GameManager.instance.player.trashspawnpoint.rotation);
         for(int i = 1; i <= playercount; i ++)
         {
             //trashobject = Instantiate(trash);
             //trashobject.transform.position = trashposition.position;
             //yield return new WaitForSeconds(0.2f);
-            if(PhotonNetwork.IsMasterClient)
+            /*if(PhotonNetwork.IsMasterClient)
             {
                 trashobject = PhotonNetwork.Instantiate(trash, trashposition.position, trashposition.rotation);
                 if(i == GameManager.instance.player.myNumber)
@@ -302,7 +343,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
                     }
                 }
                 yield return new WaitForSeconds(0.2f);
-            }
+            }*/
         }
         
     }

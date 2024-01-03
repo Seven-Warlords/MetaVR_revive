@@ -9,6 +9,7 @@ public class GameManager : OrderBehaviour
     public static GameManager instance;
     [Header("#Player")]
     public Player player;
+    public GameObject playerVR;
     [Header("#Manager")]
     public AudioManager audioManager;
     [Header("#QuizManager")]
