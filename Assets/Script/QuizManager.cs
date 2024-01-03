@@ -70,7 +70,10 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     void Start()
     {
         myPV = GetComponent<PhotonView>();
-        State state = State.ready;
+        if(PhotonNetwork.IsMasterClient)
+        {
+            State state = State.ready;
+        }
         ctime = timetoquestion;
         isgame = true;
     }
