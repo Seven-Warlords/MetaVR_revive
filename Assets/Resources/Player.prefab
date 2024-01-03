@@ -977,8 +977,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   head: {fileID: 7950203151153331912}
-  handL: {fileID: 2617775289111330313}
-  handR: {fileID: 617953033898278309}
+  hand1: {fileID: 2617775289111330313}
+  hand2: {fileID: 617953033898278309}
 --- !u!1 &9185916243837677602
 GameObject:
   m_ObjectHideFlags: 0

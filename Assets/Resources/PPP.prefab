@@ -47,8 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c916ac0bcc8a1564288d9ceae3df16d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  head: {fileID: 0}
-  humantype: 1
+  mybody: {fileID: 0}
+  myMR: {fileID: 6704360496222098295}
+  humantype: 3
 --- !u!114 &6578380285860256595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,7 +458,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c916ac0bcc8a1564288d9ceae3df16d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  head: {fileID: 0}
+  mybody: {fileID: 0}
+  myMR: {fileID: 4922186719128171461}
   humantype: 1
 --- !u!114 &4824351631238684047
 MonoBehaviour:
@@ -559,8 +561,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c916ac0bcc8a1564288d9ceae3df16d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  head: {fileID: 0}
-  humantype: 1
+  mybody: {fileID: 0}
+  myMR: {fileID: 8728850921697482736}
+  humantype: 2
 --- !u!114 &6677882500499065035
 MonoBehaviour:
   m_ObjectHideFlags: 0

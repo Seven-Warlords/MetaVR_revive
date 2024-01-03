@@ -9,19 +9,12 @@ public class BodyTrackking : MonoBehaviour
     public GameObject mybody;
     private Transform myTR;
     private PhotonView myPV;
-    private MeshRenderer myMR;
+    public MeshRenderer myMR;
     public int humantype = 1;
     // Start is called before the first frame update
     void Start()
     {
-        if(GetComponent<MeshRenderer>() == null)
-        {
-            myMR = GetComponent<MeshRenderer>();
-        }
-        else
-        {
-            myMR = GetComponentInChildren<MeshRenderer>();
-        }
+
         myTR = GetComponent<Transform>();
         myPV = GetComponent<PhotonView>();
 
@@ -44,8 +37,8 @@ public class BodyTrackking : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(myPV.IsMine) {
-            myMR.enabled = false;
+        if(myPV.IsMine && mybody!=null) {
+            //myMR.enabled = false;
             myTR.transform.position = mybody.transform.position;
             myTR.transform.rotation = mybody.transform.rotation;
         }
