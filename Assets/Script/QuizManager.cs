@@ -168,8 +168,9 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         if(PhotonNetwork.IsMasterClient)
         {
-            question = questions[currentquestion - 1];
+            
         }
+        question = questions[currentquestion - 1];
         qtime = quiztime;
         state = State.ready;
         state = State.quiz;
