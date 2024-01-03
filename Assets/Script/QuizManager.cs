@@ -22,6 +22,8 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     public Question[] questions;
     public float timetoquestion;
     public float quiztime;
+    private float ctime;
+    private float qtime;
     public float munje;
     public int jungdab;
     public int ohdab;
@@ -35,8 +37,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     public TextMeshProUGUI question_text;
     public TextMeshProUGUI left_Text;
     public TextMeshProUGUI right_Text;
-    private float ctime;
-    private float qtime;
+    
     public int answer;
     public Transform trashposition;
     public string trash;
@@ -84,7 +85,10 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
             switch (state)
             {
                 case State.ready:
-                    ctime -= Time.deltaTime;
+                    if(PhotonNetwork.IsMasterClient)
+                    {
+                        ctime -= Time.deltaTime;
+                    }
                     if (ctime > 0)
                     {
                         time.text = ctime.ToString("F2");
@@ -116,7 +120,10 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
                     }
                     break;
                 case State.result:
-                    ctime -= Time.deltaTime;
+                    if (PhotonNetwork.IsMasterClient)
+                    {
+                        ctime -= Time.deltaTime;
+                    }
                     if (ctime <= (timetoquestion - 4) && ctime > 0)
                     {
                         time.text = ctime.ToString("F2");
@@ -153,7 +160,10 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
 
     void Quiz()
     {
-        question = questions[currentquestion - 1];
+        if(PhotonNetwork.IsMasterClient)
+        {
+            question = questions[currentquestion - 1];
+        }
         qtime = quiztime;
         state = State.ready;
         state = State.quiz;
@@ -204,7 +214,10 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     }
     void Result()
     {
-        ctime = timetoquestion - 2;
+        if (PhotonNetwork.IsMasterClient)
+        {
+            ctime = timetoquestion - 2;
+        }
         state = State.result;
         answercolor.ImageClear();
         TrashDelect();
@@ -255,6 +268,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     }
     void Nextquiz()
     {
+
         ctime = timetoquestion;
         state = State.ready;
     }
@@ -313,8 +327,8 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         {
             stream.SendNext(state);
             stream.SendNext(question);
-            stream.SendNext(timetoquestion);
-            stream.SendNext(quiztime);
+            stream.SendNext(ctime);
+            stream.SendNext(qtime);
             stream.SendNext(munje);
             stream.SendNext(jungdab);
             stream.SendNext(ohdab);
@@ -327,8 +341,8 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         {
             this.state = (QuizManager.State)stream.ReceiveNext();
             this.question = (Question)stream.ReceiveNext();
-            this.timetoquestion = (float)stream.ReceiveNext();
-            this.quiztime = (float)stream.ReceiveNext();
+            this.ctime = (float)stream.ReceiveNext();
+            this.qtime = (float)stream.ReceiveNext();
             this.munje = (float)stream.ReceiveNext();
             this.jungdab = (int)stream.ReceiveNext();
             this.ohdab = (int)stream.ReceiveNext();
