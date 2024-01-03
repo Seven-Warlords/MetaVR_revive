@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Stage1.unity
-    guid: a9b167c44aecb3545ac8fcf5bffa7d3a
+    path: Assets/Scenes/temptestscene.unity
+    guid: 414b67b1d9ac2d447acff88f1dcd174c
   - enabled: 1
     path: Assets/Scenes/JHY_Stage.unity
     guid: c48ff76852629874a9273125d6682874
