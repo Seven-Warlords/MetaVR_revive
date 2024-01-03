@@ -139,13 +139,14 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
 
                     if (ctime <= 0)
                     {
-                        is1 = 0;
-                        is2 = 0;
+                        
                         if(PhotonNetwork.IsMasterClient)
                         {
-                            myPV.RPC("Nextquiz", RpcTarget.All, null);
+                            is1 = 0;
+                            is2 = 0;
+                            Nextquiz();
+                            //myPV.RPC("Nextquiz", RpcTarget.All, null);
                         }
-                        //Nextquiz();
                     }
 
                     break;
