@@ -223,8 +223,9 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
             answercolor.ImageIn(myanswer);
         }
     }
-    void Result()
+    IEnumerator Result()
     {
+        yield return new WaitForSeconds(1f);
         if (PhotonNetwork.IsMasterClient)
         {
             ctime = timetoquestion - 2;
