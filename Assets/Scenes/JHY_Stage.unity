@@ -132,8 +132,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 1944406960}
     m_Modifications:
     - target: {fileID: 1986687533043162376, guid: 29e7e409de6a4504bab0393965978b14, type: 3}
+      propertyPath: playercount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1986687533043162376, guid: 29e7e409de6a4504bab0393965978b14, type: 3}
       propertyPath: timetoquestion
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1986687533043162376, guid: 29e7e409de6a4504bab0393965978b14, type: 3}
       propertyPath: trashcan1place
