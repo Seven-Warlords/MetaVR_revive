@@ -103,9 +103,9 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
                     {
                         if(PhotonNetwork.IsMasterClient)
                         {
-                            
+                            myPV.RPC("Quiz", RpcTarget.All, null);
                         }
-                        Quiz();
+                        //Quiz();
                     }
                     break;
                 case State.quiz:
@@ -141,7 +141,11 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
                     {
                         is1 = 0;
                         is2 = 0;
-                        Nextquiz();
+                        if(PhotonNetwork.IsMasterClient)
+                        {
+                            myPV.RPC("Nextquiz", RpcTarget.All, null);
+                        }
+                        //Nextquiz();
                     }
 
                     break;
@@ -166,12 +170,9 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         
     }
 
+    [PunRPC]
     void Quiz()
     {
-        if(PhotonNetwork.IsMasterClient)
-        {
-            
-        }
         
         qtime = quiztime;
         state = State.ready;
