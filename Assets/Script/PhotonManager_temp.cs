@@ -69,10 +69,16 @@ public class PhotonManager_temp : MonoBehaviourPunCallbacks {
         foreach (var player in PhotonNetwork.CurrentRoom.Players) {
             Debug.Log($"{player.Value.NickName}");
         }
-        GameManager.instance.player.gameObject.transform.position = GameManager.instance.spawnpoints[a-1].position;
-        GameManager.instance.player.gameObject.transform.rotation = GameManager.instance.spawnpoints[a-1].rotation;
-        GameManager.instance.player.JoinGame();
+
+        StartCoroutine(StartPlayer());
+
         // PhotonNetwork.Instantiate("PPP", startpoint.position, startpoint.rotation, 0);
+    }
+
+    IEnumerator StartPlayer()
+    {
+        yield return new WaitForSeconds(2f);
+        GameManager.instance.player.enabled = true;
     }
 }
 

@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trash: T_1
   correct: 1
+  trashcan1code: 1
+  trashcan2code: 2
   question: "1 \uB354\uD558\uAE30 1\uC740?"
   correcttext: "2 \uB9DE\uC544\uC694"
   all_Failtext: "\uC544\uB2C8 3\uC544\uB2C8\uB77C 2\uB77C\uACE0"

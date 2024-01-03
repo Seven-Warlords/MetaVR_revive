@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trash: T_2
   correct: 2
+  trashcan1code: 3
+  trashcan2code: 4
   question: 2 + 2?
   correcttext: yes 2+2 = 4!
   all_Failtext: no... 2+2 = 4....
