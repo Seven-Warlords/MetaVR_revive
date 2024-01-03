@@ -19,8 +19,8 @@ public class Player : MonoBehaviour
 
         GameObject PlayerVR=Instantiate(GameManager.instance.playerVR,transform.position,transform.rotation);
         head = PlayerVR.GetComponent<PlayerChase>().head;
-        handL= PlayerVR.GetComponent<PlayerChase>().handL;
-        handR = PlayerVR.GetComponent<PlayerChase>().handR;
+        handL= PlayerVR.GetComponent<PlayerChase>().hand1;
+        handR = PlayerVR.GetComponent<PlayerChase>().hand2;
     }
     // Update is called once per frame
     public void JoinGame()
