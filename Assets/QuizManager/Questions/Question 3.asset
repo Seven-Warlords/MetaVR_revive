@@ -12,11 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32a875f3f61016143b57611ba49b61eb, type: 3}
   m_Name: Question 3
   m_EditorClassIdentifier: 
-  trash: T_3
+  trash: 1002
   correct: 1
-  question: A next what?
-  correcttext: yes B!
-  all_Failtext: no... not C... it's B..
+  trashcan1code: 0
+  trashcan2code: 4
+  question: "\uC774\uAC74 \uC5B4\uB514\uB2E4\uAC00 \uBC84\uB824\uC57C \uD560\uAE4C~
+    \uD55C \uBC88 \uB9DE\uCDB0\uBCFC\uAE4C?"
+  correcttext: "\uADF8\uAC70\uC57C! \uD734\uC9C0\uB294 \uC77C\uBC18\uC4F0\uB808\uAE30\uB85C
+    \uBD84\uB958\uB418\uACE0 \uC788\uC5B4!"
+  all_Failtext: "\uC544\uB2C8\uC796\uC544! \uD734\uC9C0\uB791 \uC720\uB9AC\uB294
+    \uC644\uC804\uD788 \uB2E4\uB978 \uBB3C\uAC74\uC774\uC57C!"
   half_Failtext: 
-  left_Text: B
-  right_Text: C
+  left_Text: "\uADF8\uB0E5 \uB098\uD55C\uD14C \uB358\uC838\uC918! \uBB50\uAC00 \uB410\uB4E0
+    \uB2E4 \uBC84\uB9B4\uD14C\uB2C8\uAE4C!"
+  right_Text: "\uC774\uAC74 \uB5A8\uC5B4\uB728\uB9AC\uBA74 \uAE68\uC9C8 \uAC70 \uAC19\uC774
+    \uC0DD\uACBC\uB294\uB370? \uB098\uD55C\uD14C \uBC84\uB824\uC918!"

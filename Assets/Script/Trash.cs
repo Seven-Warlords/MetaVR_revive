@@ -39,6 +39,14 @@ public class Trash : MonoBehaviour
     }
     public virtual void FixedUpdate()
     {
+        OVRGrabbable grabbable;
+        if(gameObject.TryGetComponent<OVRGrabbable>(out grabbable)){
+            if (grabbable.isGrabbed)
+            {
+                //포톤변수로 바뀌어야할듯함. 던진 사람한테 날라가야하니
+                catchPlayer = GameManager.instance.player;
+            }
+        }
         if (shootTrigger)
         {
             collider.enabled = false;
@@ -68,9 +76,6 @@ public class Trash : MonoBehaviour
             upForce = false;
             rigd.useGravity = true;
             shootTrigger = false;
-        }
-        if (other.gameObject.CompareTag("Hand"))
-        {
         }
     }
     public virtual void OnCollisionEnter(Collision collision)

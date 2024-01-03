@@ -9,6 +9,7 @@ public class GameManager : OrderBehaviour
     public static GameManager instance;
     [Header("#Player")]
     public Player player;
+    public GameObject playerVR;
     [Header("#Manager")]
     public AudioManager audioManager;
     [Header("#QuizManager")]
@@ -17,6 +18,7 @@ public class GameManager : OrderBehaviour
     public PlayerChase playerChase;
     [Header("#NetworkGameManager")]
     public NetWorkGameManager netWorkGameManager;
+    [Header("#InGame")]
     public Transform[] spawnpoints;
 
     private void Awake()

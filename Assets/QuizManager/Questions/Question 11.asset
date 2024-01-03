@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32a875f3f61016143b57611ba49b61eb, type: 3}
+  m_Name: Question 11
+  m_EditorClassIdentifier: 
+  trash: 1010
+  correct: 2
+  trashcan1code: 0
+  trashcan2code: 5
+  question: "\uC774\uAC74 \uC5B4\uB514\uB2E4\uAC00 \uBC84\uB824\uC57C \uD560\uAE4C~
+    \uD55C \uBC88 \uB9DE\uCDB0\uBCFC\uAE4C?"
+  correcttext: "\uC798\uD588\uC5B4! \uC74C\uC2DD\uBB3C \uC4F0\uB808\uAE30\uB294 \uC74C\uC2DD\uBB3C
+    \uC4F0\uB808\uAE30\uD1B5\uC5D0 \uBC84\uB824\uC57C \uD558\uB294 \uBC95!"
+  all_Failtext: "\uC74C\uC2DD\uBB3C \uC4F0\uB808\uAE30\uB97C \uC77C\uBC18 \uC4F0\uB808\uAE30\uD1B5\uC5D0
+    \uBC84\uB9AC\uBA74 \uB0C4\uC0C8\uAC00 \uC5C4\uCCAD\uB098\uAC8C \uB0A0 \uAC70\uC57C\xB7\xB7\xB7."
+  half_Failtext: 
+  left_Text: "\uC74C\uC2DD\uBB3C\uC740 \uC5B4\uCC28\uD53C \uB0C4\uC0C8\uB098\uC796\uC544!
+    \uB0C4\uC0C8\uB098\uB294 \uB2E4\uB978 \uC4F0\uB808\uAE30\uB791 \uAC19\uC774 \uBC84\uB824\uB3C4
+    \uC0C1\uAD00 \uC5C6\uC9C0 \uC54A\uC744\uAE4C?"
+  right_Text: "\uC74C\uC2DD\uBB3C\uC740 \uB0C4\uC0C8\uAC00 \uB9CE\uC774 \uB098\uAE30
+    \uB54C\uBB38\uC5D0 \uB530\uB85C \uBC84\uB9AC\uB294 \uACF5\uAC04\uC774 \uC788\uC5B4!
+    \uADF8\uB7EC\uB2C8\uAE4C \uB098\uD55C\uD14C \uC8FC\uBA74 \uB3FC!"
