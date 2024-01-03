@@ -3896,7 +3896,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 737bee96a4ffed94d932da3814275ef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  head: {fileID: 0}
+  handL: {fileID: 0}
+  handR: {fileID: 0}
   myNumber: 0
+  trashspawnpoint: {fileID: 0}
 --- !u!4 &1693396687
 Transform:
   m_ObjectHideFlags: 0
@@ -4834,6 +4838,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1693396686}
+  playerVR: {fileID: 8444538405540803424, guid: 9a940b0afbcc77041a55ce45fd676f2d, type: 3}
   audioManager: {fileID: 0}
   quizManager: {fileID: 0}
   playerChase: {fileID: 1751096541}
