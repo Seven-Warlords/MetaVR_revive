@@ -57,6 +57,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     public Transform trashcan1place;
     public Transform trashcan2place;
     public GameObject[] trashcans;
+    private bool resulted;
 
     // Start is called before the first frame update
 
@@ -171,6 +172,24 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         
     }
 
+    void LateUpdate()
+    {
+        switch (state)
+        {
+            case State.ready:
+                resulted = false;
+                break;
+            case State.quiz:
+                
+                break;
+            case State.result:
+                
+
+                break;
+        }
+    }
+
+
     [PunRPC]
     void Quiz()
     {
@@ -250,8 +269,13 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
             time.text = "Correct!";
             if(PhotonNetwork.IsMasterClient)
             {
-                jungdab++;
-                currentquestion++;
+                if(!resulted)
+                {
+                    resulted = true;
+                    jungdab++;
+                    currentquestion++;
+                }
+                
             }
 
         }
@@ -264,8 +288,13 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
             
             if (PhotonNetwork.IsMasterClient)
             {
-                ohdab++;
-                currentquestion++;
+                if (!resulted)
+                {
+                    resulted = true;
+                    ohdab++;
+                    currentquestion++;
+                }
+                
             }
         }
 
@@ -289,7 +318,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     }
     void Nextquiz()
     {
-
+        resulted = false;
         ctime = timetoquestion;
         state = State.ready;
     }
