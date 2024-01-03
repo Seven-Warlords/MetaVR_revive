@@ -107,8 +107,15 @@ public class LaserPointer : OVRCursor
         {
             UpdateLaserBeam(_startPoint, _startPoint + maxLength * _forward);
             lineRenderer.SetPosition(1, _startPoint + maxLength * _forward);
-            if (cursorVisual) cursorVisual.SetActive(false);
-            lineRenderer.enabled = false;
+            if (cursorVisual)
+            {
+                cursorVisual.SetActive(false);
+                lineRenderer.enabled = false;
+            }            
+            if (ARAVRInput.Get(ARAVRInput.Button.Two, ARAVRInput.Controller.RTouch))
+            {
+                lineRenderer.enabled=true; 
+            }
         }
     }
 
@@ -139,7 +146,7 @@ public class LaserPointer : OVRCursor
             {
                 if (lineRenderer.enabled)
                 {
-                    lineRenderer.enabled = false;
+                    lineRenderer.enabled = false;                    
                 }
             }
         }
