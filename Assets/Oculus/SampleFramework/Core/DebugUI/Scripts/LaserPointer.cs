@@ -33,8 +33,10 @@ public class LaserPointer : OVRCursor
         Off, // laser beam always off
         OnWhenHitTarget, // laser beam only activates when hit valid target
     }
-    public Canvas ping;
+    public GameObject ping;
     public GameObject cursorVisual;
+    public GameObject[] pings;
+    public int i = 0;
     public float maxLength = 10.0f;
 
     private LaserBeamBehavior _laserBeamBehavior;
@@ -66,6 +68,7 @@ public class LaserPointer : OVRCursor
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
+        
     }
 
     private void Start()
@@ -102,12 +105,36 @@ public class LaserPointer : OVRCursor
                 cursorVisual.SetActive(true);
                 lineRenderer.enabled = true;
             }
+            if (ARAVRInput.GetDown(ARAVRInput.Button.Two, ARAVRInput.Controller.RTouch))
+            {
+                switch (i)
+                {
+                    case 0:
+                        pings[0].SetActive(true);
+                        pings[1].SetActive(false);
+                        pings[2].SetActive(false);
+                        i = 1;
+                        break;
+                    case 1:
+                        pings[0].SetActive(false);
+                        pings[1].SetActive(true);
+                        pings[2].SetActive(false);
+                        i = 2;
+                        break;
+                    case 2:
+                        pings[0].SetActive(false);
+                        pings[1].SetActive(false);
+                        pings[2].SetActive(true);
+                        i = 0;
+                        break;
+                }
+            }
         }
         else
         {
             // If the cursor doesn't hit a target, dynamically calculate the laser beam length
             RaycastHit hit;
-            if (ARAVRInput.Get(ARAVRInput.Button.Two, ARAVRInput.Controller.RTouch))
+            if (ARAVRInput.Get(ARAVRInput.Button.IndexTrigger, ARAVRInput.Controller.RTouch))
             {
 
                 if (Physics.Raycast(_startPoint, _forward, out hit, maxLength))
@@ -118,27 +145,53 @@ public class LaserPointer : OVRCursor
                     lineRenderer.enabled = true;
                     cursorVisual.transform.position = hit.point;
                     cursorVisual.SetActive(true);
-                    Instantiate(ping, cursorVisual.transform.position, cursorVisual.transform.rotation);
+                    ping.SetActive(true);
+                    ping.transform.position = hit.point;
+                }                
+                if (ARAVRInput.GetDown(ARAVRInput.Button.Two, ARAVRInput.Controller.RTouch))
+                    {
+                            switch (i)
+                            {
+                                case 0:
+                                    pings[0].SetActive(true);
+                                    pings[1].SetActive(false);
+                                    pings[2].SetActive(false);
+                                    i = 1;
+                                    break;
+                                case 1:
+                                    pings[0].SetActive(false);
+                                    pings[1].SetActive(true);
+                                    pings[2].SetActive(false);
+                                    i = 2;
+                                    break;
+                                case 2:
+                                    pings[0].SetActive(false);
+                                    pings[1].SetActive(false);
+                                    pings[2].SetActive(true);
+                                    i = 0;
+                                    break;
+                            }
+                    }
                     /*  if (cursorVisual)
                       {
                           cursorVisual.transform.position = hit.point;
                           cursorVisual.SetActive(true);
                           lineRenderer.enabled = true;
                       }*/
-                }
+                
             }
             else
             {
                 Vector3 endPoint = _startPoint + maxLength * _forward;
                 lineRenderer.SetPosition(1, endPoint);
                 UpdateLaserBeam(_startPoint, endPoint);
-                Destroy(ping);
+                
                 if (cursorVisual)
                 {
                     cursorVisual.SetActive(false);
                     lineRenderer.enabled = false;
-                  
-                }
+                    ping.SetActive(false);
+                }                
             }
         }
     }
