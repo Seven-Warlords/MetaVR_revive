@@ -72,7 +72,6 @@ public class PhotonManager_temp : MonoBehaviourPunCallbacks {
 
         StartCoroutine(StartPlayer());
 
-        // PhotonNetwork.Instantiate("PPP", startpoint.position, startpoint.rotation, 0);
     }
 
     IEnumerator StartPlayer()
