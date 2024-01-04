@@ -9,11 +9,13 @@ public class PlayerChase : MonoBehaviour
     public GameObject head;
     public GameObject hand1;
     public GameObject hand2;
+    public Transform spawnpoint;
 
     private void OnEnable()
     {
         instance = this;
         GameManager.instance.playerChase = instance;
+        GameManager.instance.player.trashspawnpoint = spawnpoint;
     }
     void Start()
     {

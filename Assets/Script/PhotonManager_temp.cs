@@ -78,12 +78,11 @@ public class PhotonManager_temp : MonoBehaviourPunCallbacks {
 
         StartCoroutine(StartPlayer());
 
-        // PhotonNetwork.Instantiate("PPP", startpoint.position, startpoint.rotation, 0);
     }
 
     IEnumerator StartPlayer()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
         GameManager.instance.player.enabled = true;
     }
 }
