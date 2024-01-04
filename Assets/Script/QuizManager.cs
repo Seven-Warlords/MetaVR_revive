@@ -43,6 +43,8 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     public string trash;
     private GameObject trashobject;
     public Answercolor answercolor;
+    public GameObject answer1Place;
+    public GameObject answer2Place;
     public StringDelay answer1;
     public StringDelay answer2;
 
@@ -75,6 +77,8 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         {
             State state = State.ready;
         }
+        answer1Place.SetActive(false);
+        answer2Place.SetActive(false);
         ctime = timetoquestion;
         isgame = true;
     }
@@ -107,7 +111,6 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
                         {
                             myPV.RPC("Quiz", RpcTarget.All, null);
                         }
-                        //Quiz();
                     }
                     break;
                 case State.quiz:
@@ -147,7 +150,6 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
                             is1 = 0;
                             is2 = 0;
                             Nextquiz();
-                            //myPV.RPC("Nextquiz", RpcTarget.All, null);
                         }
                     }
 
@@ -198,6 +200,8 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         qtime = quiztime;
         state = State.ready;
         state = State.quiz;
+        answer1Place.SetActive(true);
+        answer2Place.SetActive(true);
         trashcan1code = question.trashcan1code;
         trashcan2code = question.trashcan2code;
         trash = question.trash;
@@ -213,8 +217,6 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         trashcan2.transform.rotation = trashcan2place.rotation;
         StartCoroutine(TrashSpawn());
         question_text.text = question.question;
-        //left_Text.text = question.left_Text;
-        //right_Text.text = question.right_Text;
     }
 
 
@@ -252,6 +254,8 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
             ctime = timetoquestion - 2;
             state = State.result;
         }
+        answer1Place.SetActive(false);
+        answer2Place.SetActive(false);
         answercolor.ImageClear();
         TrashDelect();
         Destroy(trashcan1);
@@ -302,21 +306,6 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         
     }
 
-    void NOResult()
-    {
-        ctime = timetoquestion - 2;
-        state = State.result;
-        TrashDelect();
-
-        Debug.Log("³ë´ä");
-            question_text.text = question.all_Failtext;
-            if (time)
-            {
-                time.text = "No DAB....";
-            }
-            ohdab++;
-
-    }
     void Nextquiz()
     {
         resulted = false;
@@ -328,34 +317,8 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         yield return new WaitForSeconds(0.2f);
         trashobject = PhotonNetwork.Instantiate(trash, GameManager.instance.player.trashspawnpoint.position, GameManager.instance.player.trashspawnpoint.rotation);
-        for(int i = 1; i <= playercount; i ++)
-        {
-            //trashobject = Instantiate(trash);
-            //trashobject.transform.position = trashposition.position;
-            //yield return new WaitForSeconds(0.2f);
-            /*if(PhotonNetwork.IsMasterClient)
-            {
-                trashobject = PhotonNetwork.Instantiate(trash, trashposition.position, trashposition.rotation);
-                if(i == GameManager.instance.player.myNumber)
-                {
-                    if (!PhotonNetwork.IsMasterClient)
-                    {
-                        trashobject.GetComponent<PhotonView>().RequestOwnership();
-                    }
-                }
-                yield return new WaitForSeconds(0.2f);
-            }*/
-        }
         
     }
-
-    /*void TrashSpawn()
-    {
-        if(GetComponent<PhotonView>().IsMine)
-        {
-            trashobject = PhotonNetwork.Instantiate(trash, trashposition.position, trashposition.rotation);
-        }
-    }*/
 
     void TrashDelect()
     {

@@ -76,7 +76,7 @@ public class PhotonManager_temp : MonoBehaviourPunCallbacks {
 
     IEnumerator StartPlayer()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
         GameManager.instance.player.enabled = true;
     }
 }
