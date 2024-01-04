@@ -2,6 +2,7 @@ using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class EscapeObject : MonoBehaviour
@@ -12,21 +13,16 @@ public class EscapeObject : MonoBehaviour
         OUT
     }
     public EscapeStatus status;
-    private Collider collider;
-    private void Awake()
+    private void FixedUpdate()
     {
-        collider = GetComponent<Collider>();
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (GameManager.instance.playerChase != null)
+        {
+            if (GameManager.instance.playerChase.gameObject.transform.position.y < transform.position.y)
+            {
+                int a = GameManager.instance.netWorkGameManager.currentplayerNum;
+                GameManager.instance.playerChase.gameObject.transform.position = GameManager.instance.spawnpoints[a - 1].position;
+            }
+        }
     }
     private void OnTriggerStay(Collider other)
     {
@@ -39,18 +35,8 @@ public class EscapeObject : MonoBehaviour
                 {
                     if (pv.IsMine)
                     {
+                        other.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
                         other.gameObject.transform.position = GameManager.instance.player.trashspawnpoint.position;
-                    }
-                }
-            }else if (other.gameObject.CompareTag("Player"))
-            {
-                PhotonView pv;
-                if (other.gameObject.TryGetComponent<PhotonView>(out pv))
-                {
-                    if (pv.IsMine)
-                    {
-                        int a = GameManager.instance.netWorkGameManager.currentplayerNum;
-                        other.gameObject.transform.position = GameManager.instance.spawnpoints[a - 1].position;
                     }
                 }
             }
