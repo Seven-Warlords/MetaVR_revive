@@ -38,7 +38,7 @@ public class StringDelay : MonoBehaviour
             tmp.text += str[i];
             if (!char.IsWhiteSpace(str[i]))
             {
-                //gameManager.audioManaer.CreateSFXAudioSource(gameManager.player.gameObject, gameManager.audioManaer.FindSFXAudioClipByString("SansSpeak"));
+                gameManager.audioManager.CreateSFXAudioSource(gameManager.playerChase.gameObject, gameManager.audioManager.FindSFXAudioClipByString("SansSpeak"));
             }
             yield return new WaitForSeconds(0.2f);
         }

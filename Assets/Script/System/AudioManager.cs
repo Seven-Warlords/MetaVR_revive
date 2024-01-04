@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class AudioManager : OrderBehaviour
+public class AudioManager : MonoBehaviour
 {
     [Header("#AudioList")]
     //manage audio source
@@ -19,7 +19,6 @@ public class AudioManager : OrderBehaviour
     public float bgmVolume;
     public float sfxVolume;
 
-    public AudioManager() : base(1){}
 
     //create BGM audio source in obj
     public AudioSource CreateBGMAudioSource(GameObject obj,AudioClip audioClip)
@@ -127,7 +126,7 @@ public class AudioManager : OrderBehaviour
         return null;
     }
 
-    void Init()
+    public void Init()
     {
         //º¼·ý ÃÊ±âÈ­
         if (GameManager.instance.Load("BGM") == -1)
@@ -162,14 +161,5 @@ public class AudioManager : OrderBehaviour
             audio.volume = sfxVolume;
         }
         return;
-    }
-
-    public override void NumberAwake()
-    {
-        Init();
-    }
-
-    public override void NumberStart()
-    {
     }
 }
