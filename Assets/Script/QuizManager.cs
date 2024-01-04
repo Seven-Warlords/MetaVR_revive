@@ -218,7 +218,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         trashcan2.transform.rotation = trashcan2place.rotation;
         StartCoroutine(TrashSpawn());
         question_text.text = question.question;
-<<<<<<< HEAD
+
         if (PhotonNetwork.IsMasterClient) {
             Room ro= PhotonNetwork.CurrentRoom;
             ro.IsOpen = false;
@@ -226,8 +226,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
 
         //left_Text.text = question.left_Text;
         //right_Text.text = question.right_Text;
-=======
->>>>>>> e36467355a0d6c371f1c4c1d9886eb11c4c2cdd0
+
     }
 
 
