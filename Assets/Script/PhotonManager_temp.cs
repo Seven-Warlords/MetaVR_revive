@@ -9,7 +9,7 @@ public class PhotonManager_temp : MonoBehaviourPunCallbacks {
     public GameObject SpawnLocation;
     private Transform startpoint;
     private int playerNumber;
-
+    
     private void Awake() {
         PhotonNetwork.NickName = "Player";
         PhotonNetwork.GameVersion = "1.0";
@@ -38,16 +38,22 @@ public class PhotonManager_temp : MonoBehaviourPunCallbacks {
 
       
     }
-
+   
     public override void OnJoinRandomFailed(short returnCode, string message) {
 #if On
         Debug.Log($"JoinRoom Faild {returnCode}:{message}");
 #endif
+      // 만약 룸이 없다면 새로운 룸 생성
+        if (PhotonNetwork.CountOfRooms == 0) {
+      
         RoomOptions ro = new RoomOptions();
         ro.MaxPlayers = 4;
         ro.IsOpen = true;
         ro.IsVisible = true;
+
         PhotonNetwork.CreateRoom("My Room", ro);
+        }
+
     }
 
     public override void OnCreatedRoom() {
@@ -72,7 +78,6 @@ public class PhotonManager_temp : MonoBehaviourPunCallbacks {
 
         StartCoroutine(StartPlayer());
 
-        // PhotonNetwork.Instantiate("PPP", startpoint.position, startpoint.rotation, 0);
     }
 
     IEnumerator StartPlayer()
