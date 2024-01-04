@@ -38,7 +38,7 @@ public class BodyTrackking : MonoBehaviour
     void Update()
     {
         if(myPV.IsMine && mybody!=null) {
-            //myMR.enabled = false;
+            myMR.enabled = false;
             myTR.transform.position = mybody.transform.position;
             myTR.transform.rotation = mybody.transform.rotation;
         }
