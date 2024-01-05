@@ -24,6 +24,7 @@ using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System;
+using Unity.VisualScripting;
 
 public class LaserPointer : OVRCursor
 {
@@ -38,6 +39,9 @@ public class LaserPointer : OVRCursor
     public GameObject[] pings;
     public int i = 0;
     public float maxLength = 10.0f;
+    public float emojidelay = 1f;
+    public float emojicool = 3f;
+    public bool emojiready = true;
 
     private LaserBeamBehavior _laserBeamBehavior;
     bool m_restoreOnInputAcquired = false;
@@ -68,7 +72,7 @@ public class LaserPointer : OVRCursor
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        
+
     }
 
     private void Start()
@@ -94,6 +98,14 @@ public class LaserPointer : OVRCursor
 
     private void LateUpdate()
     {
+        if (ARAVRInput.GetDown(ARAVRInput.Button.Two, ARAVRInput.Controller.RTouch))
+        {
+            i += 1;
+            if (i >= 3)
+            {
+                i = 0;
+            }
+        }
         lineRenderer.SetPosition(0, _startPoint);
         if (_hitTarget)
         {
@@ -105,36 +117,14 @@ public class LaserPointer : OVRCursor
                 cursorVisual.SetActive(true);
                 lineRenderer.enabled = true;
             }
-            if (ARAVRInput.GetDown(ARAVRInput.Button.Two, ARAVRInput.Controller.RTouch))
-            {
-                switch (i)
-                {
-                    case 0:
-                        pings[0].SetActive(true);
-                        pings[1].SetActive(false);
-                        pings[2].SetActive(false);
-                        i = 1;
-                        break;
-                    case 1:
-                        pings[0].SetActive(false);
-                        pings[1].SetActive(true);
-                        pings[2].SetActive(false);
-                        i = 2;
-                        break;
-                    case 2:
-                        pings[0].SetActive(false);
-                        pings[1].SetActive(false);
-                        pings[2].SetActive(true);
-                        i = 0;
-                        break;
-                }
-            }
+
         }
+
         else
         {
             // If the cursor doesn't hit a target, dynamically calculate the laser beam length
             RaycastHit hit;
-            if (ARAVRInput.Get(ARAVRInput.Button.IndexTrigger, ARAVRInput.Controller.RTouch))
+            if (ARAVRInput.GetDown(ARAVRInput.Button.IndexTrigger, ARAVRInput.Controller.RTouch))
             {
 
                 if (Physics.Raycast(_startPoint, _forward, out hit, maxLength))
@@ -145,53 +135,32 @@ public class LaserPointer : OVRCursor
                     lineRenderer.enabled = true;
                     cursorVisual.transform.position = hit.point;
                     cursorVisual.SetActive(true);
-                    ping.SetActive(true);
+                    emojicool += Time.deltaTime;
+                    emojiready = emojidelay < emojicool;//딜레이 수정 함수로
+                    Ping();
                     ping.transform.position = hit.point;
-                }                
-                if (ARAVRInput.GetDown(ARAVRInput.Button.Two, ARAVRInput.Controller.RTouch))
-                    {
-                            switch (i)
-                            {
-                                case 0:
-                                    pings[0].SetActive(true);
-                                    pings[1].SetActive(false);
-                                    pings[2].SetActive(false);
-                                    i = 1;
-                                    break;
-                                case 1:
-                                    pings[0].SetActive(false);
-                                    pings[1].SetActive(true);
-                                    pings[2].SetActive(false);
-                                    i = 2;
-                                    break;
-                                case 2:
-                                    pings[0].SetActive(false);
-                                    pings[1].SetActive(false);
-                                    pings[2].SetActive(true);
-                                    i = 0;
-                                    break;
-                            }
-                    }
-                    /*  if (cursorVisual)
-                      {
-                          cursorVisual.transform.position = hit.point;
-                          cursorVisual.SetActive(true);
-                          lineRenderer.enabled = true;
-                      }*/
-                
+                }
+
+                /*  if (cursorVisual)
+                  {
+                      cursorVisual.transform.position = hit.point;
+                      cursorVisual.SetActive(true);
+                      lineRenderer.enabled = true;
+                  }*/
+
             }
             else
             {
                 Vector3 endPoint = _startPoint + maxLength * _forward;
                 lineRenderer.SetPosition(1, endPoint);
                 UpdateLaserBeam(_startPoint, endPoint);
-                
+
                 if (cursorVisual)
                 {
                     cursorVisual.SetActive(false);
                     lineRenderer.enabled = false;
-                    ping.SetActive(false);
-                }                
+                    // ping.SetActive(false);
+                }
             }
         }
     }
@@ -223,7 +192,7 @@ public class LaserPointer : OVRCursor
             {
                 if (lineRenderer.enabled)
                 {
-                    lineRenderer.enabled = false;                    
+                    lineRenderer.enabled = false;
                 }
             }
         }
@@ -258,4 +227,19 @@ public class LaserPointer : OVRCursor
         OVRManager.InputFocusLost -= OnInputFocusLost;
     }
 
+    public void Ping()
+    {
+        switch (i)
+        {
+            case 0:
+                Instantiate(pings[0], ping.transform.position, ping.transform.rotation);
+                break;
+            case 1:
+                Instantiate(pings[1], ping.transform.position, ping.transform.rotation);
+                break;
+            case 2:
+                Instantiate(pings[2], ping.transform.position, ping.transform.rotation);
+                break;
+        }
+    }
 }
