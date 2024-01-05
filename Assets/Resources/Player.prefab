@@ -1012,6 +1012,7 @@ MonoBehaviour:
   head: {fileID: 7950203151153331912}
   hand1: {fileID: 2617775289111330313}
   hand2: {fileID: 617953033898278309}
+  StatusUI: {fileID: 0}
   spawnpoint: {fileID: 1614267518248258774}
 --- !u!1 &9185916243837677602
 GameObject:
@@ -1268,6 +1269,10 @@ PrefabInstance:
     - target: {fileID: 2720552004090271481, guid: 5c3b2b06e14f1b248be48cc3a2653366, type: 3}
       propertyPath: m_Name
       value: VR Status
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003951785268381970, guid: 5c3b2b06e14f1b248be48cc3a2653366, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6671584219756442792, guid: 5c3b2b06e14f1b248be48cc3a2653366, type: 3}
       propertyPath: m_IsActive
