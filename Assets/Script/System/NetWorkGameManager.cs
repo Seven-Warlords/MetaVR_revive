@@ -28,7 +28,12 @@ public class NetWorkGameManager : MonoBehaviourPun, IPunObservable
     {
         
     }
-
+	public void Update() {
+        playercountfun();
+	}
+	public void playercountfun() {
+        playercount = PhotonNetwork.PlayerList.Length;
+	}
     // Update is called once per frame
     public void PlayerJoin()
     {
