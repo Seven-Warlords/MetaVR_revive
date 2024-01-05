@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public PlayerChase playerChase;
     [Header("#NetworkGameManager")]
     public NetWorkGameManager netWorkGameManager;
+    [Header("#StatusManager")]
+    public StatusManager statusManager;
     [Header("#InGame")]
     public Transform[] spawnpoints;
     [Header("#Backend")]

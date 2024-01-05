@@ -9,7 +9,7 @@ public class PlayerChase : MonoBehaviour
     public GameObject head;
     public GameObject hand1;
     public GameObject hand2;
-    public GameObject StatusUI;
+    public UI_Player StatusUI;
     public Transform spawnpoint;
 
     private void OnEnable()
