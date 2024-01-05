@@ -50,7 +50,7 @@ public class StringDelay : MonoBehaviour
                 {
                     if (gameManager.playerChase != null)
                     {
-                        gameManager.audioManager.CreateSFXAudioSource(gameManager.playerChase.gameObject, gameManager.audioManager.FindSFXAudioClipByString("SansSpeak"));
+                        gameManager.audioManager.CreateSFXAudioSource(gameManager.playerVR.gameObject, gameManager.audioManager.FindSFXAudioClipByString("SansSpeak"));
                     }
                 }
                 yield return new WaitForSeconds(0.2f);

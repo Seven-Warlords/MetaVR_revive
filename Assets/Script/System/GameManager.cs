@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     public StatusManager statusManager;
     [Header("#InGame")]
     public Transform[] spawnpoints;
+    [Header("#Lobby")]
+    public Lobby lobby;
     [Header("#Backend")]
     public WebTest webTest;
 

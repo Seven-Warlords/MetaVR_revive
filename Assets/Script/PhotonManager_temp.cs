@@ -35,9 +35,9 @@ public class PhotonManager_temp : MonoBehaviourPunCallbacks {
 #if On
         Debug.Log($"PhotonNetwork.InLobby = {PhotonNetwork.InLobby}");
 #endif
-        PhotonNetwork.JoinRandomRoom();
 
-      
+        //버튼으로 시작할거임
+        //PhotonNetwork.JoinRandomRoom();
     }
    
     public override void OnJoinRandomFailed(short returnCode, string message) {
@@ -88,6 +88,19 @@ public class PhotonManager_temp : MonoBehaviourPunCallbacks {
     {
         yield return new WaitForSeconds(2f);
         GameManager.instance.player.enabled = true;
+    }
+    //one Room
+    public void ReadyedPlayer()
+    {
+        Debug.Log("IN Room");
+        GameManager.instance.lobby.gameObject.SetActive(false);
+        GameManager.instance.quizManager.state = QuizManager.State.ready;
+        PhotonNetwork.JoinRandomRoom();
+    }
+    //Muti Room
+    public void ReadyedPlayer(string room)
+    {
+        PhotonNetwork.JoinRoom(room) ;
     }
 }
 
