@@ -14,6 +14,8 @@ public class StringDelay : MonoBehaviour
     public string str;
     public int answerType = 1;
 
+    private float stringDelay = 0.1f;
+
     private WebTest webTest;
     private QuizManager quizManager;
 
@@ -48,12 +50,9 @@ public class StringDelay : MonoBehaviour
                 tmp.text += arrStr[j][i];
                 if (!char.IsWhiteSpace(arrStr[j][i]))
                 {
-                    if (gameManager.playerChase != null)
-                    {
-                        gameManager.audioManager.CreateSFXAudioSource(gameManager.playerVR.gameObject, gameManager.audioManager.FindSFXAudioClipByString("SansSpeak"));
-                    }
+                    gameManager.audioManager.CreateSFXAudioSource(gameManager.playerVR.gameObject, gameManager.audioManager.FindSFXAudioClipByString("SansSpeak"));
                 }
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(stringDelay);
             }
             tmp.text += "\\n";
             tmp.text = tmp.text.Replace("\\n", "\n");

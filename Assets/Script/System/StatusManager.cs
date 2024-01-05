@@ -11,25 +11,25 @@ public class StatusManager : MonoBehaviour
         Connected_TimeOut,
         CloseRoom
     }
-    public Status status= Status.None;
+    public Status errorStatus = Status.None;
     // Update is called once per frame
     void Update()
     {
         if (GameManager.instance.playerChase == null)
             return;
-        switch (status)
+        switch (errorStatus)
         {
             case Status.Connect_TimeOut:
                 WriteString("Photon 연결에 실패하셨습니다.\n 연결을 재시도합니다.");
-                status = Status.None;
+                errorStatus = Status.None;
                 break;
             case Status.Connected_TimeOut:
                 WriteString("연결이 끊겼습니다.");
-                status = Status.None;
+                errorStatus = Status.None;
                 break;
             case Status.CloseRoom:
                 WriteString("현재 플레이 중으로 들어갈 수 없습니다.");
-                status = Status.None;
+                errorStatus = Status.None;
                 break;
             default:
                 break;

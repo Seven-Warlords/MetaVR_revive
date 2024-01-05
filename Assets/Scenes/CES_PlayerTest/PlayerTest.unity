@@ -213,7 +213,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 350653950}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 100}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1438,7 +1438,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1697452697}
   - component: {fileID: 1697452696}
-  - component: {fileID: 1697452698}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1459,12 +1458,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  playerVR: {fileID: 0}
+  playerVR: {fileID: 1655931763}
   audioManager: {fileID: 904133951}
   quizManager: {fileID: 0}
   playerChase: {fileID: 0}
   netWorkGameManager: {fileID: 0}
+  statusManager: {fileID: 0}
   spawnpoints: []
+  lobby: {fileID: 0}
   webTest: {fileID: 0}
 --- !u!4 &1697452697
 Transform:
@@ -1482,18 +1483,6 @@ Transform:
   - {fileID: 743158062}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1697452698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1697452695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6777b032404e804496008536e50d6eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1752253715
 GameObject:
   m_ObjectHideFlags: 0

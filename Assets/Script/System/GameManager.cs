@@ -42,7 +42,8 @@ public class GameManager : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(key))
         {
-            return PlayerPrefs.GetFloat(key);
+            //return PlayerPrefs.GetFloat(key);
+            return 1;
         }
         return -1;
     }

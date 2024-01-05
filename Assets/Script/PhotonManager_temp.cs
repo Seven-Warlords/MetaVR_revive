@@ -10,7 +10,7 @@ public class PhotonManager_temp : MonoBehaviourPunCallbacks {
     public GameObject SpawnLocation;
     private Transform startpoint;
     private int playerNumber;
-    public StatusManager SM;
+    StatusManager SM;
     
     private void Awake() {
         PhotonNetwork.NickName = "Player";
@@ -22,6 +22,10 @@ public class PhotonManager_temp : MonoBehaviourPunCallbacks {
 #if On
         Debug.Log(PhotonNetwork.SendRate);
 #endif
+    }
+    private void Start()
+    {
+        SM = GameManager.instance.statusManager;   
     }
 
     public override void OnConnectedToMaster() {

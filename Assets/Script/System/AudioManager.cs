@@ -69,8 +69,6 @@ public class AudioManager : MonoBehaviour
         }
         //오디오 생성
         source=obj.AddComponent<AudioSource>();
-        //거리별 소리 생성
-        source.spatialBlend = 1f;
         //오디오 등록
         source.clip = audioClip;
         //오디오 플레이
