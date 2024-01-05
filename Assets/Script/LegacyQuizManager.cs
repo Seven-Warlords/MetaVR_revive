@@ -6,7 +6,7 @@ using TMPro;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
+public class LegacyQuizManager : MonoBehaviourPunCallbacks, IPunObservable
 {
 
     
@@ -19,8 +19,8 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
 
     [Header("#Network")]
     public State state;
-    public int question;
-    public int[] questions;
+    public Question question;
+    public Question[] questions;
     public float timetoquestion;
     public float quiztime;
     private float ctime;

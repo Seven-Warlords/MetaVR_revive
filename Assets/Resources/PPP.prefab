@@ -205,6 +205,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 423993144235156596}
+  - component: {fileID: -3795285177547601112}
   m_Layer: 0
   m_Name: PPP
   m_TagString: Untagged

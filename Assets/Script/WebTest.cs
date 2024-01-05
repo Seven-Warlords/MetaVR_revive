@@ -59,6 +59,7 @@ public class WebTest : MonoBehaviour
         {
             string buf = (string)getData(1, "Text", 2);
             //text.text = buf.Replace("\\n", "\n");
+            Debug.Log(buf);
         }
     }
 
