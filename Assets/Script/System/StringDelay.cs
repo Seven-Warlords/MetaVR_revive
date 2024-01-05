@@ -3,20 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
+using System;
 
 public class StringDelay : MonoBehaviour
 {
     public bool startTyping=false;
     public TMP_Text tmp;
 
+    
     public string str;
     public int answerType = 1;
+
+    private WebTest webTest;
+    private QuizManager quizManager;
 
     GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameManager.instance;
+        quizManager = gameManager.quizManager;
+        webTest = gameManager.webTest;
         str = tmp.text;
         tmp.text = "";
     }
@@ -32,29 +39,37 @@ public class StringDelay : MonoBehaviour
     }
     IEnumerator DelayText()
     {
-        for(int i = 0; i < str.Length; i++)
+        string[] arrStr = str.Split("\\n");
+        for(int j = 0; j < arrStr.Length; j++)
         {
-            Debug.Log(i);
-            tmp.text += str[i];
-            if (!char.IsWhiteSpace(str[i]))
+            for (int i = 0; i < arrStr[j].Length; i++)
             {
-                //gameManager.audioManaer.CreateSFXAudioSource(gameManager.player.gameObject, gameManager.audioManaer.FindSFXAudioClipByString("SansSpeak"));
+                Debug.Log(i);
+                tmp.text += arrStr[j][i];
+                if (!char.IsWhiteSpace(arrStr[j][i]))
+                {
+                    if (gameManager.playerChase != null)
+                    {
+                        gameManager.audioManager.CreateSFXAudioSource(gameManager.playerChase.gameObject, gameManager.audioManager.FindSFXAudioClipByString("SansSpeak"));
+                    }
+                }
+                yield return new WaitForSeconds(0.2f);
             }
-            yield return new WaitForSeconds(0.2f);
+            tmp.text += "\\n";
+            tmp.text = tmp.text.Replace("\\n", "\n");
         }
-
     }
-
+   
     public void DataPlay()
     {
         tmp.text = "";
         if (answerType == 1)
         {
-            str = QuizManager.Instance.question.left_Text;
+            str = (string)webTest.getData(0, "trashCanText1", quizManager.question);
         }
         else if(answerType == 2)
         {
-            str = QuizManager.Instance.question.right_Text;
+            str = (string)webTest.getData(0, "trashCanText2", quizManager.question);
         }
         else
         {

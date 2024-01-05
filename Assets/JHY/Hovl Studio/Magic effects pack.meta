@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/JHY/Hovl Studio/Magic effects pack.meta
 guid: ccaf0d0261bfcfe4f874cb02d8931eb9
+========
+guid: 8d4283154b3df4f4db8b30696e51d765
+>>>>>>>> 31d169dd7e939db02f50154e5844968a92e74bc9:Assets/Prefabs/Manager.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

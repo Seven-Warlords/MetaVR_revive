@@ -6,7 +6,7 @@ using TMPro;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
+public class LegacyQuizManager : MonoBehaviourPunCallbacks, IPunObservable
 {
 
     
@@ -19,8 +19,8 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
 
     [Header("#Network")]
     public State state;
-    public int question;
-    public int[] questions;
+    public Question question;
+    public Question[] questions;
     public float timetoquestion;
     public float quiztime;
     private float ctime;
@@ -32,7 +32,6 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     public int is2;
     public int playercount;
     public int currentquestion = 1;
-    public int collectanswer;
 
     [Header("#NotNetwork")]
     public TextMeshProUGUI time;
@@ -42,7 +41,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     
     public int answer;
     public Transform trashposition;
-    public string quizItem;
+    public string trash;
     private GameObject trashobject;
     public Answercolor answercolor;
     public GameObject answer1Place;
@@ -51,7 +50,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     public StringDelay answer2;
 
     private bool isgame;
-    private WebTest webTest;
+
     
 
     public GameObject trashcan1;
@@ -67,10 +66,10 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Awake()
     {
-        if(!Instance)
+        /*if(!Instance)
         {
             Instance = this;
-        }
+        }*/
     }
     void Start()
     {
@@ -79,7 +78,6 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         {
             State state = State.ready;
         }
-        webTest = GameManager.instance.webTest;
         answer1Place.SetActive(false);
         answer2Place.SetActive(false);
         ctime = timetoquestion;
@@ -205,10 +203,9 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         state = State.quiz;
         answer1Place.SetActive(true);
         answer2Place.SetActive(true);
-        trashcan1code = (int)(long)webTest.getData(0, "trashCanObjects1", question);
-        trashcan2code = (int)(long)webTest.getData(0, "trashCanObjects2", question);
-        quizItem = (string)webTest.getData(0, "quizItem", question);
-        collectanswer = (int)(long)webTest.getData(0, "answer", question);
+        trashcan1code = question.trashcan1code;
+        trashcan2code = question.trashcan2code;
+        trash = question.trash;
         answer1.DataPlay();
         answer2.DataPlay();
 
@@ -220,7 +217,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         trashcan2.transform.position = trashcan2place.position;
         trashcan2.transform.rotation = trashcan2place.rotation;
         StartCoroutine(TrashSpawn());
-        question_text.text = (string)webTest.getData(1, "Text", ((int)(long)webTest.getData(0, "question", question)));
+        question_text.text = question.question;
 
         if (PhotonNetwork.IsMasterClient) {
             Room ro= PhotonNetwork.CurrentRoom;
@@ -279,10 +276,10 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
             ctime = 3;
             question_text.text = "Draw!";
         }
-        else if (answer == collectanswer)
+        else if (answer == question.correct)
         {
             Debug.Log("정답");
-            question_text.text = (string)webTest.getData(0, "correctText", question);
+            question_text.text = question.correcttext;
             
             time.text = "Correct!";
             if(PhotonNetwork.IsMasterClient)
@@ -297,10 +294,10 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
             }
 
         }
-        else if(answer != collectanswer)
+        else if(answer != question.correct)
         {
             Debug.Log("오답");
-            question_text.text = (string)webTest.getData(0, "wrongText", question);
+            question_text.text = question.all_Failtext;
             if (time)
             time.text = "Fail!";
             
@@ -329,7 +326,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     IEnumerator TrashSpawn()
     {
         yield return new WaitForSeconds(0.2f);
-        trashobject = PhotonNetwork.Instantiate(quizItem, GameManager.instance.player.trashspawnpoint.position, GameManager.instance.player.trashspawnpoint.rotation);
+        trashobject = PhotonNetwork.Instantiate(trash, GameManager.instance.player.trashspawnpoint.position, GameManager.instance.player.trashspawnpoint.rotation);
         
     }
 
@@ -356,8 +353,8 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
-            this.state = (QuizManager.State)stream.ReceiveNext();
-            //this.question = (int)stream.ReceiveNext();
+            this.state = (LegacyQuizManager.State)stream.ReceiveNext();
+            //this.question = (Question)stream.ReceiveNext();
             this.ctime = (float)stream.ReceiveNext();
             this.qtime = (float)stream.ReceiveNext();
             this.munje = (float)stream.ReceiveNext();

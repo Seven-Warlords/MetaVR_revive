@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: -4712066837119188912}
   - component: {fileID: 7367259570532570419}
   m_Layer: 0
-  m_Name: 1001
+  m_Name: shampoo
   m_TagString: Trash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,7 +35,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.44545054, y: 1.8446064, z: 19.860706}
-  m_LocalScale: {x: 0.30173, y: 0.30173, z: 0.30173}
+  m_LocalScale: {x: 0.37244, y: 0.37244, z: 0.37244}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
