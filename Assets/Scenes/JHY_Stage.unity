@@ -4838,18 +4838,6 @@ PrefabInstance:
       propertyPath: spawnpoints.Array.data[3]
       value: 
       objectReference: {fileID: 1365864202}
-    - target: {fileID: 7606905637394279904, guid: 1782d51a14176fa4b9179d9b565ca294, type: 3}
-      propertyPath: sceneViewId
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8423291067940226855, guid: 1782d51a14176fa4b9179d9b565ca294, type: 3}
-      propertyPath: sceneViewId
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8900443154371726630, guid: 1782d51a14176fa4b9179d9b565ca294, type: 3}
-      propertyPath: sceneViewId
-      value: 4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
