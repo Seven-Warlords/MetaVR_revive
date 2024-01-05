@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6099935876134604399}
   - component: {fileID: 552683715134073212}
   m_Layer: 5
-  m_Name: pingTest
+  m_Name: pingTest1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 63632bbdaa609494d80289f252755fd8, type: 3}
+  m_Texture: {fileID: 2800000, guid: 9184ca12b819336498c7b7897d5003f9, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0

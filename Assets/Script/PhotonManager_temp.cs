@@ -10,6 +10,7 @@ public class PhotonManager_temp : MonoBehaviourPunCallbacks {
     public GameObject SpawnLocation;
     private Transform startpoint;
     private int playerNumber;
+    public StatusManager SM;
     
     private void Awake() {
         PhotonNetwork.NickName = "Player";
@@ -56,11 +57,21 @@ public class PhotonManager_temp : MonoBehaviourPunCallbacks {
         }
         else
         {
+            SM.errorStatus = StatusManager.Status.CloseRoom;
         }
 
     }
+    public override void OnDisconnected(DisconnectCause cause) {
+        SM.errorStatus = StatusManager.Status.Connected_TimeOut;
+    }
 
-    public override void OnCreatedRoom() {
+    public override void OnCreateRoomFailed(short returnCode, string message) {
+        SM.errorStatus = StatusManager.Status.Connected_TimeOut;
+
+
+    }
+
+	public override void OnCreatedRoom() {
 #if On
     Debug.Log("Created Room");
     Debug.Log($"Room Name = {PhotonNetwork.CurrentRoom.Name}");
