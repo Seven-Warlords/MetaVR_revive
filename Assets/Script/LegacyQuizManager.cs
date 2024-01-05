@@ -66,10 +66,10 @@ public class LegacyQuizManager : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Awake()
     {
-        if(!Instance)
+        /*if(!Instance)
         {
             Instance = this;
-        }
+        }*/
     }
     void Start()
     {
@@ -353,7 +353,7 @@ public class LegacyQuizManager : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
-            this.state = (QuizManager.State)stream.ReceiveNext();
+            this.state = (LegacyQuizManager.State)stream.ReceiveNext();
             //this.question = (Question)stream.ReceiveNext();
             this.ctime = (float)stream.ReceiveNext();
             this.qtime = (float)stream.ReceiveNext();

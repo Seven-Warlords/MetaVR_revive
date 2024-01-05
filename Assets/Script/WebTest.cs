@@ -60,6 +60,9 @@ public class WebTest : MonoBehaviour
             string buf = (string)getData(1, "Text", 2);
             //text.text = buf.Replace("\\n", "\n");
             Debug.Log(buf);
+            Debug.Log((string)getData(0, "trashCanText1", 0));
+            Debug.Log((string)getData(0, "trashCanText2", 0));
+            Debug.Log((int)(long)getData(0, "trashCanObjects1", 0));
         }
     }
 
@@ -67,4 +70,6 @@ public class WebTest : MonoBehaviour
     {
         return (dataTable[table][column] as Dictionary<string, object>)[field];
     }
+
+    
 }

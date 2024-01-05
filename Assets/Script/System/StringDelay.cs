@@ -14,11 +14,16 @@ public class StringDelay : MonoBehaviour
     public string str;
     public int answerType = 1;
 
+    private WebTest webTest;
+    private QuizManager quizManager;
+
     GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameManager.instance;
+        quizManager = gameManager.quizManager;
+        webTest = gameManager.webTest;
         str = tmp.text;
         tmp.text = "";
     }
@@ -54,17 +59,17 @@ public class StringDelay : MonoBehaviour
             tmp.text = tmp.text.Replace("\\n", "\n");
         }
     }
-
+   
     public void DataPlay()
     {
         tmp.text = "";
         if (answerType == 1)
         {
-            str = QuizManager.Instance.question.left_Text;
+            str = (string)webTest.getData(0, "trashCanText1", quizManager.question);
         }
         else if(answerType == 2)
         {
-            str = QuizManager.Instance.question.right_Text;
+            str = (string)webTest.getData(0, "trashCanText2", quizManager.question);
         }
         else
         {
