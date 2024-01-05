@@ -1085,7 +1085,7 @@ MonoBehaviour:
   head: {fileID: 7950203151153331912}
   hand1: {fileID: 2617775289111330313}
   hand2: {fileID: 617953033898278309}
-  StatusUI: {fileID: 0}
+  StatusUI: {fileID: 1146840414893012483}
   spawnpoint: {fileID: 1614267518248258774}
 --- !u!1 &8982274854397942684
 GameObject:
@@ -1507,6 +1507,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3334621406412859401}
     m_Modifications:
+    - target: {fileID: 1653312766916438873, guid: 5c3b2b06e14f1b248be48cc3a2653366, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2720552004090271481, guid: 5c3b2b06e14f1b248be48cc3a2653366, type: 3}
       propertyPath: m_Name
       value: VR Status
@@ -1608,6 +1612,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c3b2b06e14f1b248be48cc3a2653366, type: 3}
+--- !u!114 &1146840414893012483 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8163992185929959164, guid: 5c3b2b06e14f1b248be48cc3a2653366, type: 3}
+  m_PrefabInstance: {fileID: 9126042050354606335}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2edea53be5a456845b64e0e1c7e9b6dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1684883187283704632 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7622305743499905991, guid: 5c3b2b06e14f1b248be48cc3a2653366, type: 3}
