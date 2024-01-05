@@ -20,6 +20,8 @@ public class GameManager : OrderBehaviour
     public NetWorkGameManager netWorkGameManager;
     [Header("#InGame")]
     public Transform[] spawnpoints;
+    [Header("#Backend")]
+    public WebTest webTest;
 
     private void Awake()
     {
