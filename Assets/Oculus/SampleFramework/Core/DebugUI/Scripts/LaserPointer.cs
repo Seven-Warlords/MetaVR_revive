@@ -25,6 +25,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System;
 using Unity.VisualScripting;
+using Photon.Pun;
 
 public class LaserPointer : OVRCursor
 {
@@ -36,12 +37,15 @@ public class LaserPointer : OVRCursor
     }
     public GameObject ping;
     public GameObject cursorVisual;
-    public GameObject[] pings;
+   
     public int i = 0;
     public float maxLength = 10.0f;
     public float emojidelay = 1f;
     public float emojicool = 3f;
     public bool emojiready = true;
+    public PhotonView pv;
+
+
 
     private LaserBeamBehavior _laserBeamBehavior;
     bool m_restoreOnInputAcquired = false;
@@ -137,8 +141,10 @@ public class LaserPointer : OVRCursor
                     cursorVisual.SetActive(true);
                     emojicool += Time.deltaTime;
                     emojiready = emojidelay < emojicool;//딜레이 수정 함수로
-                    Ping();
                     ping.transform.position = hit.point;
+                    GameObject.Find("QuizManager").GetComponent<PhotonView>().RPC("Ping", RpcTarget.All, 0, cursorVisual.transform.position, cursorVisual.transform.rotation);
+
+
                 }
 
                 /*  if (cursorVisual)
@@ -227,19 +233,5 @@ public class LaserPointer : OVRCursor
         OVRManager.InputFocusLost -= OnInputFocusLost;
     }
 
-    public void Ping()
-    {
-        switch (i)
-        {
-            case 0:
-                Instantiate(pings[0], ping.transform.position, ping.transform.rotation);
-                break;
-            case 1:
-                Instantiate(pings[1], ping.transform.position, ping.transform.rotation);
-                break;
-            case 2:
-                Instantiate(pings[2], ping.transform.position, ping.transform.rotation);
-                break;
-        }
-    }
+   
 }

@@ -369,4 +369,6 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
             this.currentquestion = (int)stream.ReceiveNext();
         }
     }
+
+
 }
