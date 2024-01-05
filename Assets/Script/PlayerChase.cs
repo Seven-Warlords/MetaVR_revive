@@ -9,6 +9,7 @@ public class PlayerChase : MonoBehaviour
     public GameObject head;
     public GameObject hand1;
     public GameObject hand2;
+    public GameObject StatusUI;
     public Transform spawnpoint;
 
     private void OnEnable()
@@ -24,6 +25,5 @@ public class PlayerChase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 }

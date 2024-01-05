@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using System.Threading;
 
 public class PhotonManager_temp : MonoBehaviourPunCallbacks {
 
@@ -52,6 +53,9 @@ public class PhotonManager_temp : MonoBehaviourPunCallbacks {
         ro.IsVisible = true;
 
         PhotonNetwork.CreateRoom("My Room", ro);
+        }
+        else
+        {
         }
 
     }

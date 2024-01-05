@@ -32,12 +32,12 @@ public class NetWorkGameManager : MonoBehaviourPun, IPunObservable
     // Update is called once per frame
     public void PlayerJoin()
     {
-        gameObject.GetComponent<PhotonView>().RPC("NPlayerJoin", RpcTarget.All, null);
+        PhotonView.Get(this).RPC("NPlayerJoin", RpcTarget.All, null);
     }
 
     public void PlayerOut()
     {
-        gameObject.GetComponent<PhotonView>().RPC("NPlayerOut", RpcTarget.All, null);
+        PhotonView.Get(this).RPC("NPlayerOut", RpcTarget.All, null);
     }
 
     [PunRPC]
