@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
+using System;
 
 public class StringDelay : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class StringDelay : MonoBehaviour
     }
     IEnumerator DelayText()
     {
-        string[] arrStr = str.Split("\n");
+        string[] arrStr = str.Split("\\n");
         for(int j = 0; j < arrStr.Length; j++)
         {
             for (int i = 0; i < arrStr[j].Length; i++)
@@ -42,12 +43,16 @@ public class StringDelay : MonoBehaviour
                 tmp.text += arrStr[j][i];
                 if (!char.IsWhiteSpace(arrStr[j][i]))
                 {
-                    gameManager.audioManager.CreateSFXAudioSource(gameManager.playerChase.gameObject, gameManager.audioManager.FindSFXAudioClipByString("SansSpeak"));
+                    if (gameManager.playerChase != null)
+                    {
+                        gameManager.audioManager.CreateSFXAudioSource(gameManager.playerChase.gameObject, gameManager.audioManager.FindSFXAudioClipByString("SansSpeak"));
+                    }
                 }
                 yield return new WaitForSeconds(0.2f);
             }
+            tmp.text += "\\n";
+            tmp.text = tmp.text.Replace("\\n", "\n");
         }
-
     }
 
     public void DataPlay()
