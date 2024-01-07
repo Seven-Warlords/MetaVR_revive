@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 using System.Threading;
+using TMPro;
 
 public class PhotonManager_temp : MonoBehaviourPunCallbacks {
 
@@ -94,7 +96,10 @@ public class PhotonManager_temp : MonoBehaviourPunCallbacks {
         foreach (var player in PhotonNetwork.CurrentRoom.Players) {
             Debug.Log($"{player.Value.NickName}");
         }
-
+        if (PhotonNetwork.IsMasterClient)
+        {
+            GameManager.instance.netWorkGameManager.Ready = true;
+        }
         StartCoroutine(StartPlayer());
 
     }
@@ -108,14 +113,45 @@ public class PhotonManager_temp : MonoBehaviourPunCallbacks {
     public void ReadyedPlayer()
     {
         Debug.Log("IN Room");
-        GameManager.instance.lobby.gameObject.SetActive(false);
-        GameManager.instance.quizManager.state = QuizManager.State.ready;
+        GameManager.instance.lobby.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        GameManager.instance.lobby.gameObject.transform.GetChild(1).gameObject.SetActive(true);
         PhotonNetwork.JoinRandomRoom();
     }
     //Muti Room
     public void ReadyedPlayer(string room)
     {
-        PhotonNetwork.JoinRoom(room) ;
+        PhotonNetwork.JoinRoom(room);
+    }
+    public void InGameReady()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            //게임 시작-특이사항 준비안한 플레이어는 방에서 내보낸다.
+            GameManager.instance.netWorkGameManager.GameStart();
+        }
+        else
+        {
+            bool ready = GameManager.instance.netWorkGameManager.Ready;
+            if (!ready) { 
+                //개인의 준비를 확인하는 변수를 true
+                GameManager.instance.netWorkGameManager.Ready=true;
+                Button ReadyBtn = GameManager.instance.lobby.UI.transform.
+                    GetChild(1).GetComponent<PT_Ready>().ReadyBtn;
+                TMP_Text text = ReadyBtn.transform.GetChild(0).GetComponent<TMP_Text>();
+                text.text = "Cancel";
+                GameManager.instance.netWorkGameManager.GameReady(GameManager.instance.player.myNumber);
+            }
+            else
+            {
+                //개인의 준비를 확인하는 변수를 true
+                GameManager.instance.netWorkGameManager.Ready = false;
+                Button ReadyBtn = GameManager.instance.lobby.UI.transform.
+                    GetChild(1).GetComponent<PT_Ready>().ReadyBtn;
+                TMP_Text text = ReadyBtn.transform.GetChild(0).GetComponent<TMP_Text>();
+                text.text = "Ready";
+                GameManager.instance.netWorkGameManager.GameReady(GameManager.instance.player.myNumber);
+            }
+        }
     }
 }
 

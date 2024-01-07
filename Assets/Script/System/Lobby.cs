@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Lobby : MonoBehaviour
 {
-    public GameObject Player;
-    public GameObject UI;
+    [SerializeField]
+    private GameObject ui;
+    public GameObject UI { get { return ui; } set { ui = value; } }
 }
