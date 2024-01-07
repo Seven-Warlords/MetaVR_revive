@@ -39,14 +39,17 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     public TextMeshProUGUI question_text;
     public TextMeshProUGUI left_Text;
     public TextMeshProUGUI right_Text;
-    
+    public TextMeshProUGUI left_TrashCan_Name;
+    public TextMeshProUGUI right_TrashCan_Name;
+    public TextMeshProUGUI stateMessage;
+
     public int answer;
     public Transform trashposition;
     public string quizItem;
     private GameObject trashobject;
     public Answercolor answercolor;
-    public GameObject answer1Place;
-    public GameObject answer2Place;
+    public GameObject left_answer;
+    public GameObject right_answer;
     public StringDelay answer1;
     public StringDelay answer2;
 
@@ -61,6 +64,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     public Transform trashcan1place;
     public Transform trashcan2place;
     public GameObject[] trashcans;
+    public string[] trashCannames;
     private bool resulted;
 
     // Start is called before the first frame update
@@ -80,8 +84,8 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
             State state = State.ready;
         }
         webTest = GameManager.instance.webTest;
-        answer1Place.SetActive(false);
-        answer2Place.SetActive(false);
+        left_answer.SetActive(false);
+        right_answer.SetActive(false);
         ctime = timetoquestion;
         isgame = true;
     }
@@ -203,12 +207,15 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         qtime = quiztime;
         state = State.ready;
         state = State.quiz;
-        answer1Place.SetActive(true);
-        answer2Place.SetActive(true);
+        left_answer.SetActive(true);
+        right_answer.SetActive(true);
         trashcan1code = (int)(long)webTest.getData(0, "trashCanObjects1", question);
         trashcan2code = (int)(long)webTest.getData(0, "trashCanObjects2", question);
+        left_TrashCan_Name.text = trashCannames[(int)(long)webTest.getData(0, "trashCanObjects1", question)];
+        right_TrashCan_Name.text = trashCannames[(int)(long)webTest.getData(0, "trashCanObjects2", question)];
         quizItem = (string)webTest.getData(0, "quizItem", question);
         collectanswer = (int)(long)webTest.getData(0, "answer", question);
+        stateMessage.text = "버려야 할 곳으로 쓰레기를 던져보세요!";
         answer1.DataPlay();
         answer2.DataPlay();
 
@@ -261,16 +268,18 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     }
     IEnumerator Result()
     {
+        question_text.text = "결과 집계중...";
+        answercolor.ImageClear();
         yield return new WaitForSeconds(1f);
         if (PhotonNetwork.IsMasterClient)
         {
             ctime = timetoquestion - 2;
             state = State.result;
         }
-        answer1Place.SetActive(false);
-        answer2Place.SetActive(false);
-        answercolor.ImageClear();
+        left_answer.SetActive(false);
+        right_answer.SetActive(false);
         TrashDelect();
+        stateMessage.text = "";
         Destroy(trashcan1);
         Destroy(trashcan2);
         if (answer == 3)
@@ -281,10 +290,10 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         }
         else if (answer == collectanswer)
         {
-            Debug.Log("정답");
+            //Debug.Log("정답");
             question_text.text = (string)webTest.getData(0, "correctText", question);
             
-            time.text = "Correct!";
+            time.text = "맞췄어요!";
             if(PhotonNetwork.IsMasterClient)
             {
                 if(!resulted)
@@ -299,10 +308,10 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         }
         else if(answer != collectanswer)
         {
-            Debug.Log("오답");
+            //Debug.Log("오답");
             question_text.text = (string)webTest.getData(0, "wrongText", question);
             if (time)
-            time.text = "Fail!";
+            time.text = "노력해봐요!";
             
             if (PhotonNetwork.IsMasterClient)
             {
