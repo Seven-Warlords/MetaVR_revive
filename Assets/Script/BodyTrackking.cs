@@ -11,6 +11,13 @@ public class BodyTrackking : MonoBehaviour
     private PhotonView myPV;
     public MeshRenderer myMR;
     public int humantype = 1;
+    private void OnEnable()
+    {
+        if (GameManager.instance.playerVR.transform.GetChild(0).GetChild(0).GetComponent<LaserPointer>().pv == null)
+        {
+            GameManager.instance.playerVR.transform.GetChild(0).GetChild(0).GetComponent<LaserPointer>().pv = GetComponent<PhotonView>();
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
