@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     [Header("#Manager")]
     public AudioManager audioManager;
     [Header("#QuizManager")]
-    public QuizManager quizManager;
+    [HideInInspector]public QuizManager quizManager=QuizManager.Instance;
     [Header("#VrPlayerChase")]
     public PlayerChase playerChase;
     [Header("#NetworkGameManager")]

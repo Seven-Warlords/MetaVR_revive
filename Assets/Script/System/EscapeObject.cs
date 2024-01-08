@@ -19,9 +19,9 @@ public class EscapeObject : MonoBehaviour
         {
             if (GameManager.instance.playerVR.transform.position.y < transform.position.y)
             {
-                GameManager.instance.playerVR.transform.position = GameManager.instance.lobby.transform.position;
+                GameManager.instance.playerVR.transform.position = GameManager.instance.player.transform.position;
             }
-        }
+        } 
     }
     private void OnTriggerStay(Collider other)
     {

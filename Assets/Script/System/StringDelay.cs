@@ -62,13 +62,18 @@ public class StringDelay : MonoBehaviour
     public void DataPlay()
     {
         tmp.text = "";
+        Debug.Log("answertype: "+answerType);
         if (answerType == 1)
         {
-            str = (string)webTest.getData(0, "trashCanText1", quizManager.question);
+            if (quizManager == QuizManager.Instance)
+            {
+                Debug.Log(".......................test");
+            }
+            str = (string)GameManager.instance.webTest.getData(0, "trashCanText1", QuizManager.Instance.question);
         }
         else if(answerType == 2)
         {
-            str = (string)webTest.getData(0, "trashCanText2", quizManager.question);
+            str = (string)GameManager.instance.webTest.getData(0, "trashCanText2", QuizManager.Instance.question);
         }
         else
         {
