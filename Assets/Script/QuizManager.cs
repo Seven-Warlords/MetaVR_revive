@@ -42,6 +42,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     public TextMeshProUGUI left_TrashCan_Name;
     public TextMeshProUGUI right_TrashCan_Name;
     public TextMeshProUGUI stateMessage;
+    public TextMeshProUGUI currentQuizstate;
 
     public int answer;
     public Transform trashposition;
@@ -98,6 +99,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         if(isgame)
         {
+            currentQuizstate.text = $"ÇöÀç ÄûÁî : {is1 + is2}/{munje}";
             playercount = GameManager.instance.netWorkGameManager.playercount;
             switch (state)
             {
