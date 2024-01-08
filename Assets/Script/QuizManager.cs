@@ -48,6 +48,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     public string quizItem;
     private GameObject trashobject;
     public Answercolor answercolor;
+    public Answercolor resultcolor;
     public GameObject left_answer;
     public GameObject right_answer;
     public StringDelay answer1;
@@ -109,7 +110,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
                     if (ctime > 0)
                     {
                         time.text = ctime.ToString("F2");
-                        question_text.text = "Wait for next Question...";
+                        question_text.text = "다음 문제 기다리는 중...";
                     }
 
                     if (ctime <= 0)
@@ -121,7 +122,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
                     }
                     break;
                 case State.quiz:
-                    time.text = "Question!";
+                    time.text = "문제!";
                     
                     if ((is1 + is2) >= playercount)
                     {
@@ -172,11 +173,11 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
             
             if (jungdab >= 7)
             {
-                question_text.text = "Victory";
+                question_text.text = "합격했습니다!";
             }
             else
             {
-                question_text.text = "Defeat";
+                question_text.text = "노력해봐요...";
             }
         }
         
@@ -301,6 +302,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
                     resulted = true;
                     jungdab++;
                     currentquestion++;
+                    resultcolor.ImageIn(1);
                 }
                 
             }
@@ -320,6 +322,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
                     resulted = true;
                     ohdab++;
                     currentquestion++;
+                    resultcolor.ImageIn(2);
                 }
                 
             }

@@ -3005,30 +3005,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1944406960}
     m_Modifications:
-    - target: {fileID: 1986687533043162376, guid: 29e7e409de6a4504bab0393965978b14, type: 3}
-      propertyPath: trashcans.Array.data[0]
-      value: 
-      objectReference: {fileID: 3947720518666911114, guid: 82c9ab6f7c6c6f34ba05a468fdcdb355, type: 3}
-    - target: {fileID: 1986687533043162376, guid: 29e7e409de6a4504bab0393965978b14, type: 3}
-      propertyPath: trashcans.Array.data[1]
-      value: 
-      objectReference: {fileID: 3430920685428125629, guid: fb004f17a16207e42a114b0fe34d08e6, type: 3}
-    - target: {fileID: 1986687533043162376, guid: 29e7e409de6a4504bab0393965978b14, type: 3}
-      propertyPath: trashcans.Array.data[2]
-      value: 
-      objectReference: {fileID: 5223876883808163149, guid: 942f080c457666a47a1508ca9703ec0f, type: 3}
-    - target: {fileID: 1986687533043162376, guid: 29e7e409de6a4504bab0393965978b14, type: 3}
-      propertyPath: trashcans.Array.data[3]
-      value: 
-      objectReference: {fileID: 4316134599503893218, guid: 069188ee089028a45ac2816cee461ed6, type: 3}
-    - target: {fileID: 1986687533043162376, guid: 29e7e409de6a4504bab0393965978b14, type: 3}
-      propertyPath: trashcans.Array.data[4]
-      value: 
-      objectReference: {fileID: 2381302269791386497, guid: 939d2976b46fd51479e54c4b3198a39a, type: 3}
-    - target: {fileID: 1986687533043162376, guid: 29e7e409de6a4504bab0393965978b14, type: 3}
-      propertyPath: trashcans.Array.data[5]
-      value: 
-      objectReference: {fileID: 7450991408394429934, guid: e245f76c68db3bc488c7188927d2d887, type: 3}
     - target: {fileID: 3123732043341147175, guid: 29e7e409de6a4504bab0393965978b14, type: 3}
       propertyPath: m_Name
       value: QuizManager
@@ -3072,10 +3048,6 @@ PrefabInstance:
     - target: {fileID: 3292456091515937682, guid: 29e7e409de6a4504bab0393965978b14, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9069012815168052630, guid: 29e7e409de6a4504bab0393965978b14, type: 3}
-      propertyPath: sceneViewId
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
