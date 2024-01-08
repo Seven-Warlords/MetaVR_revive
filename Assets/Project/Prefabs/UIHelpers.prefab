@@ -93,6 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1556251355608003281}
   - component: {fileID: 3109983855431834193}
+  - component: {fileID: 5332793157766911180}
   m_Layer: 0
   m_Name: UIHelpers
   m_TagString: Untagged
@@ -130,6 +131,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef803169364cc6e4d9b4df31d9c7fed7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5332793157766911180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819116535153693497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &8666223307711988647
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,20 +278,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b558aa8ebb866bd4da56c536a7b4eb71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ping: {fileID: 748818329214912321, guid: 8d7c0808ab35e364d85d6ea1378abf57, type: 3}
+  ping: {fileID: 748818329214912321, guid: eafe711e24719f24a8e4f50ab2270870, type: 3}
   cursorVisual: {fileID: 594858741436116017}
   pings:
-  - {fileID: 748818329214912321, guid: 8d7c0808ab35e364d85d6ea1378abf57, type: 3}
+  - {fileID: 748818329214912321, guid: eafe711e24719f24a8e4f50ab2270870, type: 3}
   - {fileID: 748818329214912321, guid: d5c4591049c914a40b3f994f76f23eec, type: 3}
   - {fileID: 9073942024903734655, guid: e9522fea3e33f514fa5d29532d7404d9, type: 3}
-  - {fileID: 748818329214912321, guid: ba05f192e4359c14e89c35c069b04f92, type: 3}
-  - {fileID: 9073942024903734655, guid: 9a7b3e0bdacf52048adf31f95cfaa782, type: 3}
+  - {fileID: 748818329214912321, guid: d5c4591049c914a40b3f994f76f23eec, type: 3}
+  - {fileID: 9073942024903734655, guid: e9522fea3e33f514fa5d29532d7404d9, type: 3}
   i: 0
   maxLength: 10
   emojidelay: 1
   emojicool: 3
   emojiready: 1
   PV: {fileID: 8444538405540803424, guid: 9a940b0afbcc77041a55ce45fd676f2d, type: 3}
+  pv: {fileID: 5332793157766911180}
 --- !u!120 &1050137634290726887
 LineRenderer:
   serializedVersion: 2
