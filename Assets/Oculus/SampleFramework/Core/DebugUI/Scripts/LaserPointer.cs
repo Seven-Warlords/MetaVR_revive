@@ -25,6 +25,9 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System;
 using Unity.VisualScripting;
+using Photon.Pun;
+using Photon.Realtime;
+using Unity.Mathematics;
 
 public class LaserPointer : OVRCursor
 {
@@ -42,7 +45,7 @@ public class LaserPointer : OVRCursor
     public float emojidelay = 1f;
     public float emojicool = 3f;
     public bool emojiready = true;
-
+    public GameObject PV;
     private LaserBeamBehavior _laserBeamBehavior;
     bool m_restoreOnInputAcquired = false;
 
@@ -98,73 +101,75 @@ public class LaserPointer : OVRCursor
 
     private void LateUpdate()
     {
-        if (ARAVRInput.GetDown(ARAVRInput.Button.Two, ARAVRInput.Controller.RTouch))
-        {
-            i += 1;
-            if (i >= 3)
+      
+            if (ARAVRInput.GetDown(ARAVRInput.Button.Two, ARAVRInput.Controller.RTouch))
             {
-                i = 0;
-            }
-        }
-        lineRenderer.SetPosition(0, _startPoint);
-        if (_hitTarget)
-        {
-            lineRenderer.SetPosition(1, _endPoint);
-            UpdateLaserBeam(_startPoint, _endPoint);
-            if (cursorVisual)
-            {
-                cursorVisual.transform.position = _endPoint;
-                cursorVisual.SetActive(true);
-                lineRenderer.enabled = true;
-            }
-
-        }
-
-        else
-        {
-            // If the cursor doesn't hit a target, dynamically calculate the laser beam length
-            RaycastHit hit;
-            if (ARAVRInput.GetDown(ARAVRInput.Button.IndexTrigger, ARAVRInput.Controller.RTouch))
-            {
-
-                if (Physics.Raycast(_startPoint, _forward, out hit, maxLength))
+                i += 1;
+                if (i >= 3)
                 {
-                    // If the ray hits something within maxLength, update the laser beam to reach the hit point
-                    lineRenderer.SetPosition(1, hit.point);
-                    UpdateLaserBeam(_startPoint, hit.point);
-                    lineRenderer.enabled = true;
-                    cursorVisual.transform.position = hit.point;
-                    cursorVisual.SetActive(true);
-                    emojicool += Time.deltaTime;
-                    emojiready = emojidelay < emojicool;//딜레이 수정 함수로
-                    Ping();
-                    ping.transform.position = hit.point;
+                    i = 0;
                 }
-
-                /*  if (cursorVisual)
-                  {
-                      cursorVisual.transform.position = hit.point;
-                      cursorVisual.SetActive(true);
-                      lineRenderer.enabled = true;
-                  }*/
-
             }
-            else
+            lineRenderer.SetPosition(0, _startPoint);
+            if (_hitTarget)
             {
-                Vector3 endPoint = _startPoint + maxLength * _forward;
-                lineRenderer.SetPosition(1, endPoint);
-                UpdateLaserBeam(_startPoint, endPoint);
-
+                lineRenderer.SetPosition(1, _endPoint);
+                UpdateLaserBeam(_startPoint, _endPoint);
                 if (cursorVisual)
                 {
-                    cursorVisual.SetActive(false);
-                    lineRenderer.enabled = false;
-                    // ping.SetActive(false);
+                    cursorVisual.transform.position = _endPoint;
+                    cursorVisual.SetActive(true);
+                    lineRenderer.enabled = true;
+                }
+
+            }
+
+            else
+            {
+                // If the cursor doesn't hit a target, dynamically calculate the laser beam length
+                RaycastHit hit;
+                if (ARAVRInput.GetDown(ARAVRInput.Button.IndexTrigger, ARAVRInput.Controller.RTouch))
+                {
+
+                    if (Physics.Raycast(_startPoint, _forward, out hit, maxLength))
+                    {
+                        // If the ray hits something within maxLength, update the laser beam to reach the hit point
+                        lineRenderer.SetPosition(1, hit.point);
+                        UpdateLaserBeam(_startPoint, hit.point);
+                        lineRenderer.enabled = true;
+                        cursorVisual.transform.position = hit.point;
+                        cursorVisual.SetActive(true);
+                        emojicool += Time.deltaTime;
+                        emojiready = emojidelay < emojicool;//딜레이 수정 함수로
+                         // PV.RPC("Ping", RpcTarget.All,null);
+                    Ping();
+                        ping.transform.position = hit.point;
+                    }
+
+                    /*  if (cursorVisual)
+                      {
+                          cursorVisual.transform.position = hit.point;
+                          cursorVisual.SetActive(true);
+                          lineRenderer.enabled = true;
+                      }*/
+
+                }
+                else
+                {
+                    Vector3 endPoint = _startPoint + maxLength * _forward;
+                    lineRenderer.SetPosition(1, endPoint);
+                    UpdateLaserBeam(_startPoint, endPoint);
+
+                    if (cursorVisual)
+                    {
+                        cursorVisual.SetActive(false);
+                        lineRenderer.enabled = false;
+                        // ping.SetActive(false);
+                    }
                 }
             }
         }
-    }
-
+    
     // make laser beam a behavior with a prop that enables or disables
     private void UpdateLaserBeam(Vector3 start, Vector3 end)
     {
@@ -229,16 +234,19 @@ public class LaserPointer : OVRCursor
 
     public void Ping()
     {
+        Transform Tr = Camera.main.transform;
+        Quaternion rotation = Quaternion.LookRotation(Tr.forward);
+
         switch (i)
         {
             case 0:
-                Instantiate(pings[0], ping.transform.position, ping.transform.rotation);
+              PhotonNetwork.Instantiate(pings[0].name, ping.transform.position, rotation);                
                 break;
             case 1:
-                Instantiate(pings[1], ping.transform.position, ping.transform.rotation);
+                PhotonNetwork.Instantiate(pings[1].name, ping.transform.position, rotation);
                 break;
             case 2:
-                Instantiate(pings[2], ping.transform.position, ping.transform.rotation);
+              PhotonNetwork.Instantiate(pings[2].name, ping.transform.position, rotation);
                 break;
         }
     }
