@@ -289,7 +289,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
             ctime = 3;
             question_text.text = "Draw!";
         }
-        else if (answer == collectanswer)
+        else if (answer-1 == collectanswer)
         {
             //Debug.Log("정답");
             question_text.text = (string)webTest.getData(0, "correctText", question);
@@ -308,7 +308,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
             }
 
         }
-        else if(answer != collectanswer)
+        else if(answer-1 != collectanswer)
         {
             //Debug.Log("오답");
             question_text.text = (string)webTest.getData(0, "wrongText", question);
