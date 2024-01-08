@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     public StatusManager statusManager;
     [Header("#InGame")]
     public Transform[] spawnpoints;
+    [Header("#Lobby")]
+    public Lobby lobby;
     [Header("#Backend")]
     public WebTest webTest;
 
@@ -40,7 +42,8 @@ public class GameManager : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(key))
         {
-            return PlayerPrefs.GetFloat(key);
+            //return PlayerPrefs.GetFloat(key);
+            return 1;
         }
         return -1;
     }

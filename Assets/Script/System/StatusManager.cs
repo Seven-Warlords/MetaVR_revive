@@ -13,7 +13,7 @@ public class StatusManager : MonoBehaviour
         left
 
     }
-    public Status errorStatus= Status.None;
+    public Status errorStatus = Status.None;
     // Update is called once per frame
     void Update()
     {

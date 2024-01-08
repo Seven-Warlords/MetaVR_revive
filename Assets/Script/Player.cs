@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
         GameManager.instance.player.JoinGame();
 
 
-        GameObject PlayerVR=Instantiate(GameManager.instance.playerVR,transform.position,transform.rotation);
+        GameObject PlayerVR = GameManager.instance.playerVR;
         head = PlayerVR.GetComponent<PlayerChase>().head;
         handL= PlayerVR.GetComponent<PlayerChase>().hand1;
         handR = PlayerVR.GetComponent<PlayerChase>().hand2;

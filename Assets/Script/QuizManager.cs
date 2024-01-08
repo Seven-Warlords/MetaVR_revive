@@ -12,7 +12,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     
     public enum State
     {
-        ready, quiz, result
+        dead, ready, quiz, result
     }
     public static QuizManager Instance;
     private PhotonView myPV;
@@ -162,6 +162,8 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
                     }
 
                     break;
+                default:
+                    return;
             }
             if ((jungdab + ohdab) >= munje)
             {

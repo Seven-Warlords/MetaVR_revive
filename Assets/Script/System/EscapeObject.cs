@@ -15,12 +15,11 @@ public class EscapeObject : MonoBehaviour
     public EscapeStatus status;
     private void FixedUpdate()
     {
-        if (GameManager.instance.playerChase != null)
+        if (GameManager.instance.playerVR)
         {
-            if (GameManager.instance.playerChase.gameObject.transform.position.y < transform.position.y)
+            if (GameManager.instance.playerVR.transform.position.y < transform.position.y)
             {
-                int a = GameManager.instance.netWorkGameManager.currentplayerNum;
-                GameManager.instance.playerChase.gameObject.transform.position = GameManager.instance.spawnpoints[a - 1].position;
+                GameManager.instance.playerVR.transform.position = GameManager.instance.lobby.transform.position;
             }
         }
     }
