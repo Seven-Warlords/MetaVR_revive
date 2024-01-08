@@ -74,7 +74,7 @@ public class NetWorkGameManager : MonoBehaviourPun, IPunObservable
         {
             GameManager.instance.lobby.UI.transform.
             GetChild(1).GetComponent<PT_Ready>().
-                ReadyPly[currentplayerNum - 1].color = Color.red;
+                ReadyPly[GameManager.instance.player.myNumber - 1].color = Color.red;
         }
     }
 
