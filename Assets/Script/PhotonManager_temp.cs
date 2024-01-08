@@ -113,8 +113,8 @@ public class PhotonManager_temp : MonoBehaviourPunCallbacks {
     public void ReadyedPlayer()
     {
         Debug.Log("IN Room");
-        GameManager.instance.lobby.gameObject.transform.GetChild(0).gameObject.SetActive(false);
-        GameManager.instance.lobby.gameObject.transform.GetChild(1).gameObject.SetActive(true);
+        GameManager.instance.lobby.gameObject.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
+        GameManager.instance.lobby.gameObject.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
         PhotonNetwork.JoinRandomRoom();
     }
     //Muti Room

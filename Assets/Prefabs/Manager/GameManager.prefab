@@ -543,17 +543,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a564292e0d582e64abd6dae48a3753c4, type: 3}
---- !u!1 &1091825852052787420 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6363801101015650310, guid: a564292e0d582e64abd6dae48a3753c4, type: 3}
-  m_PrefabInstance: {fileID: 6302280466682003674}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3920597920087853671 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6998296646619368125, guid: a564292e0d582e64abd6dae48a3753c4, type: 3}
   m_PrefabInstance: {fileID: 6302280466682003674}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1091825852052787420}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41de38f360c3e6142bff5b683c97a333, type: 3}
@@ -623,10 +618,14 @@ PrefabInstance:
     - target: {fileID: 2251302216742072759, guid: 46d8eba5931ef484db0b5106aad1ab45, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1091825852052787420}
+      objectReference: {fileID: 0}
     - target: {fileID: 2251302216742072759, guid: 46d8eba5931ef484db0b5106aad1ab45, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2251302216742072759, guid: 46d8eba5931ef484db0b5106aad1ab45, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Photon.Pun.MonoBehaviourPunCallbacks, PhotonUnityNetworking
       objectReference: {fileID: 0}
     - target: {fileID: 3688236570682566760, guid: 46d8eba5931ef484db0b5106aad1ab45, type: 3}
       propertyPath: m_Name
@@ -636,6 +635,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3920597920087853671}
+    - target: {fileID: 5849415864180223905, guid: 46d8eba5931ef484db0b5106aad1ab45, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReadyedPlayer
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

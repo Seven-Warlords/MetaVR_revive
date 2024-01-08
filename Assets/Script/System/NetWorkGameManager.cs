@@ -6,6 +6,7 @@ using Photon.Pun;
 
 public class NetWorkGameManager : MonoBehaviourPun, IPunObservable
 {
+    [SerializeField]
     private bool ready=false;
     public bool Ready { get { return ready; }set { ready = value; } }
     public int currentplayerNum;
@@ -69,16 +70,21 @@ public class NetWorkGameManager : MonoBehaviourPun, IPunObservable
     {
         currentplayerNum++;
         playercount++;
-        GameManager.instance.lobby.UI.transform.
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            GameManager.instance.lobby.UI.transform.
             GetChild(1).GetComponent<PT_Ready>().
-                ReadyPly[currentplayerNum-1].color = Color.red;
+                ReadyPly[currentplayerNum - 1].color = Color.red;
+        }
     }
 
+    [PunRPC]
     public void NPlayerOut()
     {
         currentplayerNum--;
         playercount--;
     }
+    [PunRPC]
     public void StartPlayer()
     {
         //개인의 준비를 확인
@@ -93,12 +99,14 @@ public class NetWorkGameManager : MonoBehaviourPun, IPunObservable
             QuizManager.Instance.state = QuizManager.State.ready;
         }
     }
+    [PunRPC]
     public void ReadyPlayer(int num)
     {
         GameManager.instance.lobby.UI.transform.
             GetChild(1).GetComponent<PT_Ready>().
                 ReadyPly[num - 1].color = Color.green;
     }
+    [PunRPC]
     public void CancelPlayer(int num)
     {
         GameManager.instance.lobby.UI.transform.
