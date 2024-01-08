@@ -5,7 +5,7 @@ using Photon.Pun;
 
 public class NetworkObject : MonoBehaviourPun
 {
-    
+   
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.A) && (GetComponent<PhotonView>().ViewID & 1) == 1) {
@@ -28,4 +28,6 @@ public class NetworkObject : MonoBehaviourPun
     {
        
     }
+   
+  
 }

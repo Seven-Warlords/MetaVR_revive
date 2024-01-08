@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class NetWorkGameManager : MonoBehaviourPun, IPunObservable
 {
     [SerializeField]
     private bool ready=false;
     public bool Ready { get { return ready; }set { ready = value; } }
+    public GameObject[] pings;
     public int currentplayerNum;
     public int playercount;
     public int[] players;
+    public Photon.Realtime.Player[] oldplayers;
+    public Photon.Realtime.Player[] newplayers;
     // Start is called before the first frame update
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -29,13 +33,20 @@ public class NetWorkGameManager : MonoBehaviourPun, IPunObservable
     }
     void Start()
     {
-        
+        oldplayers = new Photon.Realtime.Player[4];
+        newplayers = new Photon.Realtime.Player[4];
     }
 	public void Update() {
         playercountfun();
 	}
 	public void playercountfun() {
         playercount = PhotonNetwork.PlayerList.Length;
+	}
+    public string getleftplayer() {
+
+        oldplayers = PhotonNetwork.PlayerList;
+        
+        return oldplayers[0].NickName;
 	}
     // Update is called once per frame
     public void PlayerJoin()
@@ -106,5 +117,18 @@ public class NetWorkGameManager : MonoBehaviourPun, IPunObservable
         GameManager.instance.lobby.UI.transform.
             GetChild(1).GetComponent<PT_Ready>().
                 ReadyPly[num].color = Color.red;
+    }
+    public void Ping(int pingi, Vector3 position, Quaternion rotation) {
+        switch (pingi) {
+            case 0:
+                Instantiate(pings[0], position, rotation);
+                break;
+            case 1:
+                Instantiate(pings[1], position, rotation);
+                break;
+            case 2:
+                Instantiate(pings[2], position, rotation);
+                break;
+        }
     }
 }

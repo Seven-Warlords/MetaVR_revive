@@ -255,17 +255,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b558aa8ebb866bd4da56c536a7b4eb71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ping: {fileID: 0}
+  ping: {fileID: 748818329214912321, guid: 8d7c0808ab35e364d85d6ea1378abf57, type: 3}
   cursorVisual: {fileID: 594858741436116017}
   pings:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 748818329214912321, guid: 8d7c0808ab35e364d85d6ea1378abf57, type: 3}
+  - {fileID: 748818329214912321, guid: d5c4591049c914a40b3f994f76f23eec, type: 3}
+  - {fileID: 9073942024903734655, guid: e9522fea3e33f514fa5d29532d7404d9, type: 3}
+  - {fileID: 748818329214912321, guid: ba05f192e4359c14e89c35c069b04f92, type: 3}
+  - {fileID: 9073942024903734655, guid: 9a7b3e0bdacf52048adf31f95cfaa782, type: 3}
   i: 0
   maxLength: 10
   emojidelay: 1
   emojicool: 3
   emojiready: 1
+  PV: {fileID: 8444538405540803424, guid: 9a940b0afbcc77041a55ce45fd676f2d, type: 3}
 --- !u!120 &1050137634290726887
 LineRenderer:
   serializedVersion: 2
