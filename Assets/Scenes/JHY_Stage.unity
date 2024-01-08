@@ -3908,7 +3908,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1368268641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4727,6 +4727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad6121121a718614ba4ae37fcfb1f99b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pings: []
   currentplayerNum: 0
   playercount: 0
   players: 01000000020000000300000004000000
@@ -5087,11 +5088,13 @@ MonoBehaviour:
   quizManager: {fileID: 0}
   playerChase: {fileID: 0}
   netWorkGameManager: {fileID: 1803705075}
+  statusManager: {fileID: 0}
   spawnpoints:
   - {fileID: 390929560}
   - {fileID: 360744121}
   - {fileID: 1651156584}
   - {fileID: 1365864202}
+  webTest: {fileID: 0}
 --- !u!4 &1944406960
 Transform:
   m_ObjectHideFlags: 0

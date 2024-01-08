@@ -26,6 +26,8 @@ using UnityEngine.UI;
 using System;
 using Unity.VisualScripting;
 using Photon.Pun;
+using Photon.Realtime;
+using Unity.Mathematics;
 
 public class LaserPointer : OVRCursor
 {
@@ -37,16 +39,13 @@ public class LaserPointer : OVRCursor
     }
     public GameObject ping;
     public GameObject cursorVisual;
-   
+    public GameObject[] pings;
     public int i = 0;
     public float maxLength = 10.0f;
     public float emojidelay = 1f;
     public float emojicool = 3f;
     public bool emojiready = true;
-    public PhotonView pv;
-
-
-
+    public GameObject PV;
     private LaserBeamBehavior _laserBeamBehavior;
     bool m_restoreOnInputAcquired = false;
 
@@ -102,6 +101,7 @@ public class LaserPointer : OVRCursor
 
     private void LateUpdate()
     {
+
         if (ARAVRInput.GetDown(ARAVRInput.Button.Two, ARAVRInput.Controller.RTouch))
         {
             i += 1;
@@ -141,10 +141,9 @@ public class LaserPointer : OVRCursor
                     cursorVisual.SetActive(true);
                     emojicool += Time.deltaTime;
                     emojiready = emojidelay < emojicool;//딜레이 수정 함수로
+                    // PV.RPC("Ping", RpcTarget.All,null);
+                    Ping();
                     ping.transform.position = hit.point;
-                    GameObject.Find("QuizManager").GetComponent<PhotonView>().RPC("Ping", RpcTarget.All, 0, cursorVisual.transform.position, cursorVisual.transform.rotation);
-
-
                 }
 
                 /*  if (cursorVisual)
@@ -233,5 +232,21 @@ public class LaserPointer : OVRCursor
         OVRManager.InputFocusLost -= OnInputFocusLost;
     }
 
-   
+    public void Ping()
+    {
+        Transform Tr = Camera.main.transform;
+        Quaternion rotation = Quaternion.LookRotation(Tr.forward);
+        switch (i)
+        {
+            case 0:
+                PhotonNetwork.Instantiate(pings[0].name, ping.transform.position, rotation);
+                break;
+            case 1:
+                PhotonNetwork.Instantiate(pings[3].name, ping.transform.position, rotation);
+                break;
+            case 2:
+                PhotonNetwork.Instantiate(pings[4].name, ping.transform.position, rotation);
+                break;
+        }
+    }
 }

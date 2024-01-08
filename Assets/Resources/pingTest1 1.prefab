@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9201203085213142924}
   - component: {fileID: 4902357986630319094}
   m_Layer: 5
-  m_Name: pingTest1
+  m_Name: pingTest1 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
