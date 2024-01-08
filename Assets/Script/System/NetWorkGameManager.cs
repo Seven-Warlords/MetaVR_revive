@@ -97,6 +97,7 @@ public class NetWorkGameManager : MonoBehaviourPun, IPunObservable
         {
             //준비되어있으면 시작
             QuizManager.Instance.state = QuizManager.State.ready;
+            GameManager.instance.lobby.gameObject.transform.GetChild(0).GetChild(1).gameObject.SetActive(false);
         }
     }
     [PunRPC]
