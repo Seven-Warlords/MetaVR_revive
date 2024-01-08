@@ -89,9 +89,11 @@ public class PhotonManager_temp : MonoBehaviourPunCallbacks {
     Debug.Log($"PhotonNetwork.InRoom = {PhotonNetwork.InRoom}");
     Debug.Log($"Player Count = {PhotonNetwork.CurrentRoom.PlayerCount}");
 #endif
-        GameManager.instance.netWorkGameManager.PlayerJoin();
+        GameManager.instance.lobby.gameObject.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
+        GameManager.instance.lobby.gameObject.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
         int a = GameManager.instance.netWorkGameManager.currentplayerNum;
         PhotonNetwork.NickName = "Player : " + a.ToString();
+        GameManager.instance.netWorkGameManager.PlayerJoin();
        
         foreach (var player in PhotonNetwork.CurrentRoom.Players) {
             Debug.Log($"{player.Value.NickName}");
@@ -113,8 +115,6 @@ public class PhotonManager_temp : MonoBehaviourPunCallbacks {
     public void ReadyedPlayer()
     {
         Debug.Log("IN Room");
-        GameManager.instance.lobby.gameObject.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
-        GameManager.instance.lobby.gameObject.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
         PhotonNetwork.JoinRandomRoom();
     }
     //Muti Room

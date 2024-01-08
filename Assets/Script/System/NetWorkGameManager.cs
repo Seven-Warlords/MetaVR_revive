@@ -65,17 +65,10 @@ public class NetWorkGameManager : MonoBehaviourPun, IPunObservable
     }
 
     [PunRPC]
-    
     public void NPlayerJoin()
     {
         currentplayerNum++;
         playercount++;
-        if (!PhotonNetwork.IsMasterClient)
-        {
-            GameManager.instance.lobby.UI.transform.
-            GetChild(1).GetComponent<PT_Ready>().
-                ReadyPly[GameManager.instance.player.myNumber - 1].color = Color.red;
-        }
     }
 
     [PunRPC]
@@ -105,13 +98,13 @@ public class NetWorkGameManager : MonoBehaviourPun, IPunObservable
     {
         GameManager.instance.lobby.UI.transform.
             GetChild(1).GetComponent<PT_Ready>().
-                ReadyPly[num - 1].color = Color.green;
+                ReadyPly[num].color = Color.green;
     }
     [PunRPC]
     public void CancelPlayer(int num)
     {
         GameManager.instance.lobby.UI.transform.
             GetChild(1).GetComponent<PT_Ready>().
-                ReadyPly[num - 1].color = Color.red;
+                ReadyPly[num].color = Color.red;
     }
 }
