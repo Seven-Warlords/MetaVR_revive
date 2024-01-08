@@ -2512,6 +2512,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 717683418814645145, guid: 9a940b0afbcc77041a55ce45fd676f2d, type: 3}
+      propertyPath: ping
+      value: 
+      objectReference: {fileID: 748818329214912321, guid: eafe711e24719f24a8e4f50ab2270870, type: 3}
+    - target: {fileID: 2199717111388493405, guid: 9a940b0afbcc77041a55ce45fd676f2d, type: 3}
+      propertyPath: EnableRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2199717111388493405, guid: 9a940b0afbcc77041a55ce45fd676f2d, type: 3}
+      propertyPath: RotateAroundGuardianCenter
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8265519349695335543, guid: 9a940b0afbcc77041a55ce45fd676f2d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -19120,7 +19132,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1368268641
 MonoBehaviour:
   m_ObjectHideFlags: 0
