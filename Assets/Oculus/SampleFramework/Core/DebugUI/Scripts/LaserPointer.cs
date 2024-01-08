@@ -24,6 +24,10 @@ using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System;
+using Unity.VisualScripting;
+using Photon.Pun;
+using Photon.Realtime;
+using Unity.Mathematics;
 
 public class LaserPointer : OVRCursor
 {
@@ -33,10 +37,15 @@ public class LaserPointer : OVRCursor
         Off, // laser beam always off
         OnWhenHitTarget, // laser beam only activates when hit valid target
     }
-
+    public GameObject ping;
     public GameObject cursorVisual;
+    public GameObject[] pings;
+    public int i = 0;
     public float maxLength = 10.0f;
-
+    public float emojidelay = 1f;
+    public float emojicool = 3f;
+    public bool emojiready = true;
+    public GameObject PV;
     private LaserBeamBehavior _laserBeamBehavior;
     bool m_restoreOnInputAcquired = false;
 
@@ -66,6 +75,7 @@ public class LaserPointer : OVRCursor
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
+
     }
 
     private void Start()
@@ -91,6 +101,15 @@ public class LaserPointer : OVRCursor
 
     private void LateUpdate()
     {
+
+        if (ARAVRInput.GetDown(ARAVRInput.Button.Two, ARAVRInput.Controller.RTouch))
+        {
+            i += 1;
+            if (i >= 3)
+            {
+                i = 0;
+            }
+        }
         lineRenderer.SetPosition(0, _startPoint);
         if (_hitTarget)
         {
@@ -102,13 +121,52 @@ public class LaserPointer : OVRCursor
                 cursorVisual.SetActive(true);
                 lineRenderer.enabled = true;
             }
+
         }
+
         else
         {
-            UpdateLaserBeam(_startPoint, _startPoint + maxLength * _forward);
-            lineRenderer.SetPosition(1, _startPoint + maxLength * _forward);
-            if (cursorVisual) cursorVisual.SetActive(false);
-            lineRenderer.enabled = false;
+            // If the cursor doesn't hit a target, dynamically calculate the laser beam length
+            RaycastHit hit;
+            if (ARAVRInput.GetDown(ARAVRInput.Button.IndexTrigger, ARAVRInput.Controller.RTouch))
+            {
+
+                if (Physics.Raycast(_startPoint, _forward, out hit, maxLength))
+                {
+                    // If the ray hits something within maxLength, update the laser beam to reach the hit point
+                    lineRenderer.SetPosition(1, hit.point);
+                    UpdateLaserBeam(_startPoint, hit.point);
+                    lineRenderer.enabled = true;
+                    cursorVisual.transform.position = hit.point;
+                    cursorVisual.SetActive(true);
+                    emojicool += Time.deltaTime;
+                    emojiready = emojidelay < emojicool;//딜레이 수정 함수로
+                    // PV.RPC("Ping", RpcTarget.All,null);
+                    Ping();
+                    ping.transform.position = hit.point;
+                }
+
+                /*  if (cursorVisual)
+                  {
+                      cursorVisual.transform.position = hit.point;
+                      cursorVisual.SetActive(true);
+                      lineRenderer.enabled = true;
+                  }*/
+
+            }
+            else
+            {
+                Vector3 endPoint = _startPoint + maxLength * _forward;
+                lineRenderer.SetPosition(1, endPoint);
+                UpdateLaserBeam(_startPoint, endPoint);
+
+                if (cursorVisual)
+                {
+                    cursorVisual.SetActive(false);
+                    lineRenderer.enabled = false;
+                    // ping.SetActive(false);
+                }
+            }
         }
     }
 
@@ -172,5 +230,23 @@ public class LaserPointer : OVRCursor
     {
         OVRManager.InputFocusAcquired -= OnInputFocusAcquired;
         OVRManager.InputFocusLost -= OnInputFocusLost;
+    }
+
+    public void Ping()
+    {
+        Transform Tr = Camera.main.transform;
+        Quaternion rotation = Quaternion.LookRotation(Tr.forward);
+        switch (i)
+        {
+            case 0:
+                PhotonNetwork.Instantiate(pings[0].name, ping.transform.position, rotation);
+                break;
+            case 1:
+                PhotonNetwork.Instantiate(pings[3].name, ping.transform.position, rotation);
+                break;
+            case 2:
+                PhotonNetwork.Instantiate(pings[4].name, ping.transform.position, rotation);
+                break;
+        }
     }
 }

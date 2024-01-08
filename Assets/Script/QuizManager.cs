@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -11,15 +12,15 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     
     public enum State
     {
-        ready, quiz, result
+        dead, ready, quiz, result
     }
     public static QuizManager Instance;
     private PhotonView myPV;
 
     [Header("#Network")]
     public State state;
-    public Question question;
-    public Question[] questions;
+    public int question;
+    public int[] questions;
     public float timetoquestion;
     public float quiztime;
     private float ctime;
@@ -31,23 +32,30 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     public int is2;
     public int playercount;
     public int currentquestion = 1;
+    public int collectanswer;
 
     [Header("#NotNetwork")]
     public TextMeshProUGUI time;
     public TextMeshProUGUI question_text;
     public TextMeshProUGUI left_Text;
     public TextMeshProUGUI right_Text;
-    
+    public TextMeshProUGUI left_TrashCan_Name;
+    public TextMeshProUGUI right_TrashCan_Name;
+    public TextMeshProUGUI stateMessage;
+
     public int answer;
     public Transform trashposition;
-    public string trash;
+    public string quizItem;
     private GameObject trashobject;
     public Answercolor answercolor;
+    public Answercolor resultcolor;
+    public GameObject left_answer;
+    public GameObject right_answer;
     public StringDelay answer1;
     public StringDelay answer2;
 
     private bool isgame;
-
+    private WebTest webTest;
     
 
     public GameObject trashcan1;
@@ -57,6 +65,8 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     public Transform trashcan1place;
     public Transform trashcan2place;
     public GameObject[] trashcans;
+    public string[] trashCannames;
+    private bool resulted;
 
     // Start is called before the first frame update
 
@@ -70,7 +80,13 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     void Start()
     {
         myPV = GetComponent<PhotonView>();
-        State state = State.ready;
+        if(PhotonNetwork.IsMasterClient)
+        {
+            State state = State.ready;
+        }
+        webTest = GameManager.instance.webTest;
+        left_answer.SetActive(false);
+        right_answer.SetActive(false);
         ctime = timetoquestion;
         isgame = true;
     }
@@ -82,28 +98,33 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         if(isgame)
         {
+            playercount = GameManager.instance.netWorkGameManager.playercount;
             switch (state)
             {
                 case State.ready:
-                    if(PhotonNetwork.IsMasterClient)
+                    question = questions[currentquestion - 1];
+                    if (PhotonNetwork.IsMasterClient)
                     {
                         ctime -= Time.deltaTime;
                     }
                     if (ctime > 0)
                     {
                         time.text = ctime.ToString("F2");
-                        question_text.text = "Wait for next Question...";
+                        question_text.text = "다음 문제 기다리는 중...";
                     }
 
                     if (ctime <= 0)
                     {
-                        Quiz();
+                        if(PhotonNetwork.IsMasterClient)
+                        {
+                            myPV.RPC("Quiz", RpcTarget.All, null);
+                        }
                     }
                     break;
                 case State.quiz:
-                    time.text = "Question!";
-
-                    if((is1 + is2) >= playercount)
+                    time.text = "문제!";
+                    
+                    if ((is1 + is2) >= playercount)
                     {
                         if(is1 > is2)
                         {
@@ -131,12 +152,18 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
 
                     if (ctime <= 0)
                     {
-                        is1 = 0;
-                        is2 = 0;
-                        Nextquiz();
+                        
+                        if(PhotonNetwork.IsMasterClient)
+                        {
+                            is1 = 0;
+                            is2 = 0;
+                            Nextquiz();
+                        }
                     }
 
                     break;
+                default:
+                    return;
             }
             if ((jungdab + ohdab) >= munje)
             {
@@ -148,42 +175,71 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
             
             if (jungdab >= 7)
             {
-                question_text.text = "Victory";
+                question_text.text = "합격했습니다!";
             }
             else
             {
-                question_text.text = "Defeat";
+                question_text.text = "노력해봐요...";
             }
         }
         
     }
 
+    void LateUpdate()
+    {
+        switch (state)
+        {
+            case State.ready:
+                resulted = false;
+                break;
+            case State.quiz:
+                
+                break;
+            case State.result:
+                
+
+                break;
+        }
+    }
+
+
+    [PunRPC]
     void Quiz()
     {
-        if(PhotonNetwork.IsMasterClient)
-        {
-            question = questions[currentquestion - 1];
-        }
+        
         qtime = quiztime;
         state = State.ready;
         state = State.quiz;
-        trashcan1code = question.trashcan1code;
-        trashcan2code = question.trashcan2code;
-        trash = question.trash;
+        left_answer.SetActive(true);
+        right_answer.SetActive(true);
+        trashcan1code = (int)(long)webTest.getData(0, "trashCanObjects1", question);
+        trashcan2code = (int)(long)webTest.getData(0, "trashCanObjects2", question);
+        left_TrashCan_Name.text = trashCannames[(int)(long)webTest.getData(0, "trashCanObjects1", question)];
+        right_TrashCan_Name.text = trashCannames[(int)(long)webTest.getData(0, "trashCanObjects2", question)];
+        quizItem = (string)webTest.getData(0, "quizItem", question);
+        collectanswer = (int)(long)webTest.getData(0, "answer", question);
+        stateMessage.text = "버려야 할 곳으로 쓰레기를 던져보세요!";
         answer1.DataPlay();
         answer2.DataPlay();
 
         //쓰레기통 생성 코드. 간단하게 짤 수 있으면 부탁함.
-        trashcan1 = Instantiate(trashcans[trashcan1code - 1]);
-        trashcan2 = Instantiate(trashcans[trashcan2code - 1]);
+        trashcan1 = Instantiate(trashcans[trashcan1code]);
+        trashcan2 = Instantiate(trashcans[trashcan2code]);
         trashcan1.transform.position = trashcan1place.position;
         trashcan1.transform.rotation = trashcan1place.rotation;
         trashcan2.transform.position = trashcan2place.position;
         trashcan2.transform.rotation = trashcan2place.rotation;
         StartCoroutine(TrashSpawn());
-        question_text.text = question.question;
+        question_text.text = (string)webTest.getData(1, "Text", ((int)(long)webTest.getData(0, "question", question)));
+
+        if (PhotonNetwork.IsMasterClient) {
+            Room ro= PhotonNetwork.CurrentRoom;
+            ro.IsOpen = false;
+        }
+
         //left_Text.text = question.left_Text;
         //right_Text.text = question.right_Text;
+
     }
 
 
@@ -192,7 +248,8 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         answer = myanswer;
         if (state == State.quiz)
         {
-            Result();
+            StartCoroutine(Result());
+            //Result();
         }
     }
 
@@ -212,15 +269,20 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
             answercolor.ImageIn(myanswer);
         }
     }
-    void Result()
+    IEnumerator Result()
     {
+        question_text.text = "결과 집계중...";
+        answercolor.ImageClear();
+        yield return new WaitForSeconds(1f);
         if (PhotonNetwork.IsMasterClient)
         {
             ctime = timetoquestion - 2;
+            state = State.result;
         }
-        state = State.result;
-        answercolor.ImageClear();
+        left_answer.SetActive(false);
+        right_answer.SetActive(false);
         TrashDelect();
+        stateMessage.text = "";
         Destroy(trashcan1);
         Destroy(trashcan2);
         if (answer == 3)
@@ -229,80 +291,61 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
             ctime = 3;
             question_text.text = "Draw!";
         }
-        else if (answer == question.correct)
+        else if (answer-1 == collectanswer)
         {
-            Debug.Log("정답");
-            question_text.text = question.correcttext;
-            jungdab++;
-            time.text = "Correct!";
-            currentquestion++;
+            //Debug.Log("정답");
+            question_text.text = (string)webTest.getData(0, "correctText", question);
+            
+            time.text = "맞췄어요!";
+            if(PhotonNetwork.IsMasterClient)
+            {
+                if(!resulted)
+                {
+                    resulted = true;
+                    jungdab++;
+                    currentquestion++;
+                    resultcolor.ImageIn(1);
+                }
+                
+            }
 
         }
-        else if(answer != question.correct)
+        else if(answer-1 != collectanswer)
         {
-            Debug.Log("오답");
-            question_text.text = question.all_Failtext;
+            //Debug.Log("오답");
+            question_text.text = (string)webTest.getData(0, "wrongText", question);
             if (time)
-            time.text = "Fail!";
-            ohdab++;
-            currentquestion++;
+            time.text = "노력해봐요!";
+            
+            if (PhotonNetwork.IsMasterClient)
+            {
+                if (!resulted)
+                {
+                    resulted = true;
+                    ohdab++;
+                    currentquestion++;
+                    resultcolor.ImageIn(2);
+                }
+                
+            }
         }
 
         
     }
 
-    void NOResult()
-    {
-        ctime = timetoquestion - 2;
-        state = State.result;
-        TrashDelect();
-
-        Debug.Log("노답");
-            question_text.text = question.all_Failtext;
-            if (time)
-            {
-                time.text = "No DAB....";
-            }
-            ohdab++;
-
-    }
     void Nextquiz()
     {
-
+        resulted = false;
         ctime = timetoquestion;
         state = State.ready;
     }
 
     IEnumerator TrashSpawn()
     {
-        for(int i = 1; i <= playercount; i ++)
-        {
-            //trashobject = Instantiate(trash);
-            //trashobject.transform.position = trashposition.position;
-            //yield return new WaitForSeconds(0.2f);
-            if(PhotonNetwork.IsMasterClient)
-            {
-                trashobject = PhotonNetwork.Instantiate(trash, trashposition.position, trashposition.rotation);
-                if(i == GameManager.instance.player.myNumber)
-                {
-                    if (!PhotonNetwork.IsMasterClient)
-                    {
-                        trashobject.GetComponent<PhotonView>().RequestOwnership();
-                    }
-                }
-                yield return new WaitForSeconds(0.2f);
-            }
-        }
+        yield return new WaitForSeconds(0.2f);
+        trashobject = PhotonNetwork.Instantiate(quizItem, GameManager.instance.player.trashspawnpoint.position, GameManager.instance.player.trashspawnpoint.rotation);
         
     }
-
-    /*void TrashSpawn()
-    {
-        if(GetComponent<PhotonView>().IsMine)
-        {
-            trashobject = PhotonNetwork.Instantiate(trash, trashposition.position, trashposition.rotation);
-        }
-    }*/
 
     void TrashDelect()
     {
@@ -314,7 +357,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         if (stream.IsWriting && PhotonNetwork.IsMasterClient)
         {
             stream.SendNext(state);
-            stream.SendNext(question);
+            //stream.SendNext(question);
             stream.SendNext(ctime);
             stream.SendNext(qtime);
             stream.SendNext(munje);
@@ -328,7 +371,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         else
         {
             this.state = (QuizManager.State)stream.ReceiveNext();
-            this.question = (Question)stream.ReceiveNext();
+            //this.question = (int)stream.ReceiveNext();
             this.ctime = (float)stream.ReceiveNext();
             this.qtime = (float)stream.ReceiveNext();
             this.munje = (float)stream.ReceiveNext();
@@ -340,4 +383,6 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
             this.currentquestion = (int)stream.ReceiveNext();
         }
     }
+
+
 }

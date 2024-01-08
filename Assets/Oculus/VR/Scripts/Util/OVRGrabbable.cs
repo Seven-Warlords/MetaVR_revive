@@ -19,6 +19,7 @@
  */
 
 using System;
+using System.Linq.Expressions;
 using UnityEngine;
 
 /// <summary>
@@ -155,6 +156,38 @@ public class OVRGrabbable : MonoBehaviour
 
             // Create a default grab point
             m_grabPoints = new Collider[1] { collider };
+        }
+    }
+    private void FixedUpdate()
+    {
+        if (!isGrabbed)
+        {
+            Collider collider = this.GetComponent<Collider>();
+            if (collider == null)
+            {
+                throw new ArgumentException("Grabbables cannot have zero grab points and no collider " +
+                                            "-- please add a grab point or collider.");
+            }else
+            {
+                collider.isTrigger = false;
+                Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+                rb.useGravity = true;
+            }
+        }
+        else
+        {
+            Collider collider = this.GetComponent<Collider>();
+            if (collider == null)
+            {
+                throw new ArgumentException("Grabbables cannot have zero grab points and no collider " +
+                                            "-- please add a grab point or collider.");
+            }
+            else
+            {
+                collider.isTrigger = true;
+                Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+                rb.useGravity = false;
+            }
         }
     }
 

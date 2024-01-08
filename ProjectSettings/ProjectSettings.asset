@@ -137,7 +137,10 @@ PlayerSettings:
   vulkanEnableCommandBufferRecycling: 1
   loadStoreDebugModeEnabled: 0
   bundleVersion: 0.1
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: 11400000, guid: c894b9df1d765434a9c8fb90a27a9034, type: 2}
+  - {fileID: 11400000, guid: 90023ef3b1c6b3943a1650a6544f377d, type: 2}
+  - {fileID: 932827060233447204, guid: fd93d444dc0f8ef4db455147f49ba72e, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -885,7 +888,7 @@ PlayerSettings:
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: MetaRevive
-  metroPackageVersion: 
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -893,7 +896,7 @@ PlayerSettings:
   metroCertificateNotAfter: ddf016fdb8b9952c
   metroApplicationDescription: MetaRevive
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: MetaRevive
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
@@ -970,4 +973,4 @@ PlayerSettings:
   hmiLoadingImage: {fileID: 0}
   platformRequiresReadableAssets: 0
   virtualTexturingSupportEnabled: 0
-  insecureHttpOption: 0
+  insecureHttpOption: 2
