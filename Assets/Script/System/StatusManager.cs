@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StatusManager : MonoBehaviour
 {
+    public SelfClose sc;
     public enum Status
     {
         None,
@@ -23,14 +24,22 @@ public class StatusManager : MonoBehaviour
         {
             case Status.Connect_TimeOut:
                 WriteString("Photon 연결에 실패하셨습니다.\n 연결을 재시도합니다.");
+                sc.closecool = 0f;
                 errorStatus = Status.None;
                 break;
             case Status.Connected_TimeOut:
                 WriteString("연결이 끊겼습니다.");
+                sc.closecool = 0f;
                 errorStatus = Status.None;
                 break;
             case Status.CloseRoom:
                 WriteString("현재 플레이 중으로 들어갈 수 없습니다.");
+                sc.closecool = 0f;
+                errorStatus = Status.None;
+                break;
+            case Status.left:
+                WriteString("누군가 방을 떠났습니다");
+                sc.closecool = 0f;
                 errorStatus = Status.None;
                 break;
             default:
