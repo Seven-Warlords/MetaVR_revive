@@ -52,6 +52,9 @@ MonoBehaviour:
   - testrun
   - Ping
   - NPlayerOut
+  - CancelPlayer
+  - ReadyPlayer
+  - StartPlayer
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
