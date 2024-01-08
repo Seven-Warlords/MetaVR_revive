@@ -3049,6 +3049,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9069012815168052630, guid: 29e7e409de6a4504bab0393965978b14, type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26019,6 +26023,7 @@ MonoBehaviour:
   pings: []
   currentplayerNum: 0
   playercount: 0
+  previousPlayerCount: 0
   players: 01000000020000000300000004000000
 --- !u!114 &1803705076
 MonoBehaviour:

@@ -9,7 +9,9 @@ public class StatusManager : MonoBehaviour
         None,
         Connect_TimeOut,
         Connected_TimeOut,
-        CloseRoom
+        CloseRoom,
+        left
+
     }
     public Status errorStatus= Status.None;
     // Update is called once per frame
