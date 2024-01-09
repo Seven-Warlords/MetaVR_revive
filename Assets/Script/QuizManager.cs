@@ -99,7 +99,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         if(isgame)
         {
-            currentQuizstate.text = $"ÇöÀç ÄûÁî : {is1 + is2}/{munje}";
+            currentQuizstate.text = $"ÇöÀç ÄûÁî : {jungdab + ohdab + 1}/{munje}";
             playercount = GameManager.instance.netWorkGameManager.playercount;
             switch (state)
             {
