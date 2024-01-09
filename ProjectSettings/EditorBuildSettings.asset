@@ -6,11 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/JHY_Stage.unity
-    guid: c48ff76852629874a9273125d6682874
-  - enabled: 1
-    path: Assets/Scenes/temptestscene.unity
-    guid: 414b67b1d9ac2d447acff88f1dcd174c
+    path: Assets/Scenes/Main_Stage.unity
+    guid: 86593f41d9609fe4681b4362003b4b61
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 90023ef3b1c6b3943a1650a6544f377d, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: fd93d444dc0f8ef4db455147f49ba72e, type: 2}
