@@ -918,7 +918,7 @@ MonoBehaviour:
   RotationAmount: 1.5
   RotationRatchet: 45
   SnapRotation: 1
-  RotateAroundGuardianCenter: 0
+  RotateAroundGuardianCenter: 1
   FixedSpeedSteps: 0
   HmdResetsY: 1
   HmdRotatesY: 1
@@ -1150,6 +1150,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIHelpers
       objectReference: {fileID: 0}
+    - target: {fileID: 819116535153693497, guid: 6e5af4d229935a94d8b81025bf06ea01, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1556251355608003281, guid: 6e5af4d229935a94d8b81025bf06ea01, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1213,8 +1217,32 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 819116535153693497, guid: 6e5af4d229935a94d8b81025bf06ea01, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2608751017227819026}
   m_SourcePrefab: {fileID: 100100000, guid: 6e5af4d229935a94d8b81025bf06ea01, type: 3}
+--- !u!1 &3208054890060280781 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 819116535153693497, guid: 6e5af4d229935a94d8b81025bf06ea01, type: 3}
+  m_PrefabInstance: {fileID: 2871989015144521972}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2608751017227819026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3208054890060280781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!4 &3621932684277666341 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1556251355608003281, guid: 6e5af4d229935a94d8b81025bf06ea01, type: 3}

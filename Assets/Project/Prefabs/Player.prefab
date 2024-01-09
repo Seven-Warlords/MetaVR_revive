@@ -714,7 +714,7 @@ MonoBehaviour:
   RotationAmount: 1.5
   RotationRatchet: 45
   SnapRotation: 1
-  RotateAroundGuardianCenter: 0
+  RotateAroundGuardianCenter: 1
   FixedSpeedSteps: 0
   HmdResetsY: 1
   HmdRotatesY: 1
@@ -766,6 +766,8 @@ MonoBehaviour:
   head: {fileID: 8215925090353829747}
   handL: {fileID: 5030362790629899870}
   handR: {fileID: 8388123692431347238}
+  myNumber: 0
+  trashspawnpoint: {fileID: 0}
 --- !u!1 &8047045875631105027
 GameObject:
   m_ObjectHideFlags: 0

@@ -46,7 +46,6 @@ public class LaserPointer : OVRCursor
     public float emojicool = 3f;
     public bool emojiready = true;
     public GameObject PV;
-    public PhotonView pv;
     private LaserBeamBehavior _laserBeamBehavior;
     bool m_restoreOnInputAcquired = false;
 
@@ -102,8 +101,7 @@ public class LaserPointer : OVRCursor
 
     private void LateUpdate()
     {
-        if (pv.IsMine)
-        {
+
             if (ARAVRInput.GetDown(ARAVRInput.Button.Two, ARAVRInput.Controller.RTouch))
             {
                 i += 1;
@@ -171,7 +169,6 @@ public class LaserPointer : OVRCursor
                 }
             }
         }
-    }
 
     // make laser beam a behavior with a prop that enables or disables
     private void UpdateLaserBeam(Vector3 start, Vector3 end)
