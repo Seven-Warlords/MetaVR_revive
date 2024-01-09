@@ -15,8 +15,14 @@ public class PT_Ready : MonoBehaviour
     [SerializeField]
     private Button readyBtn;
     public Button ReadyBtn { get { return readyBtn; } }
-
-
+    
+    private void OnEnable()
+    {
+        for(int i = 0; i < readyPly.Length; i++)
+        {
+            readyPly[i].color = Color.white;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {

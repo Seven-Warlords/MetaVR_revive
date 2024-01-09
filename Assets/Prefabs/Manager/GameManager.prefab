@@ -502,14 +502,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4516490102544653330}
     m_Modifications:
-    - target: {fileID: 441008345326013190, guid: 46d8eba5931ef484db0b5106aad1ab45, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8a5b66075695da646ae2d7b94c8df789, type: 2}
-    - target: {fileID: 441008345326013190, guid: 46d8eba5931ef484db0b5106aad1ab45, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 582898449432861377, guid: 46d8eba5931ef484db0b5106aad1ab45, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.9815247
@@ -554,22 +546,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3920597920087853671}
-    - target: {fileID: 610521259123020952, guid: 46d8eba5931ef484db0b5106aad1ab45, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: InGameReady
-      objectReference: {fileID: 0}
-    - target: {fileID: 2251302216742072759, guid: 46d8eba5931ef484db0b5106aad1ab45, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2251302216742072759, guid: 46d8eba5931ef484db0b5106aad1ab45, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2251302216742072759, guid: 46d8eba5931ef484db0b5106aad1ab45, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Photon.Pun.MonoBehaviourPunCallbacks, PhotonUnityNetworking
-      objectReference: {fileID: 0}
     - target: {fileID: 3688236570682566760, guid: 46d8eba5931ef484db0b5106aad1ab45, type: 3}
       propertyPath: m_Name
       value: Ready
@@ -578,26 +554,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3920597920087853671}
-    - target: {fileID: 5849415864180223905, guid: 46d8eba5931ef484db0b5106aad1ab45, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ReadyedPlayer
-      objectReference: {fileID: 0}
-    - target: {fileID: 5895586902376214970, guid: 46d8eba5931ef484db0b5106aad1ab45, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8a5b66075695da646ae2d7b94c8df789, type: 2}
-    - target: {fileID: 5895586902376214970, guid: 46d8eba5931ef484db0b5106aad1ab45, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -43600388164955795, guid: 8a5b66075695da646ae2d7b94c8df789, type: 2}
-    - target: {fileID: 7222103965773804454, guid: 46d8eba5931ef484db0b5106aad1ab45, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8a5b66075695da646ae2d7b94c8df789, type: 2}
-    - target: {fileID: 7222103965773804454, guid: 46d8eba5931ef484db0b5106aad1ab45, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -627,6 +583,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4516490102544653330}
     m_Modifications:
+    - target: {fileID: 4129955784577547079, guid: 995fd3c977205e34eb3199eb586d3647, type: 3}
+      propertyPath: BGMClip.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: c8a408204eda3fb40a9123bb041d2545, type: 3}
+    - target: {fileID: 4129955784577547079, guid: 995fd3c977205e34eb3199eb586d3647, type: 3}
+      propertyPath: BGMClip.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 44c349ce44a33954ca8129764bd87db9, type: 3}
+    - target: {fileID: 4129955784577547079, guid: 995fd3c977205e34eb3199eb586d3647, type: 3}
+      propertyPath: SFXClip.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 6352c240447ee4f4fa11ccb51f369619, type: 3}
+    - target: {fileID: 4129955784577547079, guid: 995fd3c977205e34eb3199eb586d3647, type: 3}
+      propertyPath: SFXClip.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2df5a13313ffa3f49a033a4ec5534ca7, type: 3}
     - target: {fileID: 8661512458290068568, guid: 995fd3c977205e34eb3199eb586d3647, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

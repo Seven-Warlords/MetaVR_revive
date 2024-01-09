@@ -46,8 +46,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BGMAudioList: []
   SFXAudioList: []
-  BGMClip: []
+  BGMClip:
+  - {fileID: 8300000, guid: c545f2eb896d0eb4189c788623ef4c01, type: 3}
+  - {fileID: 8300000, guid: c8a408204eda3fb40a9123bb041d2545, type: 3}
   SFXClip:
   - {fileID: 8300000, guid: c1e86f5c798ffce4eb63686733e9f454, type: 3}
+  - {fileID: 8300000, guid: fa2d28f81c51e72458506f300203b285, type: 3}
+  - {fileID: 8300000, guid: 3329fb2afae2cdb40bde5ef02a485e4c, type: 3}
+  - {fileID: 8300000, guid: ae96e2e11c06c604ebfacd5abf400d2c, type: 3}
+  - {fileID: 8300000, guid: 2df5a13313ffa3f49a033a4ec5534ca7, type: 3}
+  - {fileID: 8300000, guid: 6352c240447ee4f4fa11ccb51f369619, type: 3}
   bgmVolume: 0
   sfxVolume: 0

@@ -23,27 +23,48 @@ public class AudioManager : MonoBehaviour
     //create BGM audio source in obj
     public AudioSource CreateBGMAudioSource(GameObject obj,AudioClip audioClip)
     {
-        AudioSource source;
-        if (obj.TryGetComponent<AudioSource>(out source))
+        int check = 0;
+        for (int i = 0; i < BGMClip.Length; i++)
         {
-            if(source.clip = audioClip)
+            if (audioClip == BGMClip[i])
             {
-                source.playOnAwake = false; //바로 작동되는거 차단.한번만 출력X
-                source.volume = bgmVolume;
-
-                //오디오 플레이
-                source.Play();
-                return source;
+                break;
             }
-
+            else
+            {
+                check++;
+            }
+        }
+        if (check == BGMClip.Length)
+        {
+            return null;
         }
 
+        for (int i = 0; i < BGMAudioList.Count; i++)
+        {
+            if (BGMAudioList[i].gameObject == obj)
+            {
+                if (BGMAudioList[i].clip == audioClip)
+                {
+                    BGMAudioList[i].volume = sfxVolume;
+
+                    //오디오 플레이
+                    BGMAudioList[i].Play();
+                    return BGMAudioList[i];
+                }
+            }
+        }
+
+        AudioSource source;
         //오디오 생성
         source = obj.AddComponent<AudioSource>();
+        source.playOnAwake = false; //바로 작동되는거 차단.한번만 출력X
         //거리별 소리 생성
         source.spatialBlend = 1f;
         //오디오 등록
         source.clip = audioClip;
+        //오디오 반복
+        source.loop = true;
         //오디오 플레이
         source.Play();
 
@@ -54,21 +75,40 @@ public class AudioManager : MonoBehaviour
     //create SFX audio source in obj
     public AudioSource CreateSFXAudioSource(GameObject obj,AudioClip audioClip)
     {
-        AudioSource source;
-        if (obj.TryGetComponent<AudioSource>(out source))
+        int check = 0;
+        for(int i = 0; i < SFXClip.Length; i++)
         {
-            if (source.clip = audioClip)
+            if (audioClip == SFXClip[i])
             {
-                source.volume = sfxVolume;
-
-                //오디오 플레이
-                source.Play();
-                return source;
+                break;
             }
-
+            else
+            {
+                check++;
+            }
         }
+        if (check == SFXClip.Length){
+            return null;
+        }
+        for (int i = 0; i < SFXAudioList.Count; i++)
+        {
+            if (SFXAudioList[i].gameObject==obj)
+            {
+                if (SFXAudioList[i].clip == audioClip)
+                {
+                    SFXAudioList[i].volume = sfxVolume;
+
+                    //오디오 플레이
+                    SFXAudioList[i].Play();
+                    return SFXAudioList[i];
+                }
+            }
+        }
+
+        AudioSource source;
         //오디오 생성
-        source=obj.AddComponent<AudioSource>();
+        source =obj.AddComponent<AudioSource>();
+        source.playOnAwake = false; //바로 작동되는거 차단.한번만 출력X
         //오디오 등록
         source.clip = audioClip;
         //오디오 플레이
@@ -78,7 +118,21 @@ public class AudioManager : MonoBehaviour
         SFXAudioList.Add(source);
         return source;
     }
+    public int StopAudioSource(GameObject obj, AudioClip audioClip)
+    {
+        AudioSource source;
+        if (obj.TryGetComponent<AudioSource>(out source))
+        {
+            if (source.clip = audioClip)
+            {
+                //오디오 플레이
+                source.Stop();
+                return 1;
+            }
 
+        }
+        return 0;
+    }
     public AudioClip FindBGMAudioClipByString(string str)
     {
         for (int i = 0; i < BGMClip.Length; i++)

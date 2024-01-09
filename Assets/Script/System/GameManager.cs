@@ -34,6 +34,10 @@ public class GameManager : MonoBehaviour
         }
         audioManager.Init();
     }
+    private void Start()
+    {
+        audioManager.CreateBGMAudioSource(playerVR, audioManager.FindBGMAudioClipByString("¿ÀÇÁ´×"));
+    }
     public void Save(string key, float value)
     {
         PlayerPrefs.SetFloat(key, value);

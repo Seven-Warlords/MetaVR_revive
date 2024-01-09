@@ -141,9 +141,13 @@ public class NetWorkGameManager : MonoBehaviourPun, IPunObservable
         {
             //마스터가 나가는경우 확인 필요
             PhotonNetwork.LeaveRoom();
+            GameManager.instance.lobby.gameObject.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
+            GameManager.instance.lobby.gameObject.transform.GetChild(0).GetChild(1).gameObject.SetActive(false);
         }
         else
         {
+            AudioManager audio = GameManager.instance.audioManager;
+            audio.StopAudioSource(GameManager.instance.playerVR, audio.FindBGMAudioClipByString("오프닝"));
             //준비되어있으면 시작
             QuizManager.Instance.state = QuizManager.State.ready;
             GameManager.instance.lobby.gameObject.transform.GetChild(0).GetChild(1).gameObject.SetActive(false);

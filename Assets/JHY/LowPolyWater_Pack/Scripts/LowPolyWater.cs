@@ -24,6 +24,8 @@ namespace LowPolyWater
         void Start()
         {
             CreateMeshLowPoly(meshFilter);
+            AudioManager audio = GameManager.instance.audioManager;
+            audio.CreateBGMAudioSource(GameManager.instance.playerVR, audio.FindBGMAudioClipByString("파도"));
         }
 
         /// <summary>

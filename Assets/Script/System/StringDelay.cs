@@ -40,7 +40,7 @@ public class StringDelay : MonoBehaviour
         }
     }
     IEnumerator DelayText()
-    {
+    { 
         string[] arrStr = str.Split("\\n");
         for(int j = 0; j < arrStr.Length; j++)
         {
@@ -59,16 +59,15 @@ public class StringDelay : MonoBehaviour
         }
     }
    
-    public void DataPlay()
+    public IEnumerator DataPlay()
     {
         tmp.text = "";
-        Debug.Log("answertype: "+answerType);
+        AudioManager audio = GameManager.instance.audioManager;
+        yield return new WaitForSeconds(audio.FindSFXAudioClipByString("해설").length+0.1f);
+        audio.CreateSFXAudioSource(GameManager.instance.playerVR, audio.FindSFXAudioClipByString("문제 출력음"));
+        yield return new WaitForSeconds(audio.FindSFXAudioClipByString("문제 출력음").length+0.1f);
         if (answerType == 1)
         {
-            if (quizManager == QuizManager.Instance)
-            {
-                Debug.Log(".......................test");
-            }
             str = (string)GameManager.instance.webTest.getData(0, "trashCanText1", QuizManager.Instance.question);
         }
         else if(answerType == 2)

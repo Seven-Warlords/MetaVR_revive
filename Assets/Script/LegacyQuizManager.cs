@@ -206,8 +206,8 @@ public class LegacyQuizManager : MonoBehaviourPunCallbacks, IPunObservable
         trashcan1code = question.trashcan1code;
         trashcan2code = question.trashcan2code;
         trash = question.trash;
-        answer1.DataPlay();
-        answer2.DataPlay();
+        answer2.StartCoroutine(answer2.DataPlay());
+        answer1.StartCoroutine(answer1.DataPlay());
 
         //쓰레기통 생성 코드. 간단하게 짤 수 있으면 부탁함.
         trashcan1 = Instantiate(trashcans[trashcan1code]);

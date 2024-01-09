@@ -125,7 +125,7 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
                     break;
                 case State.quiz:
                     time.text = "문제!";
-                    
+
                     if ((is1 + is2) >= playercount)
                     {
                         if(is1 > is2)
@@ -208,7 +208,8 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
     [PunRPC]
     void Quiz()
     {
-        
+        AudioManager audio=GameManager.instance.audioManager;
+        audio.CreateSFXAudioSource(GameManager.instance.playerVR, audio.FindSFXAudioClipByString("해설"));
         qtime = quiztime;
         state = State.ready;
         state = State.quiz;
@@ -221,8 +222,8 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
         quizItem = (string)webTest.getData(0, "quizItem", question);
         collectanswer = (int)(long)webTest.getData(0, "answer", question);
         stateMessage.text = "버려야 할 곳으로 쓰레기를 던져보세요!";
-        answer1.DataPlay();
-        answer2.DataPlay();
+        answer2.StartCoroutine(answer2.DataPlay());
+        answer1.StartCoroutine(answer1.DataPlay());
 
         //쓰레기통 생성 코드. 간단하게 짤 수 있으면 부탁함.
         trashcan1 = Instantiate(trashcans[trashcan1code]);
@@ -299,11 +300,16 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
             question_text.text = (string)webTest.getData(0, "correctText", question);
             
             time.text = "맞췄어요!";
-            if(PhotonNetwork.IsMasterClient)
+
+            if (!resulted)
             {
-                if(!resulted)
+                resulted = true;
+                AudioManager audio = GameManager.instance.audioManager;
+                audio.CreateSFXAudioSource(GameManager.instance.playerVR, audio.FindSFXAudioClipByString("정답"));
+                audio.CreateSFXAudioSource(GameManager.instance.playerVR, audio.FindSFXAudioClipByString("환호"));
+                if (PhotonNetwork.IsMasterClient)
                 {
-                    resulted = true;
+                    
                     jungdab++;
                     currentquestion++;
                     resultcolor.ImageIn(1);
@@ -318,17 +324,19 @@ public class QuizManager : MonoBehaviourPunCallbacks, IPunObservable
             question_text.text = (string)webTest.getData(0, "wrongText", question);
             if (time)
             time.text = "노력해봐요!";
-            
-            if (PhotonNetwork.IsMasterClient)
+
+            if (!resulted)
             {
-                if (!resulted)
+                resulted = true;
+                AudioManager audio = GameManager.instance.audioManager;
+                audio.CreateSFXAudioSource(GameManager.instance.playerVR, audio.FindSFXAudioClipByString("오답"));
+                if (PhotonNetwork.IsMasterClient)
                 {
-                    resulted = true;
                     ohdab++;
                     currentquestion++;
                     resultcolor.ImageIn(2);
                 }
-                
+
             }
         }
 

@@ -6,6 +6,8 @@ using Photon.Pun;
 using Photon.Realtime;
 using System.Threading;
 using TMPro;
+using OVR;
+using Photon.Pun.Demo.PunBasics;
 
 public class PhotonManager_temp : MonoBehaviourPunCallbacks {
 
