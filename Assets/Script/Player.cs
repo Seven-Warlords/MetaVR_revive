@@ -21,13 +21,12 @@ public class Player : MonoBehaviour
 
 
         GameObject PlayerVR = GameManager.instance.playerVR;
+        PlayerVR.transform.position = GameManager.instance.spawnpoints[a - 1].position;
         head = PlayerVR.GetComponent<PlayerChase>().head;
         handL= PlayerVR.GetComponent<PlayerChase>().hand1;
         handR = PlayerVR.GetComponent<PlayerChase>().hand2;
 
         GameObject ppp=PhotonNetwork.Instantiate("PPP", transform.position, transform.rotation, 0);
-     
-
     }
 	public void Update() {
       

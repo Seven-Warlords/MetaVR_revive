@@ -35,8 +35,9 @@ public class StringDelay : MonoBehaviour
     {
         if (startTyping)
         {
-            StartCoroutine(DelayText());
             startTyping=!startTyping;
+            tmp.text = "";
+            StartCoroutine(DelayText());
         }
     }
     IEnumerator DelayText()
