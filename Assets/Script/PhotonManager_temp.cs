@@ -155,5 +155,14 @@ public class PhotonManager_temp : MonoBehaviourPunCallbacks {
             }
         }
     }
+    
+    public void LeaveRoom()
+    {
+        GameManager.instance.netWorkGameManager.PlayerOut();
+        GameManager.instance.netWorkGameManager.CancelPlayer(GameManager.instance.player.myNumber);
+        GameManager.instance.lobby.gameObject.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
+        GameManager.instance.lobby.gameObject.transform.GetChild(0).GetChild(1).gameObject.SetActive(false);
+        PhotonNetwork.LeaveRoom();
+    }
 }
 

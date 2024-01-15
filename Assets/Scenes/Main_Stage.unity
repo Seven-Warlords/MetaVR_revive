@@ -2520,6 +2520,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4549669034239648086, guid: 9a940b0afbcc77041a55ce45fd676f2d, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7915843622016644152, guid: 9a940b0afbcc77041a55ce45fd676f2d, type: 3}
       propertyPath: sceneViewId
       value: 1
@@ -10044,9 +10048,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 2479135096735037078, guid: 1782d51a14176fa4b9179d9b565ca294, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 2049956590243517571, guid: 1782d51a14176fa4b9179d9b565ca294, type: 3}
+      propertyPath: ready
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2946078859427740841, guid: 1782d51a14176fa4b9179d9b565ca294, type: 3}
       propertyPath: m_fontAsset
@@ -10216,6 +10220,18 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 8442562965928154287, guid: 1782d51a14176fa4b9179d9b565ca294, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 656913095}
+    - target: {fileID: 8442562965928154287, guid: 1782d51a14176fa4b9179d9b565ca294, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LeaveRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 8442562965928154287, guid: 1782d51a14176fa4b9179d9b565ca294, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PhotonManager_temp, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 8900443154371726630, guid: 1782d51a14176fa4b9179d9b565ca294, type: 3}
       propertyPath: sceneViewId
       value: 7
@@ -10230,6 +10246,17 @@ PrefabInstance:
       addedObject: {fileID: 1802847032}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1782d51a14176fa4b9179d9b565ca294, type: 3}
+--- !u!114 &656913095 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3920597920087853671, guid: 1782d51a14176fa4b9179d9b565ca294, type: 3}
+  m_PrefabInstance: {fileID: 656913094}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41de38f360c3e6142bff5b683c97a333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &656987148
 GameObject:
   m_ObjectHideFlags: 0
