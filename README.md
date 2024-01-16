@@ -28,8 +28,6 @@ DB: Mongo DB
 ![Alt text](image-1.png)\
 그림 2 . 어린이 선박사고 대피 VR체험\
 
-## 아키텍처
-![Alt text](image-3.png)
 
 ## 시연 영상
 [![시연영상](image-4.png)](https://youtu.be/AUxoxYv21k8) 
